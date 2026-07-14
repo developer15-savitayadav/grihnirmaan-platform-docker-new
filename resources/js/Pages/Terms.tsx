@@ -4,32 +4,27 @@ import { Head, Link } from '@inertiajs/react';
 import { AlertCircle, ClipboardCheck, FileText, RefreshCw } from 'lucide-react';
 
 const sections = [
-{
-icon: ClipboardCheck,
-title: 'Services',
-text: 'All estimates, consultations and pricing shown on this website are indicative and subject to final project
-evaluation.',
-},
-{
-icon: FileText,
-title: 'User Responsibilities',
-text: 'Users must provide accurate information, avoid misuse of website services and respect intellectual property
-rights.',
-},
-{
-icon: AlertCircle,
-title: 'Limitation of Liability',
-text: 'GrihNirmaan shall not be liable for indirect or consequential losses arising from website usage or estimate
-interpretation.',
-},
-{
-icon: RefreshCw,
-title: 'Changes to Terms',
-text: 'We reserve the right to modify these terms at any time. Continued use of the website indicates acceptance of
-updated terms.',
-},
+    {
+        icon: ClipboardCheck,
+        title: 'Services',
+        text: 'All estimates, consultations and pricing shown on this website are indicative and subject to final project evaluation.',
+    },
+    {
+        icon: FileText,
+        title: 'User Responsibilities',
+        text: 'Users must provide accurate information, avoid misuse of website services and respect intellectual property rights.',
+    },
+    {
+        icon: AlertCircle,
+        title: 'Limitation of Liability',
+        text: 'GrihNirmaan shall not be liable for indirect or consequential losses arising from website usage or estimate interpretation.',
+    },
+    {
+        icon: RefreshCw,
+        title: 'Changes to Terms',
+        text: 'We reserve the right to modify these terms at any time. Continued use of the website indicates acceptance of updated terms.',
+    },
 ];
-
 export default function Terms() {
 return (
 <AppLayout>

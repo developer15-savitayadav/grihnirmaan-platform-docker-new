@@ -1,0 +1,27 @@
+{
+  "home": "Home",
+  "about": "About Us",
+  "services": "Services",
+  "contact": "Contact Us",
+
+  "hero_badge": "🏠 Home Construction · Lucknow",
+  "hero_title": "From Bhumi Poojan to Grih Pravesh, your dream home built right.",
+  "hero_subtitle": "End-to-end home construction with transparent pricing, expert supervision, quality materials, on-time delivery, and a 10-year warranty.",
+  "cta_get_quote": "Get Free Quote",
+  "cta_calculate_cost": "Calculate Cost",
+  "cta_talk_advisor": "Talk to a Home Advisor",
+  "sending": "Sending…",
+
+  "how_it_works_title": "How It Works",
+  "how_it_works_subtitle": "From Bhumi Poojan to Grih Pravesh, our 12-step home-building journey is simplified into 4 clear milestones.",
+
+  "final_cta_badge": "Let's build, together",
+  "final_cta_title": "Ready to start your dream home?",
+  "final_cta_subtitle": "Drop your number — we will call you within 30 minutes with a no-obligation cost estimate.",
+
+  "faq_eyebrow": "Questions",
+  "faq_title": "Frequently Asked Questions",
+  "enquire_about": "Enquire about {{service}}",
+  "explore_more": "Explore More",
+  "related_services": "Related Services"
+}

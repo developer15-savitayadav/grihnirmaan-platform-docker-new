@@ -496,7 +496,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                     <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
                         Get a free consultation and accurate cost estimate for
                         your plot.
-                    </p>
+                    </p> 
 
                     <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                         <Link

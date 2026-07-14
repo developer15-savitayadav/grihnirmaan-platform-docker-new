@@ -97,51 +97,21 @@ export default function Show({
     relatedServices = [],
     brandPartners = [],
 }: Props) {
+    const serviceName = service.name ?? "Construction Service";
+
+    const serviceDescription =
+        service.meta_description ??
+        service.short_description ??
+        `Learn more about ${serviceName} from GrihNirmaan.`;
+
     const [activeIndex, setActiveIndex] = useState(0);
-    const processRef = useRef(null);
+    const processRef = useRef<HTMLElement | null>(null);
+    const [faqSearch, setFaqSearch] = useState("");
 
-    const { scrollYProgress } = useScroll({
-        target: processRef,
-        offset: ["start 75%", "end 35%"],
-    });
-
-    const card1Opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-    const card1Y = useTransform(scrollYProgress, [0, 0.25], [50, 0]);
-
-    const card2Opacity = useTransform(scrollYProgress, [0.3, 0.55], [0, 1]);
-    const card2Y = useTransform(scrollYProgress, [0.3, 0.55], [50, 0]);
-
-    const card3Opacity = useTransform(scrollYProgress, [0.6, 0.85], [0, 1]);
-    const card3Y = useTransform(scrollYProgress, [0.6, 0.85], [50, 0]);
-
-    const cardAnimations = [
-        { opacity: card1Opacity, y: card1Y },
-        { opacity: card2Opacity, y: card2Y },
-        { opacity: card3Opacity, y: card3Y },
-    ];
     const features = toArray(service.features);
     const processSteps = toArray(service.process_steps);
     const faqs = toArray(service.faqs);
-    const [faqSearch, setFaqSearch] = useState("");
 
-    const filteredFaqs = faqs.filter((faq) => {
-        const question =
-            (faq as any)?.question ||
-            (faq as any)?.q ||
-            (faq as any)?.title ||
-            "";
-
-        const answer =
-            (faq as any)?.answer ||
-            (faq as any)?.a ||
-            (faq as any)?.description ||
-            (faq as any)?.content ||
-            "";
-
-        const searchText = `${question} ${answer}`.toLowerCase();
-
-        return searchText.includes(faqSearch.toLowerCase());
-    });
     const {
         data,
         setData,
@@ -155,33 +125,27 @@ export default function Show({
         phone: "",
         email: "",
         message: "",
-        service_interest: service.name || "",
+        service_interest: serviceName,
         source: "service-page",
     });
 
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        post("/api/leads", {
-            preserveScroll: true,
-            onSuccess: () => reset("name", "phone", "email", "message"),
-        });
-    };
-
     return (
         <AppLayout>
-            <Head
-                title={service.meta_title || service.name || "Service"}
-                description={
-                    service.meta_description || service.short_description || ""
-                }
-            />
+            <Head title={serviceName}>
+                <meta
+                    name="description"
+                    content={serviceDescription}
+                />
+            </Head>
 
             <PageBanner
-                title={service.name}
+                title={serviceName}
                 subtitle="Explore our comprehensive home construction services."
                 bannerImage="/uploads/images/bcrumb-banner.jpg"
-                items={[{ label: "Services" }, { label: service.name }]}
+                items={[
+                    { label: "Services" },
+                    { label: serviceName },
+                ]}
             />
 
             <section className="relative overflow-hidden bg-gradient-to-br from-[#FDFAF5] via-[#D9E2F3]/40 to-white py-16 lg:py-24">
@@ -274,7 +238,7 @@ export default function Show({
                                                     href={
                                                         partner.website_url ||
                                                         "#"
-                                                    } 
+                                                    }
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex h-14 items-center justify-center rounded-full bg-white p-3 transition hover:-translate-y-1"
@@ -428,7 +392,8 @@ export default function Show({
 
             <section className="bg-white py-16 lg:py-20 fq-page-section">
                 <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8 fq-page-wrapper">
-                    <div classname="fq-page-left">
+                    <div className="fq-page-left">
+
                         <p className="font-semibold uppercase tracking-wider text-[#C4623A]">
                             Questions
                         </p>
@@ -509,10 +474,13 @@ export default function Show({
                         </div>
                     </div>
 
-                    <div  id="enquiry"  className="rounded-[2rem] bg-[#1F4E79] p-5 fq-page-right">
+                    <div
+                        id="enquiry"
+                        className="rounded-[2rem] bg-[#1F4E79] p-5 fq-page-right"
+                    >
                         <div className="rounded-[1.5rem] bg-white p-6 lg:p-8">
                             <h2 className="text-3xl font-bold text-[#1C1C1C]">
-                                Enquire about {service.name}
+                                Enquire about {serviceName}
                             </h2>
 
                             <p className="mt-2 text-sm text-[#6B6560]">

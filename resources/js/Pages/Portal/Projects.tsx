@@ -460,7 +460,7 @@ function MetricCard({
 }) {
     return (
         <div
-            class="group animate-fade-in-up rounded-full border border-slate-200 bg-white p-5 shadow-sm portal-start-card"
+            className="group animate-fade-in-up rounded-full border border-slate-200 bg-white p-5 shadow-sm portal-start-card"
             style={{ animationDelay: `${delay}ms` }}
         >
             <div className="flex items-center gap-4">

@@ -72,7 +72,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                                 <p className="mt-1 text-xl font-bold text-success-green">
                                     {project.budget_range}
                                 </p>
-                            )}
+                            )} 
                         </div>
                     )}
 

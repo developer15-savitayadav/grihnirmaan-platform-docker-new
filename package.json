@@ -1,10 +1,10 @@
 {
     "private": true,
     "type": "module",
-   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-},
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build"
+    },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
         "@inertiajs/react": "^2.0.0",

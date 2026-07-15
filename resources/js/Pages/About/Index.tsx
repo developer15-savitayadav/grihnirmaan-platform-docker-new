@@ -1,3 +1,4 @@
+import type { SVGProps, ReactNode } from "react";
 import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link } from "@inertiajs/react";
 import { motion } from "framer-motion";
@@ -5,7 +6,6 @@ import CountUp from "react-countup";
 import PageBanner from "@/Components/Breadcrumb";
 
 import {ArrowRight, Mail, Phone, Globe, Share2, AtSign, Award, CheckCircle2, ChevronRight, HeartHandshake, Home, ShieldCheck, Users, Building2, BadgeIndianRupee, Clock, Clock3, Scale, Smile, CalendarClock, HardHat, ClipboardCheck, House} from "lucide-react";
-
 interface BrandPartnerItem {
     id: number;
     slug: string;

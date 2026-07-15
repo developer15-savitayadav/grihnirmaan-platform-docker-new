@@ -123,7 +123,7 @@ const fadeUp: Variants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.6, ease: "easeOut" as const },
     },
 };
 
@@ -132,7 +132,7 @@ const scaleIn: Variants = {
     visible: {
         opacity: 1,
         scale: 1,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.6, ease: "easeOut" as const },
     },
 };
 
@@ -361,7 +361,7 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 1.8, ease: "easeOut" }}
+                            transition={{ duration: 1.8, ease: "easeOut" as const }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 

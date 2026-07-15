@@ -9,8 +9,7 @@
 
 /public/hot
 /public/build/
-/public/storage
-/public/uploads/
+
 
 /storage/*.key
 /storage/app/private/

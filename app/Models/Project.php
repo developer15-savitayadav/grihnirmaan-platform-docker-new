@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Project extends Model implements HasMedia
 {
-    use HasFactory, LogsActivity, InteractsWithMedia;
+    use InteractsWithMedia;
+
     protected $fillable = [
-        'slug',
         'title',
+        'slug',
         'locality',
         'plot_size_sqft',
         'built_up_area_sqft',
@@ -27,9 +24,6 @@ class Project extends Model implements HasMedia
         'budget_range',
         'customer_quote',
         'challenges_solved',
-        'hero_image_path',
-        'before_image_path',
-        'floor_plan_path',
         'is_featured',
         'display_order',
         'meta_title',
@@ -45,58 +39,51 @@ class Project extends Model implements HasMedia
         'display_order' => 'integer',
     ];
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
-    public function testimonials(): HasMany
-    {
-        return $this->hasMany(Testimonial::class);
-    }
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly([
-                'title',
-                'locality',
-                'budget_range',
-                'is_featured',
-                'display_order',
-            ])
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs()
-            ->useLogName('projects');
-    }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('hero')->singleFile();
-        $this->addMediaCollection('before')->singleFile();
-        $this->addMediaCollection('floor_plan')->singleFile();
-        $this->addMediaCollection('gallery');
+        $this->addMediaCollection('hero')
+            ->useDisk('public')
+            ->singleFile();
+
+        $this->addMediaCollection('before')
+            ->useDisk('public')
+            ->singleFile();
+
+        $this->addMediaCollection('floor_plan')
+            ->useDisk('public')
+            ->singleFile();
+
+        $this->addMediaCollection('gallery')
+            ->useDisk('public');
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(420)
-            ->height(280)
+            ->width(300)
+            ->height(300)
             ->format('webp')
             ->quality(80)
             ->nonQueued();
 
         $this->addMediaConversion('card')
-            ->width(900)
+            ->width(800)
             ->height(600)
             ->format('webp')
-            ->quality(85)
+            ->quality(82)
             ->nonQueued();
 
         $this->addMediaConversion('large')
-            ->width(1400)
-            ->height(900)
+            ->width(1600)
             ->format('webp')
-            ->quality(90)
+            ->quality(85)
             ->nonQueued();
+    }
+
+    public function getHeroImageUrlAttribute(): ?string
+    {
+        $url = $this->getFirstMediaUrl('hero', 'large');
+
+        return $url !== '' ? $url : null;
     }
 }

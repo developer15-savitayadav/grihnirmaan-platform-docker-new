@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useLeadSubmit } from '@/Hooks/useLeadSubmit';
+import type { SVGProps, ReactNode } from "react";
+interface LeadFormProps {
+    source?: string;
+    serviceInterest?: string | null;
+}
 
-export default function LeadForm({ source = 'website', serviceInterest = null }) {
+export default function LeadForm({ source = 'website', serviceInterest = null }: LeadFormProps) {
     const { submitLead, loading, error, success } = useLeadSubmit();
 
     const [form, setForm] = useState({
@@ -13,14 +18,14 @@ export default function LeadForm({ source = 'website', serviceInterest = null })
         service_interest: serviceInterest,
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await submitLead(form);
 
@@ -87,7 +92,7 @@ export default function LeadForm({ source = 'website', serviceInterest = null })
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell us about your requirement"
-                    rows="4"
+                    rows={4}
                     className="w-full rounded-lg border border-gray-300 px-4 py-3"
                 />
 

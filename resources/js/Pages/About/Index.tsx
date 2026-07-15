@@ -52,7 +52,8 @@ const LinkedinIcon = (props: SVGProps<SVGSVGElement>) => (
         <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18.34H5.67V9.99h2.67v8.35ZM7 8.83a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1Zm11.34 9.51h-2.67v-4.07c0-.97-.02-2.22-1.36-2.22-1.36 0-1.57 1.06-1.57 2.15v4.14h-2.67V9.99h2.56v1.14h.04c.36-.67 1.22-1.36 2.52-1.36 2.7 0 3.2 1.78 3.2 4.09v4.48Z" />
     </svg>
 );
-function Reveal({ children, className = "" }) {
+
+function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {    
     return (
         <motion.div
             variants={fadeUp}

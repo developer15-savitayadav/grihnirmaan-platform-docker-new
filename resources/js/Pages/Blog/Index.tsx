@@ -3,7 +3,22 @@ import { Head, Link } from '@inertiajs/react';
 import { ArrowUpRight, CalendarDays, Clock } from 'lucide-react';
 import PageBanner from '@/Components/Breadcrumb';
 
-export default function Index({ posts = [] }) {
+interface BlogPost {
+    id: number;
+    slug: string;
+    title: string;
+    excerpt?: string | null;
+    image?: string | null;
+    category: string;
+    published_at: string;
+    read_time_minutes: number;
+}
+
+interface IndexProps {
+    posts?: BlogPost[];
+}
+
+export default function Index({ posts = [] }: IndexProps) {
 return (
 <AppLayout>
 

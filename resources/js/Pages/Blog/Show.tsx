@@ -1,5 +1,5 @@
-import AppLayout from '@/Layouts/AppLayout';
-import { Head, Link } from '@inertiajs/react';
+import AppLayout from "@/Layouts/AppLayout";
+import { Head, Link } from "@inertiajs/react";
 import {
     ArrowLeft,
     CalendarDays,
@@ -9,8 +9,8 @@ import {
     Eye,
     MessageCircle,
     Search,
-} from 'lucide-react';
-import PageBanner from '@/Components/Breadcrumb';
+} from "lucide-react";
+import PageBanner from "@/Components/Breadcrumb";
 
 interface BlogPost {
     id: number;
@@ -53,8 +53,8 @@ export default function Show({
             <PageBanner
                 title={post.title}
                 subtitle="Read our latest construction and home design insights."
-                bannerImage={post.image || '/uploads/images/bcrumb-banner.jpg'}
-                items={[{ label: 'Blog' }, { label: post.category }]}
+                bannerImage={post.image || "/uploads/images/bcrumb-banner.jpg"}
+                items={[{ label: "Blog" }, { label: post.category }]}
             />
 
             <section className="bg-white pt-20">
@@ -117,7 +117,7 @@ export default function Show({
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
 
-                        {post.tags?.length > 0 && (
+                        {post.tags && post.tags.length > 0 && (
                             <div className="mt-12 border-t border-brand-blue/10 pt-8">
                                 <h3 className="blog-subtitle text-xl text-charcoal">
                                     Tags
@@ -145,7 +145,10 @@ export default function Show({
                                             className="group flex items-center gap-5"
                                         >
                                             <img
-                                                src={previousPost.image}
+                                                src={
+                                                    previousPost.image ??
+                                                    undefined
+                                                }
                                                 alt={previousPost.title}
                                                 className="h-24 w-24 rounded-2xl object-cover"
                                             />
@@ -182,7 +185,9 @@ export default function Show({
                                             </div>
 
                                             <img
-                                                src={nextPost.image}
+                                                src={
+                                                    nextPost.image ?? undefined
+                                                }
                                                 alt={nextPost.title}
                                                 className="h-24 w-24 rounded-2xl object-cover"
                                             />
@@ -200,12 +205,12 @@ export default function Show({
                             </h3>
 
                             <div className="blog-subtitle mt-2 text-2xl text-charcoal">
-                                {post.author_name || 'GrihNirmaan Team'}
+                                {post.author_name || "GrihNirmaan Team"}
                             </div>
 
                             <p className="mt-3 text-sm leading-6 text-muted-gray">
-                                Expert insights on home construction, architecture,
-                                interiors and approvals.
+                                Expert insights on home construction,
+                                architecture, interiors and approvals.
                             </p>
                         </div>
 
@@ -242,7 +247,7 @@ export default function Show({
                                             className="group flex gap-4"
                                         >
                                             <img
-                                                src={item.image}
+                                                src={item.image ?? undefined}
                                                 alt={item.title}
                                                 className="h-20 w-24 rounded-xl object-cover"
                                             />
@@ -267,7 +272,8 @@ export default function Show({
                             </h3>
 
                             <p className="mt-3 text-sm leading-6 text-white/80">
-                                Get expert construction guidance and accurate cost estimation.
+                                Get expert construction guidance and accurate
+                                cost estimation.
                             </p>
 
                             <Link

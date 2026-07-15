@@ -17,12 +17,6 @@ import {
     UserRound,
 } from 'lucide-react';
 
-declare global {
-    interface Window {
-        Echo: any;
-    }
-}
-
 type NextMilestone = {
     name: string;
     expected_date: string | null;

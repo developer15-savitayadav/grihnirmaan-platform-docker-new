@@ -16,12 +16,6 @@ import {
     UserRound,
 } from 'lucide-react';
 
-declare global {
-    interface Window {
-        Echo: any;
-    }
-}
-
 type Person = {
     name: string;
     email: string;

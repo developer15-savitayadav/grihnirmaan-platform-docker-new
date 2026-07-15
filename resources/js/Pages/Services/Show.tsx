@@ -2,7 +2,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import PageBanner from "@/Components/Breadcrumb";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import {
     ArrowRight,
     CheckCircle,
@@ -112,6 +112,35 @@ export default function Show({
     const processSteps = toArray(service.process_steps);
     const faqs = toArray(service.faqs);
 
+    // Simple fade/slide-in variants for the process step cards, indexed by
+    // position so each card animates in slightly staggered.
+    const cardAnimations = processSteps.map((_, index) => ({
+        opacity: 1,
+        transitionDelay: `${index * 100}ms`,
+    }));
+
+    // FAQs filtered by the search box above the list. Matches against both
+    // the question and answer text, across the various possible field names
+    // the FAQ JSON might use (question/q/title, answer/a/description/content).
+    const filteredFaqs = faqs.filter((faq) => {
+        if (!faqSearch.trim()) return true;
+
+        const question =
+            (faq as any)?.question ||
+            (faq as any)?.q ||
+            (faq as any)?.title ||
+            "";
+        const answer =
+            (faq as any)?.answer ||
+            (faq as any)?.a ||
+            (faq as any)?.description ||
+            (faq as any)?.content ||
+            "";
+
+        const haystack = `${question} ${answer}`.toLowerCase();
+        return haystack.includes(faqSearch.trim().toLowerCase());
+    });
+
     const {
         data,
         setData,
@@ -128,6 +157,15 @@ export default function Show({
         service_interest: serviceName,
         source: "service-page",
     });
+
+    const submit = (e: FormEvent) => {
+        e.preventDefault();
+
+        post(route("leads.store"), {
+            preserveScroll: true,
+            onSuccess: () => reset("name", "phone", "email", "message"),
+        });
+    };
 
     return (
         <AppLayout>

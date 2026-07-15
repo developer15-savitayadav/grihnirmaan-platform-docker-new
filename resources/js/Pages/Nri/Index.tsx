@@ -4,7 +4,8 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import ServiceCard from "@/Components/ServiceCard";
 import { motion, type Variants } from "framer-motion";
 import { PropsWithChildren } from "react";
-import {Calculator ,
+import {
+    Calculator,
     ChevronRight,
     ArrowRight,
     Globe,
@@ -53,6 +54,7 @@ type Testimonial = {
     content: string;
     rating?: number | null;
     customer_photo?: string | null;
+    role?: string;
 };
 
 type Faq = {
@@ -93,7 +95,7 @@ type LeadForm = {
 /* ────────────────────────────────────────────────────────────────────────
  * Reveal-on-scroll wrapper (framer-motion)
  * ──────────────────────────────────────────────────────────────────────*/
- const fadeUp: Variants = {
+const fadeUp: Variants = {
     hidden: {
         opacity: 0,
         y: 24,
@@ -213,6 +215,7 @@ export default function Index({
         image: imageUrl(item.customer_photo, "/uploads/images/founder.jpg"),
         text: item.content,
         rating: item.rating ?? 5,
+        role: item.role ?? "",
     }));
 
     const dynamicFaqs = faqs;
@@ -852,20 +855,20 @@ export default function Index({
                                                 <Phone className="h-6 w-6 text-gold-sage" />
                                                 +91 99999 11111
                                             </a>
-                                             <div className="mt-8">
-                                            <Link
-                                                href="/book-consultation"
-                                                className="inline-flex items-center rounded-2xl bg-[#C4623A] px-6 py-3 font-bold text-white hover:bg-[#b75531]"
-                                            >
-                                                Book Free Consultation
-                                            </Link>
+                                            <div className="mt-8">
+                                                <Link
+                                                    href="/book-consultation"
+                                                    className="inline-flex items-center rounded-2xl bg-[#C4623A] px-6 py-3 font-bold text-white hover:bg-[#b75531]"
+                                                >
+                                                    Book Free Consultation
+                                                </Link>
 
-                                            <p className="mt-3 text-sm text-white/70">
-                                                Schedule a free 30-minute
-                                                consultation with our
-                                                construction experts.
-                                            </p>
-                                        </div>
+                                                <p className="mt-3 text-sm text-white/70">
+                                                    Schedule a free 30-minute
+                                                    consultation with our
+                                                    construction experts.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </Reveal>
@@ -949,11 +952,7 @@ export default function Index({
                         </div>
                     </div>
                 </section>
-
-               
             </div>
         </AppLayout>
     );
 }
-
-

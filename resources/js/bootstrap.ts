@@ -13,9 +13,21 @@ declare global {
 
 window.Pusher = Pusher;
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
-    forceTLS: true,
-});
+const pusherKey = import.meta.env.VITE_PUSHER_APP_KEY;
+
+if (pusherKey) {
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: pusherKey,
+        cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+        forceTLS: true,
+    });
+} else {
+    // Realtime (Portal) features are disabled until Pusher credentials are
+    // configured as build-time env vars. Without this guard, Echo throws
+    // immediately on import and crashes the entire app on every page.
+    console.warn(
+        'Pusher/Echo not configured (VITE_PUSHER_APP_KEY missing) — realtime features disabled.',
+    );
+    window.Echo = undefined as unknown as Echo<any>;
+}

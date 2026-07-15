@@ -707,7 +707,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section>
+            </section> 
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">

@@ -53,7 +53,7 @@ const LinkedinIcon = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {    
+function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
     return (
         <motion.div
             variants={fadeUp}

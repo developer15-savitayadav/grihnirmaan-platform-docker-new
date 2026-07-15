@@ -39,7 +39,7 @@ RUN npm run build
 ############################################
 # Stage 3: Runtime image (PHP-FPM + Nginx)
 ############################################
-FROM php:8.2-fpm-alpine AS runtime
+FROM php:8.3-fpm-alpine AS runtime
 
 # System dependencies + PHP extensions required by this app
 # (pdo_mysql/pdo_pgsql for DB, gd for media library/dompdf, zip for maatwebsite/excel,

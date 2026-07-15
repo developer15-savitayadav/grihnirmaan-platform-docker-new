@@ -79,6 +79,7 @@ interface ProjectItem {
     budget_range?: string | null;
     is_featured?: boolean;
     before_image?: string | null;
+    duration_months?: number | null;
 }
 
 interface TestimonialItem {
@@ -431,7 +432,8 @@ export default function Home({
                                                 <img
                                                     key={testimonial.id}
                                                     src={
-                                                        testimonial.customer_photo
+                                                        testimonial.customer_photo ??
+                                                        undefined
                                                     }
                                                     alt={
                                                         testimonial.customer_name
@@ -1282,7 +1284,10 @@ export default function Home({
                                                 {/* Image */}
                                                 <div className="relative">
                                                     <img
-                                                        src={t.customer_photo}
+                                                        src={
+                                                            t.customer_photo ??
+                                                            undefined
+                                                        }
                                                         alt={t.customer_name}
                                                         className="h-[210px] w-[150px] rounded-[28px] object-cover"
                                                     />
@@ -1565,4 +1570,3 @@ export default function Home({
         </AppLayout>
     );
 }
- 

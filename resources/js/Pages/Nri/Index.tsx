@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import ServiceCard from "@/Components/ServiceCard";
+import ServiceCard, { type Service } from "@/Components/ServiceCard";
 import { motion, type Variants } from "framer-motion";
 import { PropsWithChildren } from "react";
 import {
@@ -28,13 +28,6 @@ import {
     LockKeyhole,
 } from "lucide-react";
 
-type Service = {
-    id: number;
-    name: string;
-    slug: string;
-    short_description?: string | null;
-    icon_name?: string | null;
-};
 
 type FeaturedProject = {
     id: number;

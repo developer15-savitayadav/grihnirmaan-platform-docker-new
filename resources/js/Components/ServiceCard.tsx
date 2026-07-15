@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react';
-import LazyImage from '@/Components/LazyImage';
+import { Link } from "@inertiajs/react";
+import LazyImage from "@/Components/LazyImage";
 import {
     ArrowRight,
     Banknote,
@@ -14,13 +14,13 @@ import {
     Sparkles,
     Square,
     Zap,
-} from 'lucide-react';
+} from "lucide-react";
 
-interface Service {
+export interface Service {
     id: number;
     slug: string;
     name: string;
-    short_description: string;
+    short_description?: string | null;
     icon_name: string | null;
 }
 
@@ -43,7 +43,8 @@ const SERVICE_ICONS: Record<string, typeof FileCheck> = {
 };
 
 function ServiceIcon({ name }: { name: string | null }) {
-    const Icon = name && SERVICE_ICONS[name] ? SERVICE_ICONS[name] : Construction;
+    const Icon =
+        name && SERVICE_ICONS[name] ? SERVICE_ICONS[name] : Construction;
 
     return <Icon className="h-6 w-6" />;
 }

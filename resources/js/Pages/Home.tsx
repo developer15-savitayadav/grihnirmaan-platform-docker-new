@@ -361,7 +361,10 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 1.8, ease: "easeOut" as const }}
+                            transition={{
+                                duration: 1.8,
+                                ease: "easeOut" as const,
+                            }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 
@@ -428,19 +431,29 @@ export default function Home({
                                     <div className="flex -space-x-3">
                                         {testimonials
                                             .slice(0, 3)
-                                            .map((testimonial) => (
-                                                <img
-                                                    key={testimonial.id}
-                                                    src={
-                                                        testimonial.customer_photo ??
-                                                        undefined
-                                                    }
-                                                    alt={
-                                                        testimonial.customer_name
-                                                    }
-                                                    className="h-12 w-12 rounded-full border-2 border-white object-cover"
-                                                />
-                                            ))}
+                                            .map((testimonial) =>
+                                                testimonial.customer_photo ? (
+                                                    <img
+                                                        key={testimonial.id}
+                                                        src={
+                                                            testimonial.customer_photo
+                                                        }
+                                                        alt={
+                                                            testimonial.customer_name
+                                                        }
+                                                        className="h-12 w-12 rounded-full border-2 border-white object-cover"
+                                                    />
+                                                ) : (
+                                                    <div
+                                                        key={testimonial.id}
+                                                        className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-brand-blue text-sm font-bold text-white"
+                                                    >
+                                                        {testimonial.customer_name.charAt(
+                                                            0,
+                                                        )}
+                                                    </div>
+                                                ),
+                                            )}
                                     </div>
 
                                     <div>
@@ -531,7 +544,7 @@ export default function Home({
                                     src={
                                         bp.logo_path?.startsWith("http")
                                             ? bp.logo_path
-                                            : `/storage/${bp.logo_path}`
+                                            : `/${bp.logo_path}`
                                     }
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
@@ -707,7 +720,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section> 
+            </section>
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -1283,14 +1296,23 @@ export default function Home({
                                             <div className="relative z-10 grid gap-8 sm:grid-cols-[180px_1fr] sm:items-center">
                                                 {/* Image */}
                                                 <div className="relative">
-                                                    <img
-                                                        src={
-                                                            t.customer_photo ??
-                                                            undefined
-                                                        }
-                                                        alt={t.customer_name}
-                                                        className="h-[210px] w-[150px] rounded-[28px] object-cover"
-                                                    />
+                                                    {t.customer_photo ? (
+                                                        <img
+                                                            src={
+                                                                t.customer_photo
+                                                            }
+                                                            alt={
+                                                                t.customer_name
+                                                            }
+                                                            className="h-[210px] w-[150px] rounded-[28px] object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="flex h-[210px] w-[150px] items-center justify-center rounded-[28px] bg-brand-blue text-5xl font-bold text-white">
+                                                            {t.customer_name.charAt(
+                                                                0,
+                                                            )}
+                                                        </div>
+                                                    )}
 
                                                     <div className="absolute tesi-star flex -translate-x-1/2 gap-1 text-yellow-400">
                                                         {Array.from({

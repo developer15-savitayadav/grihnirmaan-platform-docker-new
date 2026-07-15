@@ -6,7 +6,7 @@ import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { FormEventHandler, useEffect } from "react";
-
+import type { PageProps } from "@/types";
 export default function Login({
     status,
     canResetPassword,
@@ -14,13 +14,15 @@ export default function Login({
     status?: string;
     canResetPassword: boolean;
 }) {
-    const page = usePage<{
-        flash?: {
-            status?: string;
-            phone?: string;
-            otpStep?: boolean;
-        };
-    }>();
+    const page = usePage<
+        PageProps & {
+            flash?: {
+                status?: string;
+                phone?: string;
+                otpStep?: boolean;
+            };
+        }
+    >();
 
     const flashStatus = page.props.flash?.status || status;
     const flashPhone = page.props.flash?.phone || "";

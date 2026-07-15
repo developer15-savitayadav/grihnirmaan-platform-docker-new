@@ -93,11 +93,26 @@ COPY . .
 # Copy vendor (PHP deps) from composer stage
 COPY --from=composer_deps /app/vendor ./vendor
 
+# Copy the composer binary itself so we can run composer commands in this stage
+COPY --from=composer_deps /usr/bin/composer /usr/bin/composer
+
 # Copy built frontend assets from frontend stage
 COPY --from=frontend /app/public/build ./public/build
 
 # Remove any stray Vite dev-server marker so Laravel serves the built assets
 RUN rm -f public/hot
+
+# Ensure required cache/storage directories exist (Blade view compiler, config
+# cache, route cache, and sessions all need these present, and .dockerignore
+# excluding their contents doesn't guarantee the empty dirs survive the build)
+RUN mkdir -p \
+        storage/framework/cache/data \
+        storage/framework/sessions \
+        storage/framework/views \
+        storage/framework/testing \
+        storage/logs \
+        storage/app/public \
+        bootstrap/cache
 
 # Finish composer scripts now that full app + vendor are in place
 RUN composer dump-autoload --optimize --no-dev \

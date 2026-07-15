@@ -18,7 +18,7 @@ const calculatorSchema = z.object({
     floors: z.string().min(1, 'Floor is required'),
     finish_level: z.enum(['budget', 'standard', 'premium']),
     locality: z.string().min(1, 'Locality is required'),
-    addons: z.array(z.string()).default([]),
+    addons: z.array(z.string()),    
 });
 
 type FormData = z.infer<typeof calculatorSchema>;

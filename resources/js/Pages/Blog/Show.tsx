@@ -12,12 +12,36 @@ import {
 } from 'lucide-react';
 import PageBanner from '@/Components/Breadcrumb';
 
+interface BlogPost {
+    id: number;
+    slug: string;
+    title: string;
+    excerpt?: string | null;
+    image?: string | null;
+    content: string;
+    category: string;
+    published_at: string;
+    read_time_minutes: number;
+    view_count?: number;
+    author_name?: string | null;
+    meta_title?: string | null;
+    meta_description?: string | null;
+    tags?: string[];
+}
+
+interface ShowProps {
+    post: BlogPost;
+    recentPosts?: BlogPost[];
+    previousPost?: BlogPost | null;
+    nextPost?: BlogPost | null;
+}
+
 export default function Show({
     post,
     recentPosts = [],
     previousPost = null,
     nextPost = null,
-}) {
+}: ShowProps) {
     return (
         <AppLayout>
             <Head title={post.meta_title || post.title}>

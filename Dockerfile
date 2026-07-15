@@ -34,6 +34,15 @@ COPY public ./public
 # from /vendor/filament/filament/..., so vendor/ must exist before the build.
 COPY --from=composer_deps /app/vendor ./vendor
 
+# Render automatically passes dashboard env vars as Docker build args with
+# matching names, so declaring these ARGs lets us pull PUSHER_APP_KEY /
+# PUSHER_APP_CLUSTER (set once in Render) into Vite's build-time env vars,
+# without needing to duplicate them as separate VITE_-prefixed variables.
+ARG PUSHER_APP_KEY
+ARG PUSHER_APP_CLUSTER
+ENV VITE_PUSHER_APP_KEY=$PUSHER_APP_KEY
+ENV VITE_PUSHER_APP_CLUSTER=$PUSHER_APP_CLUSTER
+
 RUN npm run build
 
 ############################################
@@ -118,9 +127,12 @@ RUN mkdir -p \
 RUN composer dump-autoload --optimize --no-dev \
     && php artisan package:discover --ansi || true
 
-# Permissions: web server user needs write access to these
+# Permissions: the exact UID the process runs as may not match www-data on
+# some hosting platforms (e.g. Render), so use world-writable permissions on
+# these cache/log/session directories to guarantee write access regardless
+# of which UID actually runs php-fpm at runtime.
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Config files for nginx / php-fpm / supervisord
 # nginx.conf is a template - the entrypoint substitutes $PORT into it at container start,

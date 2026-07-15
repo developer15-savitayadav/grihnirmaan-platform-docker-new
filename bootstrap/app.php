@@ -14,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Trust Render's load balancer so Laravel correctly detects the
+        // original HTTPS scheme (Render terminates SSL at the edge, so
+        // requests reach this container as plain HTTP without this).
+        $middleware->trustProxies(at: '*');
+
         $middleware->web(append: [
              SetLocale::class,
             HandleInertiaRequests::class,

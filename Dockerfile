@@ -63,6 +63,7 @@ RUN apk add --no-cache \
         libpng \
         libjpeg-turbo \
         freetype \
+        libwebp \
         libzip \
         libxml2 \
         icu-libs \
@@ -74,12 +75,16 @@ RUN apk add --no-cache \
         libpng-dev \
         libjpeg-turbo-dev \
         freetype-dev \
+        libwebp-dev \
         libzip-dev \
         libxml2-dev \
         icu-dev \
         oniguruma-dev \
         postgresql-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure gd \
+        --with-freetype \
+        --with-jpeg \
+        --with-webp \
     && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
         pdo_pgsql \
@@ -92,9 +97,10 @@ RUN apk add --no-cache \
         opcache \
     && pecl install redis \
     && docker-php-ext-enable redis \
+    && php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
+    
     && apk del .build-deps
-
-WORKDIR /var/www/html
+    WORKDIR /var/www/html
 
 # Copy application code
 COPY . .

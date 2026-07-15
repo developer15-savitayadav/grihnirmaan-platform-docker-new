@@ -27,9 +27,14 @@ php artisan config:cache || true
 php artisan route:cache || true
 php artisan view:cache || true
 
-# Optionally auto-run migrations on boot (set AUTO_MIGRATE=true in Render env vars)
-if [ "${AUTO_MIGRATE}" = "true" ]; then
+# Optionally auto-run migrations on boot (set RUN_MIGRATIONS=true in Render env vars)
+if [ "${RUN_MIGRATIONS}" = "true" ]; then
     php artisan migrate --force
+fi
+
+# Optionally run database seeders on boot (set RUN_SEEDERS=true in Render env vars)
+if [ "${RUN_SEEDERS}" = "true" ]; then
+    php artisan db:seed --force
 fi
 
 exec "$@"

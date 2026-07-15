@@ -50,6 +50,7 @@ RUN apk add --no-cache \
         bash \
         curl \
         git \
+        ca-certificates \
         libpng \
         libjpeg-turbo \
         freetype \

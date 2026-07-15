@@ -1,23 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ############################################
-# Stage 1: Build frontend assets (Vite/React)
-############################################
-FROM node:20-alpine AS frontend
-
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY tsconfig.json vite.config.js tailwind.config.js postcss.config.js components.json ./
-COPY resources ./resources
-COPY public ./public
-
-RUN npm run build
-
-############################################
-# Stage 2: Install PHP dependencies (Composer)
+# Stage 1: Install PHP dependencies (Composer)
 ############################################
 FROM composer:2 AS composer_deps
 
@@ -31,6 +15,26 @@ RUN composer install \
     --no-scripts \
     --optimize-autoloader \
     --ignore-platform-reqs
+
+############################################
+# Stage 2: Build frontend assets (Vite/React)
+############################################
+FROM node:20-alpine AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY tsconfig.json vite.config.js tailwind.config.js postcss.config.js components.json ./
+COPY resources ./resources
+COPY public ./public
+
+# The Filament admin theme (resources/css/filament/admin/theme.css) imports
+# from /vendor/filament/filament/..., so vendor/ must exist before the build.
+COPY --from=composer_deps /app/vendor ./vendor
+
+RUN npm run build
 
 ############################################
 # Stage 3: Runtime image (PHP-FPM + Nginx)

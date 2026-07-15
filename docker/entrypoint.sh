@@ -21,10 +21,12 @@ fi
 # Make sure storage symlink exists
 php artisan storage:link || true
 
-# Cache config/routes/views for production performance.
-# Safe to ignore failures here on first boot before DB/env is fully configured.
+# Cache config/views for production performance.
+# NOTE: route:cache is intentionally skipped — Filament registers routes
+# using closures, which Laravel's route cache cannot serialize. Running
+# route:cache in that situation can leave a corrupted/partial cached
+# routes file that causes valid routes to fail with 405 errors.
 php artisan config:cache || true
-php artisan route:cache || true
 php artisan view:cache || true
 
 # Optionally auto-run migrations on boot (set RUN_MIGRATIONS=true in Render env vars)

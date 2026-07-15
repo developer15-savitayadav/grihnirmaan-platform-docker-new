@@ -50,6 +50,17 @@ RUN apk add --no-cache \
         bash \
         curl \
         git \
+        libpng \
+        libjpeg-turbo \
+        freetype \
+        libzip \
+        libxml2 \
+        icu-libs \
+        oniguruma \
+        libpq \
+    && apk add --no-cache --virtual .build-deps \
+        $PHPIZE_DEPS \
+        linux-headers \
         libpng-dev \
         libjpeg-turbo-dev \
         freetype-dev \
@@ -58,9 +69,6 @@ RUN apk add --no-cache \
         icu-dev \
         oniguruma-dev \
         postgresql-dev \
-    && apk add --no-cache --virtual .build-deps \
-        $PHPIZE_DEPS \
-        linux-headers \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
@@ -74,7 +82,7 @@ RUN apk add --no-cache \
         opcache \
     && pecl install redis \
     && docker-php-ext-enable redis \
-    && apk del .build-deps libpng-dev libjpeg-turbo-dev freetype-dev libzip-dev libxml2-dev icu-dev oniguruma-dev postgresql-dev
+    && apk del .build-deps
 
 WORKDIR /var/www/html
 

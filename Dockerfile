@@ -98,9 +98,9 @@ RUN apk add --no-cache \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
-    
     && apk del .build-deps
-    WORKDIR /var/www/html
+
+WORKDIR /var/www/html
 
 # Copy application code
 COPY . .
@@ -127,6 +127,7 @@ RUN mkdir -p \
         storage/framework/testing \
         storage/logs \
         storage/app/public \
+        storage/media-library/temp \
         bootstrap/cache
 
 # Finish composer scripts now that full app + vendor are in place

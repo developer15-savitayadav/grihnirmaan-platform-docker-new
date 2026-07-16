@@ -1,6 +1,7 @@
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { PropsWithChildren, useState } from "react";
-
+import LanguageSwitcher from "@/Components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 import {
     Menu,
     X,
@@ -486,7 +487,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                             <Phone className="h-4 w-4 text-brand-blue" />
                             <span>{BRAND.phone}</span>
                         </a>
-
+                        <LanguageSwitcher />
                         <Link
                             href="/cost-calculator"
                             aria-current={

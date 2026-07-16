@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-
+use Spatie\Translatable\HasTranslations;
 class Service extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity , HasTranslations;
 
     protected $fillable = [
         'slug',

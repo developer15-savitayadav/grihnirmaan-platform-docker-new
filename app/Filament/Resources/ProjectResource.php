@@ -5,12 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ProjectResource extends Resource
@@ -25,196 +24,144 @@ class ProjectResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Section::make('Project Details')
-                    ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->required()
-                            ->maxLength(255),
+        return $form->schema([
 
-                        Forms\Components\TextInput::make('slug')
-                            ->required()
-                            ->unique(ignoreRecord: true)
-                            ->maxLength(255),
+            Forms\Components\Section::make('Project Details')
+                ->schema([
 
-                        Forms\Components\TextInput::make('locality')
-                            ->maxLength(255),
+                    Forms\Components\TextInput::make('title')
+                        ->required()
+                        ->maxLength(255),
 
-                        Forms\Components\TextInput::make('plot_size_sqft')
-                            ->numeric()
-                            ->minValue(0),
+                    Forms\Components\TextInput::make('slug')
+                        ->required()
+                        ->unique(ignoreRecord: true)
+                        ->maxLength(255),
 
-                        Forms\Components\TextInput::make('built_up_area_sqft')
-                            ->numeric()
-                            ->minValue(0),
+                    Forms\Components\TextInput::make('locality')
+                        ->maxLength(255),
 
-                        Forms\Components\TextInput::make('bhk')
-                            ->label('BHK')
-                            ->maxLength(20),
+                    Forms\Components\TextInput::make('plot_size_sqft')
+                        ->numeric(),
 
-                        Forms\Components\TextInput::make('style')
-                            ->maxLength(100),
+                    Forms\Components\TextInput::make('built_up_area_sqft')
+                        ->numeric(),
 
-                        Forms\Components\DatePicker::make('completion_date'),
+                    Forms\Components\TextInput::make('bhk')
+                        ->label('BHK')
+                        ->maxLength(20),
 
-                        Forms\Components\TextInput::make('duration_months')
-                            ->numeric()
-                            ->minValue(0),
+                    Forms\Components\TextInput::make('style')
+                        ->maxLength(100),
 
-                        Forms\Components\TextInput::make('budget_range')
-                            ->maxLength(100),
+                    Forms\Components\DatePicker::make('completion_date'),
 
-                        SpatieMediaLibraryFileUpload::make('hero')
-                            ->label('After / Completed Image')
-                            ->collection('hero')
-                            ->image()
-                            ->acceptedFileTypes([
-                                'image/jpeg',
-                                'image/png',
-                                'image/webp',
-                            ])
-                            ->imageEditor()
-                            ->imagePreviewHeight('180')
-                            ->maxSize(10240)
-                            ->helperText('Allowed: JPG, PNG, WebP. Maximum 10 MB.')
-                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
-                                if (! $record) {
-                                    return null;
-                                }
+                    Forms\Components\TextInput::make('duration_months')
+                        ->numeric(),
 
-                                $media = $record
-                                    ->addMedia($file->getRealPath())
-                                    ->usingFileName($file->getClientOriginalName())
-                                    ->toMediaCollection('hero');
+                    Forms\Components\TextInput::make('budget_range')
+                        ->maxLength(100),
 
-                                $record->update([
-                                    'hero_image_path' => $media->getUrl(),
-                                ]);
+                    SpatieMediaLibraryFileUpload::make('hero')
+    ->label('After / Completed Image')
+    ->collection('hero')
+    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
+    ->image()
+    ->imageEditor()
+    ->imagePreviewHeight('180')
+    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, Project $record) {
+        $media = $record
+            ->addMedia($file->getRealPath())
+            ->usingFileName($file->getClientOriginalName())
+            ->toMediaCollection('hero');
 
-                                return $media->uuid;
-                            }),
+        $record->update([
+            'hero_image_path' => $media->getPathRelativeToRoot(),
+        ]);
 
-                        SpatieMediaLibraryFileUpload::make('before')
-                            ->label('Before Construction Image')
-                            ->collection('before')
-                            ->image()
-                            ->acceptedFileTypes([
-                                'image/jpeg',
-                                'image/png',
-                                'image/webp',
-                            ])
-                            ->imageEditor()
-                            ->imagePreviewHeight('180')
-                            ->maxSize(10240)
-                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
-                                if (! $record) {
-                                    return null;
-                                }
+        return $media->uuid;
+    }),
 
-                                $media = $record
-                                    ->addMedia($file->getRealPath())
-                                    ->usingFileName($file->getClientOriginalName())
-                                    ->toMediaCollection('before');
 
-                                $record->update([
-                                    'before_image_path' => $media->getUrl(),
-                                ]);
+                    SpatieMediaLibraryFileUpload::make('before')
+                        ->label('Before Construction Image')
+                        ->collection('before')
+                        ->image()
+                        ->imageEditor(),
 
-                                return $media->uuid;
-                            }),
+                    SpatieMediaLibraryFileUpload::make('floor_plan')
+                        ->label('Floor Plan')
+                        ->collection('floor_plan')
+                        ->image()
+                        ->imageEditor(),
 
-                        SpatieMediaLibraryFileUpload::make('floor_plan')
-                            ->label('Floor Plan')
-                            ->collection('floor_plan')
-                            ->image()
-                            ->acceptedFileTypes([
-                                'image/jpeg',
-                                'image/png',
-                                'image/webp',
-                            ])
-                            ->imageEditor()
-                            ->imagePreviewHeight('180')
-                            ->maxSize(10240)
-                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
-                                if (! $record) {
-                                    return null;
-                                }
+                    SpatieMediaLibraryFileUpload::make('gallery')
+                        ->label('Project Gallery')
+                        ->collection('gallery')
+                        ->multiple()
+                        ->image()
+                        ->imageEditor(),
 
-                                $media = $record
-                                    ->addMedia($file->getRealPath())
-                                    ->usingFileName($file->getClientOriginalName())
-                                    ->toMediaCollection('floor_plan');
 
-                                $record->update([
-                                    'floor_plan_path' => $media->getUrl(),
-                                ]);
+                    Forms\Components\Textarea::make('customer_quote')
+                        ->rows(4)
+                        ->columnSpanFull(),
 
-                                return $media->uuid;
-                            }),
+                    Forms\Components\Textarea::make('challenges_solved')
+                        ->rows(4)
+                        ->columnSpanFull(),
 
-                        SpatieMediaLibraryFileUpload::make('gallery')
-                            ->label('Project Gallery')
-                            ->collection('gallery')
-                            ->multiple()
-                            ->image()
-                            ->acceptedFileTypes([
-                                'image/jpeg',
-                                'image/png',
-                                'image/webp',
-                            ])
-                            ->imageEditor()
-                            ->imagePreviewHeight('180')
-                            ->maxSize(10240)
-                            ->reorderable()
-                            ->appendFiles(),
+                    Forms\Components\Toggle::make('is_featured')
+                        ->default(false),
 
-                        Forms\Components\Textarea::make('customer_quote')
-                            ->rows(4)
-                            ->columnSpanFull(),
+                    Forms\Components\TextInput::make('meta_title')
+                        ->maxLength(255),
 
-                        Forms\Components\Textarea::make('challenges_solved')
-                            ->rows(4)
-                            ->columnSpanFull(),
-
-                        Forms\Components\Toggle::make('is_featured')
-                            ->default(false),
-
-                        Forms\Components\TextInput::make('display_order')
-                            ->numeric()
-                            ->default(0)
-                            ->minValue(0),
-
-                        Forms\Components\TextInput::make('meta_title')
-                            ->maxLength(255),
-
-                        Forms\Components\Textarea::make('meta_description')
-                            ->rows(3)
-                            ->columnSpanFull(),
-                    ])
-                    ->columns(2),
-            ]);
+                    Forms\Components\Textarea::make('meta_description')
+                        ->rows(3)
+                        ->columnSpanFull(),
+                ])
+                ->columns(2),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('hero')
+
+                Tables\Columns\ImageColumn::make('hero_image_path')
                     ->label('Image')
-                    ->collection('hero')
-                    ->conversion('thumb')
+                    ->getStateUsing(function ($record) {
+                        $path = $record->hero_image_path;
+
+                        if (blank($path)) {
+                            return null;
+                        }
+
+                        if (str_starts_with($path, '/storage/')) {
+                            return asset(ltrim($path, '/'));
+                        }
+
+                        if (str_starts_with($path, 'storage/')) {
+                            return asset($path);
+                        }
+
+                        if (str_starts_with($path, 'public/storage/')) {
+                            return asset(str_replace('public/', '', $path));
+                        }
+
+                        return asset('storage/' . ltrim($path, '/'));
+                    })
                     ->square()
-                    ->size(50)
-                    ->defaultImageUrl(asset('images/project-placeholder.webp')),
+                    ->size(50),
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('locality')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('bhk')
                     ->label('BHK')
@@ -224,8 +171,7 @@ class ProjectResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('duration_months')
-                    ->suffix(' months')
-                    ->sortable(),
+                    ->suffix(' months'),
 
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),
@@ -235,23 +181,26 @@ class ProjectResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime('d M Y')
-                    ->sortable(),
+                    ->dateTime('d M Y'),
             ])
+
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_featured')
                     ->label('Featured Projects'),
             ])
+
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
+
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
+
             ->defaultSort('created_at', 'desc');
     }
 
@@ -278,34 +227,31 @@ class ProjectResource extends Resource
     {
         return auth()->user()?->can('manage projects') ?? false;
     }
-
     public static function getGloballySearchableAttributes(): array
-    {
-        return [
-            'title',
-            'slug',
-            'locality',
-            'budget_range',
-        ];
-    }
+{
+    return [
+        'title',
+        'slug',
+        'locality',
+        'budget_range',
+    ];
+}
 
-    public static function getGlobalSearchResultTitle($record): string
-    {
-        return $record->title;
-    }
+public static function getGlobalSearchResultTitle($record): string
+{
+    return $record->title;
+}
 
-    public static function getGlobalSearchResultDetails($record): array
-    {
-        return [
-            'Locality' => $record->locality ?: 'Not specified',
-            'Budget' => $record->budget_range ?: 'Not specified',
-        ];
-    }
+public static function getGlobalSearchResultDetails($record): array
+{
+    return [
+        'Locality' => $record->locality,
+        'Budget' => $record->budget_range,
+    ];
+}
 
-    public static function getGlobalSearchResultUrl($record): string
-    {
-        return static::getUrl('edit', [
-            'record' => $record,
-        ]);
-    }
+public static function getGlobalSearchResultUrl($record): string
+{
+    return static::getUrl('edit', ['record' => $record]);
+}
 }

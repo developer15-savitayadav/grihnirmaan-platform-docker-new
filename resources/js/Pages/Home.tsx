@@ -9,6 +9,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { FormEvent, PropsWithChildren, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
     AlertTriangle,
@@ -273,6 +274,7 @@ export default function Home({
     brandPartners,
     localities,
 }: HomeProps) {
+    const { t } = useTranslation();
     const { scrollY } = useScroll();
 
     const heroY = useTransform(scrollY, [0, 600], [0, 120]);
@@ -361,10 +363,7 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{
-                                duration: 1.8,
-                                ease: "easeOut" as const,
-                            }}
+                            transition={{ duration: 1.8, ease: "easeOut" as const }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 
@@ -382,24 +381,21 @@ export default function Home({
                                 variants={fadeUp}
                                 className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur"
                             >
-                                🏠 Home Construction · Lucknow
+                                {t("hero_badge")}
                             </motion.div>
 
                             <motion.h1
                                 variants={fadeUp}
                                 className=" font-bold leading-[1.1] tracking-tight text-white"
                             >
-                                From Bhumi Poojan to Grih Pravesh, your dream
-                                home built right.
+                                {t("hero_title")}
                             </motion.h1>
 
                             <motion.p
                                 variants={fadeUp}
                                 className="mt-6 max-w-lg font-body text-base text-white/85 "
                             >
-                                End-to-end home construction with transparent
-                                pricing, expert supervision, quality materials,
-                                on-time delivery, and a 10-year warranty.
+                                {t("hero_subtitle")}
                             </motion.p>
 
                             <motion.div
@@ -411,7 +407,7 @@ export default function Home({
                                     className="inline-flex items-center gap-2 rounded-xl bg-white hero-btn font-body text-sm font-semibold hover:text-brand-blue shadow-lg transition hover:-translate-y-0.5 hover:bg-white text-charcoal sm:text-base"
                                 >
                                     <Phone className="h-5 w-5" />
-                                    Get Free Quote
+                                    {t("cta_get_quote")}
                                 </Link>
 
                                 <Link
@@ -419,7 +415,7 @@ export default function Home({
                                     className="inline-flex items-center gap-2 rounded-xl border border-white/35 bg-white/10  hero-btn font-body text-sm font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-brand-blue sm:text-base"
                                 >
                                     <Calculator className="h-5 w-5" />
-                                    Calculate Cost
+                                    {t("cta_calculate_cost")}
                                 </Link>
                             </motion.div>
                         </motion.div>
@@ -431,29 +427,19 @@ export default function Home({
                                     <div className="flex -space-x-3">
                                         {testimonials
                                             .slice(0, 3)
-                                            .map((testimonial) =>
-                                                testimonial.customer_photo ? (
-                                                    <img
-                                                        key={testimonial.id}
-                                                        src={
-                                                            testimonial.customer_photo
-                                                        }
-                                                        alt={
-                                                            testimonial.customer_name
-                                                        }
-                                                        className="h-12 w-12 rounded-full border-2 border-white object-cover"
-                                                    />
-                                                ) : (
-                                                    <div
-                                                        key={testimonial.id}
-                                                        className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-brand-blue text-sm font-bold text-white"
-                                                    >
-                                                        {testimonial.customer_name.charAt(
-                                                            0,
-                                                        )}
-                                                    </div>
-                                                ),
-                                            )}
+                                            .map((testimonial) => (
+                                                <img
+                                                    key={testimonial.id}
+                                                    src={
+                                                        testimonial.customer_photo ??
+                                                        undefined
+                                                    }
+                                                    alt={
+                                                        testimonial.customer_name
+                                                    }
+                                                    className="h-12 w-12 rounded-full border-2 border-white object-cover"
+                                                />
+                                            ))}
                                     </div>
 
                                     <div>
@@ -544,7 +530,7 @@ export default function Home({
                                     src={
                                         bp.logo_path?.startsWith("http")
                                             ? bp.logo_path
-                                            : `/${bp.logo_path}`
+                                            : `/storage/${bp.logo_path}`
                                     }
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
@@ -720,7 +706,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section>
+            </section> 
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -736,13 +722,11 @@ export default function Home({
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                            How It Works
+                            {t("how_it_works_title")}
                         </h2>
 
                         <p className="mt-4 font-body text-base text-muted-gray">
-                            From Bhumi Poojan to Grih Pravesh, our 12-step
-                            home-building journey is simplified into 4 clear
-                            milestones.
+                            {t("how_it_works_subtitle")}
                         </p>
                     </Reveal>
 
@@ -1296,23 +1280,14 @@ export default function Home({
                                             <div className="relative z-10 grid gap-8 sm:grid-cols-[180px_1fr] sm:items-center">
                                                 {/* Image */}
                                                 <div className="relative">
-                                                    {t.customer_photo ? (
-                                                        <img
-                                                            src={
-                                                                t.customer_photo
-                                                            }
-                                                            alt={
-                                                                t.customer_name
-                                                            }
-                                                            className="h-[210px] w-[150px] rounded-[28px] object-cover"
-                                                        />
-                                                    ) : (
-                                                        <div className="flex h-[210px] w-[150px] items-center justify-center rounded-[28px] bg-brand-blue text-5xl font-bold text-white">
-                                                            {t.customer_name.charAt(
-                                                                0,
-                                                            )}
-                                                        </div>
-                                                    )}
+                                                    <img
+                                                        src={
+                                                            t.customer_photo ??
+                                                            undefined
+                                                        }
+                                                        alt={t.customer_name}
+                                                        className="h-[210px] w-[150px] rounded-[28px] object-cover"
+                                                    />
 
                                                     <div className="absolute tesi-star flex -translate-x-1/2 gap-1 text-yellow-400">
                                                         {Array.from({
@@ -1472,17 +1447,15 @@ export default function Home({
                                 <div className="max-w-xl text-white">
                                     <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase  backdrop-blur">
                                         <span className="h-2 w-2 rounded-full bg-white" />
-                                        Let’s build, together
+                                        {t("final_cta_badge")}
                                     </p>
 
                                     <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">
-                                        Ready to start your dream home?
+                                        {t("final_cta_title")}
                                     </h2>
 
                                     <p className="mt-5 max-w-lg font-body text-base leading-8 text-white/80 sm:text-lg">
-                                        Drop your number — we will call you
-                                        within 30 minutes with a no-obligation
-                                        cost estimate.
+                                        {t("final_cta_subtitle")}
                                     </p>
 
                                     <div className="mt-8">
@@ -1571,8 +1544,8 @@ export default function Home({
                                             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-black px-6 py-4 font-body text-sm font-bold text-white transition hover:bg-terracotta disabled:opacity-60"
                                         >
                                             {processing
-                                                ? "Sending…"
-                                                : "Talk to a Home Advisor"}
+                                                ? t("sending")
+                                                : t("cta_talk_advisor")}
                                             <ChevronRight className="h-4 w-4" />
                                         </button>
 

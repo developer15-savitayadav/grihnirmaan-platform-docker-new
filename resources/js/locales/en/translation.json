@@ -1,8 +1,11 @@
 {
   "home": "Home",
-  "about": "About Us",
+  "about": "About",
   "services": "Services",
   "contact": "Contact Us",
+  "nav_how_it_works": "How It Works",
+  "nav_projects": "Projects",
+  "nav_cost_calculator": "Cost Calculator",
 
   "hero_badge": "🏠 Home Construction · Lucknow",
   "hero_title": "From Bhumi Poojan to Grih Pravesh, your dream home built right.",

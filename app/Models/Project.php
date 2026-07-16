@@ -10,10 +10,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class Project extends Model implements HasMedia
 {
-    use HasFactory, LogsActivity, InteractsWithMedia;
+    use HasFactory, LogsActivity, InteractsWithMedia, HasTranslations;
+
+   
+
     protected $fillable = [
         'slug',
         'title',

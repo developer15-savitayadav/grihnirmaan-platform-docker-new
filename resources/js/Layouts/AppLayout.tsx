@@ -1,7 +1,6 @@
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { PropsWithChildren, useState } from "react";
-import LanguageSwitcher from "@/Components/LanguageSwitcher";
-import { useTranslation } from "react-i18next";
+
 import {
     Menu,
     X,
@@ -30,11 +29,11 @@ const BRAND = {
 };
 
 const PRIMARY_NAV = [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "How It Works", href: "/how-it-works" },
-    { label: "Projects", href: "/projects" },
-    { label: "About", href: "/about" },
+    { label: "Home", key: "home", href: "/" },
+    { label: "Services", key: "services", href: "/services" },
+    { label: "How It Works", key: "nav_how_it_works", href: "/how-it-works" },
+    { label: "Projects", key: "nav_projects", href: "/projects" },
+    { label: "About", key: "about", href: "/about" },
 ];
 const SERVICE_MEGA_MENU = [
     {
@@ -274,6 +273,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
             onSuccess: () => resetNewsletter("email"),
         });
     };
+    const { t } = useTranslation();
     const [mobileOpen, setMobileOpen] = useState(false);
     const { url } = usePage();
     const { auth, flash } = usePage().props as any;
@@ -304,7 +304,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            Home
+                            {t("home")}
                         </Link>
 
                         {/* Services Mega Menu */}
@@ -323,7 +323,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         : "text-charcoal/80 hover:text-[#c4623a]",
                                 )}
                             >
-                                Services
+                                {t("services")}
                                 <ChevronDown
                                     className={cn(
                                         "h-4 w-4 transition-transform group-hover:rotate-180",
@@ -388,7 +388,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            How It Works
+                            {t("nav_how_it_works")}
                         </Link>
 
                         {/* Projects Submenu */}
@@ -407,7 +407,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         : "text-charcoal/80 hover:text-[#c4623a]",
                                 )}
                             >
-                                Projects
+                                {t("nav_projects")}
                                 <ChevronDown
                                     className={cn(
                                         "h-4 w-4 transition-transform group-hover:rotate-180",
@@ -474,7 +474,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            About
+                            {t("about")}
                         </Link>
                     </nav>
 
@@ -487,7 +487,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                             <Phone className="h-4 w-4 text-brand-blue" />
                             <span>{BRAND.phone}</span>
                         </a>
-                        <LanguageSwitcher />
+
                         <Link
                             href="/cost-calculator"
                             aria-current={
@@ -503,7 +503,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                             )}
                         >
                             <Calculator className="h-4 w-4" />
-                            Cost Calculator
+                            {t("nav_cost_calculator")}
                         </Link>
                     </div>
 
@@ -561,7 +561,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                                     : "text-charcoal hover:bg-brand-blue-light hover:text-brand-blue",
                                             )}
                                         >
-                                            {item.label}
+                                            {t(item.key)}
                                         </Link>
                                     </li>
                                 );
@@ -584,7 +584,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     )}
                                 >
                                     <Calculator className="h-5 w-5" />
-                                    Cost Calculator
+                                    {t("nav_cost_calculator")}
                                 </Link>
                             </li>
                         </ul>

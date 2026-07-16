@@ -87,6 +87,7 @@ RUN apk add --no-cache \
         --with-freetype \
         --with-jpeg \
         --with-webp \
+        --with-avif \
     && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
         pdo_pgsql \
@@ -100,6 +101,7 @@ RUN apk add --no-cache \
     && pecl install redis \
     && docker-php-ext-enable redis \
     && php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
+    && php -r "if (!function_exists('imagecreatefromavif')) { fwrite(STDERR, 'AVIF support is missing from PHP GD'.PHP_EOL); exit(1); }" \
     && apk del .build-deps
 
 WORKDIR /var/www/html
@@ -118,7 +120,7 @@ COPY --from=frontend /app/public/build ./public/build
 
 # Remove any stray Vite dev-server marker so Laravel serves the built assets
 RUN rm -f public/hot
-     
+
 # Ensure required cache/storage directories exist (Blade view compiler, config
 # cache, route cache, and sessions all need these present, and .dockerignore
 # excluding their contents doesn't guarantee the empty dirs survive the build)

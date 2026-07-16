@@ -63,24 +63,24 @@ class ProjectResource extends Resource
                         ->maxLength(100),
 
                     SpatieMediaLibraryFileUpload::make('hero')
-    ->label('After / Completed Image')
-    ->collection('hero')
-    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
-    ->image()
-    ->imageEditor()
-    ->imagePreviewHeight('180')
-    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, Project $record) {
-        $media = $record
-            ->addMedia($file->getRealPath())
-            ->usingFileName($file->getClientOriginalName())
-            ->toMediaCollection('hero');
+                        ->label('After / Completed Image')
+                        ->collection('hero')
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/avif'])
+                        ->image()
+                        ->imageEditor()
+                        ->imagePreviewHeight('180')
+                        ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, Project $record) {
+                            $media = $record
+                                ->addMedia($file->getRealPath())
+                                ->usingFileName($file->getClientOriginalName())
+                                ->toMediaCollection('hero');
 
-        $record->update([
-            'hero_image_path' => $media->getPathRelativeToRoot(),
-        ]);
+                            $record->update([
+                                'hero_image_path' => $media->getPathRelativeToRoot(),
+                            ]);
 
-        return $media->uuid;
-    }),
+                            return $media->uuid;
+                        }),
 
 
                     SpatieMediaLibraryFileUpload::make('before')
@@ -228,30 +228,30 @@ class ProjectResource extends Resource
         return auth()->user()?->can('manage projects') ?? false;
     }
     public static function getGloballySearchableAttributes(): array
-{
-    return [
-        'title',
-        'slug',
-        'locality',
-        'budget_range',
-    ];
-}
+    {
+        return [
+            'title',
+            'slug',
+            'locality',
+            'budget_range',
+        ];
+    }
 
-public static function getGlobalSearchResultTitle($record): string
-{
-    return $record->title;
-}
+    public static function getGlobalSearchResultTitle($record): string
+    {
+        return $record->title;
+    }
 
-public static function getGlobalSearchResultDetails($record): array
-{
-    return [
-        'Locality' => $record->locality,
-        'Budget' => $record->budget_range,
-    ];
-}
+    public static function getGlobalSearchResultDetails($record): array
+    {
+        return [
+            'Locality' => $record->locality,
+            'Budget' => $record->budget_range,
+        ];
+    }
 
-public static function getGlobalSearchResultUrl($record): string
-{
-    return static::getUrl('edit', ['record' => $record]);
-}
+    public static function getGlobalSearchResultUrl($record): string
+    {
+        return static::getUrl('edit', ['record' => $record]);
+    }
 }

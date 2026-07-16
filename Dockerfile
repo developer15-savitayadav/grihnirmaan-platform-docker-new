@@ -64,6 +64,7 @@ RUN apk add --no-cache \
         libjpeg-turbo \
         freetype \
         libwebp \
+        libavif \
         libzip \
         libxml2 \
         icu-libs \
@@ -76,6 +77,7 @@ RUN apk add --no-cache \
         libjpeg-turbo-dev \
         freetype-dev \
         libwebp-dev \
+        libavif-dev \
         libzip-dev \
         libxml2-dev \
         icu-dev \

@@ -3,6 +3,7 @@
   "about": "About",
   "services": "Services",
   "contact": "Contact Us",
+
   "nav_how_it_works": "How It Works",
   "nav_projects": "Projects",
   "nav_cost_calculator": "Cost Calculator",
@@ -10,6 +11,7 @@
   "hero_badge": "🏠 Home Construction · Lucknow",
   "hero_title": "From Bhumi Poojan to Grih Pravesh, your dream home built right.",
   "hero_subtitle": "End-to-end home construction with transparent pricing, expert supervision, quality materials, on-time delivery, and a 10-year warranty.",
+
   "cta_get_quote": "Get Free Quote",
   "cta_calculate_cost": "Calculate Cost",
   "cta_talk_advisor": "Talk to a Home Advisor",
@@ -20,11 +22,60 @@
 
   "final_cta_badge": "Let's build, together",
   "final_cta_title": "Ready to start your dream home?",
-  "final_cta_subtitle": "Drop your number — we will call you within 30 minutes with a no-obligation cost estimate.",
+  "final_cta_subtitle": "Share your number and we will call you within 30 minutes with a no-obligation cost estimate.",
 
   "faq_eyebrow": "Questions",
   "faq_title": "Frequently Asked Questions",
   "enquire_about": "Enquire about {{service}}",
   "explore_more": "Explore More",
-  "related_services": "Related Services"
+  "related_services": "Related Services",
+
+  "mega_all_projects": "All Projects",
+  "mega_government_approvals": "Government Approvals",
+  "mega_civil_construction": "Civil Construction",
+  "mega_architecture_design": "Architecture & Design",
+  "mega_interior_design": "Interior Design",
+  "mega_electrical_havells": "Electrical Works (Havells)",
+  "mega_bath_fittings": "Bath Fittings & Plumbing",
+  "mega_glass_glazing": "Glass & Glazing",
+  "mega_painting": "Painting & Finishing",
+  "mega_bhumi_poojan": "Bhumi Poojan",
+  "mega_grih_pravesh": "Grih Pravesh",
+  "mega_home_loans": "Home Loan Facilitation",
+  "mega_vastu_consultation": "Vastu Consultation",
+
+  "footer_tagline": "End-to-end home construction with transparent pricing, trusted professionals, quality materials, and complete project supervision.",
+
+  "footer_heading_company": "Company",
+  "footer_heading_services": "Services",
+  "footer_heading_resources": "Resources",
+  "footer_heading_customer_portal": "Customer Portal",
+
+  "footer_about_us": "About Us",
+  "footer_our_team": "Our Team",
+  "footer_our_partners": "Our Partners",
+  "footer_contact_us": "Contact Us",
+  "footer_locations": "Locations",
+
+  "footer_blog": "Blog",
+  "footer_dashboard": "Dashboard",
+  "footer_nri_services": "NRI Services",
+  "footer_customer_login": "Customer Login",
+
+  "footer_newsletter_placeholder": "Enter your email",
+  "footer_newsletter_subscribe": "Subscribe",
+  "footer_newsletter_subscribing": "Subscribing…",
+  "footer_newsletter_success": "Please check your email to confirm your subscription.",
+
+  "footer_privacy_policy": "Privacy Policy",
+  "footer_terms_of_service": "Terms of Service",
+  "footer_copyright": "© {{year}} {{brand}}. All rights reserved.",
+
+  "language_switch_to_hindi": "Switch to Hindi",
+  "language_switch_to_english": "Switch to English",
+
+  "call_us": "Call us",
+  "toggle_menu": "Toggle menu",
+  "chat_on_whatsapp": "Chat on WhatsApp",
+  "open_whatsapp_chat": "Open WhatsApp chat"
 }

@@ -3,28 +3,79 @@
   "about": "हमारे बारे में",
   "services": "सेवाएं",
   "contact": "संपर्क करें",
+
   "nav_how_it_works": "यह कैसे काम करता है",
-  "nav_projects": "परियोजनाएं",
+  "nav_projects": "प्रोजेक्ट्स",
   "nav_cost_calculator": "लागत कैलकुलेटर",
 
   "hero_badge": "🏠 गृह निर्माण · लखनऊ",
-  "hero_title": "भूमि पूजन से गृह प्रवेश तक, आपका सपनों का घर सही तरीके से बनेगा।",
-  "hero_subtitle": "पारदर्शी मूल्य निर्धारण, विशेषज्ञ निगरानी, गुणवत्तापूर्ण सामग्री, समय पर डिलीवरी और 10 साल की वारंटी के साथ एंड-टू-एंड घर निर्माण।",
-  "cta_get_quote": "मुफ़्त कोटेशन पाएं",
+  "hero_title": "भूमि पूजन से गृह प्रवेश तक, आपके सपनों का घर सही तरीके से।",
+  "hero_subtitle": "पारदर्शी कीमत, विशेषज्ञ निगरानी, गुणवत्तापूर्ण सामग्री, समय पर डिलीवरी और 10 वर्ष की वारंटी के साथ संपूर्ण घर निर्माण।",
+
+  "cta_get_quote": "मुफ्त कोटेशन प्राप्त करें",
   "cta_calculate_cost": "लागत की गणना करें",
   "cta_talk_advisor": "होम एडवाइज़र से बात करें",
   "sending": "भेजा जा रहा है…",
 
   "how_it_works_title": "यह कैसे काम करता है",
-  "how_it_works_subtitle": "भूमि पूजन से गृह प्रवेश तक, हमारी 12-चरणों की घर-निर्माण यात्रा को 4 स्पष्ट पड़ावों में सरल बनाया गया है।",
+  "how_it_works_subtitle": "भूमि पूजन से गृह प्रवेश तक, हमारी 12-चरणीय घर निर्माण प्रक्रिया को 4 स्पष्ट पड़ावों में सरल बनाया गया है।",
 
   "final_cta_badge": "आइए, साथ मिलकर बनाएं",
-  "final_cta_title": "अपने सपनों का घर शुरू करने के लिए तैयार हैं?",
-  "final_cta_subtitle": "अपना नंबर छोड़ें — हम 30 मिनट के भीतर आपको बिना किसी बाध्यता के लागत अनुमान के साथ कॉल करेंगे।",
+  "final_cta_title": "क्या आप अपने सपनों का घर शुरू करने के लिए तैयार हैं?",
+  "final_cta_subtitle": "अपना फोन नंबर साझा करें। हम 30 मिनट के भीतर बिना किसी बाध्यता के लागत अनुमान के साथ आपसे संपर्क करेंगे।",
 
   "faq_eyebrow": "प्रश्न",
   "faq_title": "अक्सर पूछे जाने वाले प्रश्न",
   "enquire_about": "{{service}} के बारे में पूछताछ करें",
   "explore_more": "और जानें",
-  "related_services": "संबंधित सेवाएं"
+  "related_services": "संबंधित सेवाएं",
+
+  "mega_all_projects": "सभी प्रोजेक्ट्स",
+  "mega_government_approvals": "सरकारी अनुमोदन",
+  "mega_civil_construction": "सिविल निर्माण",
+  "mega_architecture_design": "वास्तुकला और डिजाइन",
+  "mega_interior_design": "इंटीरियर डिजाइन",
+  "mega_electrical_havells": "विद्युत कार्य (हैवेल्स)",
+  "mega_bath_fittings": "बाथ फिटिंग और प्लंबिंग",
+  "mega_glass_glazing": "ग्लास और ग्लेजिंग",
+  "mega_painting": "पेंटिंग और फिनिशिंग",
+  "mega_bhumi_poojan": "भूमि पूजन",
+  "mega_grih_pravesh": "गृह प्रवेश",
+  "mega_home_loans": "होम लोन सहायता",
+  "mega_vastu_consultation": "वास्तु परामर्श",
+
+  "footer_tagline": "पारदर्शी कीमत, विश्वसनीय विशेषज्ञों, गुणवत्तापूर्ण सामग्री और संपूर्ण प्रोजेक्ट निगरानी के साथ घर निर्माण सेवा।",
+
+  "footer_heading_company": "कंपनी",
+  "footer_heading_services": "सेवाएं",
+  "footer_heading_resources": "संसाधन",
+  "footer_heading_customer_portal": "ग्राहक पोर्टल",
+
+  "footer_about_us": "हमारे बारे में",
+  "footer_our_team": "हमारी टीम",
+  "footer_our_partners": "हमारे साझेदार",
+  "footer_contact_us": "संपर्क करें",
+  "footer_locations": "स्थान",
+
+  "footer_blog": "ब्लॉग",
+  "footer_dashboard": "डैशबोर्ड",
+  "footer_nri_services": "एनआरआई सेवाएं",
+  "footer_customer_login": "ग्राहक लॉगिन",
+
+  "footer_newsletter_placeholder": "अपना ईमेल दर्ज करें",
+  "footer_newsletter_subscribe": "सदस्यता लें",
+  "footer_newsletter_subscribing": "सदस्यता ली जा रही है…",
+  "footer_newsletter_success": "सदस्यता की पुष्टि के लिए अपना ईमेल जांचें।",
+
+  "footer_privacy_policy": "गोपनीयता नीति",
+  "footer_terms_of_service": "सेवा की शर्तें",
+  "footer_copyright": "© {{year}} {{brand}}। सर्वाधिकार सुरक्षित।",
+
+  "language_switch_to_hindi": "हिंदी में बदलें",
+  "language_switch_to_english": "अंग्रेजी में बदलें",
+
+  "call_us": "हमें कॉल करें",
+  "toggle_menu": "मेनू खोलें या बंद करें",
+  "chat_on_whatsapp": "व्हाट्सऐप पर बात करें",
+  "open_whatsapp_chat": "व्हाट्सऐप चैट खोलें"
 }

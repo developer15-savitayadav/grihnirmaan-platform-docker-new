@@ -116,7 +116,7 @@ COPY --from=frontend /app/public/build ./public/build
 
 # Remove any stray Vite dev-server marker so Laravel serves the built assets
 RUN rm -f public/hot
-
+     
 # Ensure required cache/storage directories exist (Blade view compiler, config
 # cache, route cache, and sessions all need these present, and .dockerignore
 # excluding their contents doesn't guarantee the empty dirs survive the build)

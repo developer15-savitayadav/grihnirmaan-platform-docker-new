@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ProjectResource extends Resource
 {
@@ -76,7 +77,23 @@ class ProjectResource extends Resource
                             ->imageEditor()
                             ->imagePreviewHeight('180')
                             ->maxSize(10240)
-                            ->helperText('Allowed: JPG, PNG, WebP. Maximum 10 MB.'),
+                            ->helperText('Allowed: JPG, PNG, WebP. Maximum 10 MB.')
+                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
+                                if (! $record) {
+                                    return null;
+                                }
+
+                                $media = $record
+                                    ->addMedia($file->getRealPath())
+                                    ->usingFileName($file->getClientOriginalName())
+                                    ->toMediaCollection('hero');
+
+                                $record->update([
+                                    'hero_image_path' => $media->getUrl(),
+                                ]);
+
+                                return $media->uuid;
+                            }),
 
                         SpatieMediaLibraryFileUpload::make('before')
                             ->label('Before Construction Image')
@@ -89,7 +106,23 @@ class ProjectResource extends Resource
                             ])
                             ->imageEditor()
                             ->imagePreviewHeight('180')
-                            ->maxSize(10240),
+                            ->maxSize(10240)
+                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
+                                if (! $record) {
+                                    return null;
+                                }
+
+                                $media = $record
+                                    ->addMedia($file->getRealPath())
+                                    ->usingFileName($file->getClientOriginalName())
+                                    ->toMediaCollection('before');
+
+                                $record->update([
+                                    'before_image_path' => $media->getUrl(),
+                                ]);
+
+                                return $media->uuid;
+                            }),
 
                         SpatieMediaLibraryFileUpload::make('floor_plan')
                             ->label('Floor Plan')
@@ -102,7 +135,23 @@ class ProjectResource extends Resource
                             ])
                             ->imageEditor()
                             ->imagePreviewHeight('180')
-                            ->maxSize(10240),
+                            ->maxSize(10240)
+                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, ?Project $record) {
+                                if (! $record) {
+                                    return null;
+                                }
+
+                                $media = $record
+                                    ->addMedia($file->getRealPath())
+                                    ->usingFileName($file->getClientOriginalName())
+                                    ->toMediaCollection('floor_plan');
+
+                                $record->update([
+                                    'floor_plan_path' => $media->getUrl(),
+                                ]);
+
+                                return $media->uuid;
+                            }),
 
                         SpatieMediaLibraryFileUpload::make('gallery')
                             ->label('Project Gallery')

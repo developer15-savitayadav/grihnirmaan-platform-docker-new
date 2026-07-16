@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
  * - Updates i18next's active language (re-renders all `t()` strings instantly)
  * - Persists the choice in localStorage so it survives page reloads
  * - Also updates the URL's `?lang=` param, which Laravel reads (via
- *   HandleInertiaRequests / SetLocale middleware) to serve translated
- *   database content (project titles, blog posts, etc.) on the next request
+ *   SetLocale middleware) to serve translated database content
+ *   (project titles, service names, etc.) on the next request
  */
 export default function LanguageSwitcher() {
     const { i18n } = useTranslation();
@@ -19,8 +19,8 @@ export default function LanguageSwitcher() {
         i18n.changeLanguage(nextLang);
         localStorage.setItem("language", nextLang);
 
-        // Update ?lang= in the URL and reload via Inertia so the backend
-        // can also serve translated dynamic (database) content.
+        // Update ?lang= in the URL and reload so the backend can also
+        // serve translated dynamic (database) content.
         const url = new URL(window.location.href);
         url.searchParams.set("lang", nextLang);
         window.location.href = url.toString();

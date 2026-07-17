@@ -4,8 +4,32 @@ import { Head, Link } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import PageBanner from "@/Components/Breadcrumb";
-
-import {ArrowRight, Mail, Phone, Globe, Share2, AtSign, Award, CheckCircle2, ChevronRight, HeartHandshake, Home, ShieldCheck, Users, Building2, BadgeIndianRupee, Clock, Clock3, Scale, Smile, CalendarClock, HardHat, ClipboardCheck, House} from "lucide-react";
+import { resolveImagePath } from "@/lib/resolveImagePath";
+import {
+    ArrowRight,
+    Mail,
+    Phone,
+    Globe,
+    Share2,
+    AtSign,
+    Award,
+    CheckCircle2,
+    ChevronRight,
+    HeartHandshake,
+    Home,
+    ShieldCheck,
+    Users,
+    Building2,
+    BadgeIndianRupee,
+    Clock,
+    Clock3,
+    Scale,
+    Smile,
+    CalendarClock,
+    HardHat,
+    ClipboardCheck,
+    House,
+} from "lucide-react";
 interface BrandPartnerItem {
     id: number;
     slug: string;
@@ -53,7 +77,13 @@ const LinkedinIcon = (props: SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
+function Reveal({
+    children,
+    className = "",
+}: {
+    children: ReactNode;
+    className?: string;
+}) {
     return (
         <motion.div
             variants={fadeUp}
@@ -357,8 +387,6 @@ export default function AboutIndex({ brandPartners }: Props) {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </Reveal>
                 </div>
@@ -376,11 +404,7 @@ export default function AboutIndex({ brandPartners }: Props) {
                                 className="flex  w-40 items-center justify-center"
                             >
                                 <img
-                                    src={
-                                        bp.logo_path?.startsWith("http")
-                                            ? bp.logo_path
-                                            : `/storage/${bp.logo_path}`
-                                    }
+                                    src={resolveImagePath(bp.logo_path)}
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
                                 />
@@ -694,7 +718,7 @@ export default function AboutIndex({ brandPartners }: Props) {
 
                         <Link
                             href="/cost-calculator"
-                          className="inline-flex items-center justify-center gap-2 rounded-md border border-black px-6 py-3 font-semibold text-black transition-all duration-300 hover:border-[#C4623A] hover:bg-[#C4623A] hover:text-white"
+                            className="inline-flex items-center justify-center gap-2 rounded-md border border-black px-6 py-3 font-semibold text-black transition-all duration-300 hover:border-[#C4623A] hover:bg-[#C4623A] hover:text-white"
                         >
                             Calculate Cost
                         </Link>

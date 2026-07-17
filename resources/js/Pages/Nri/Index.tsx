@@ -4,6 +4,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import ServiceCard, { type Service } from "@/Components/ServiceCard";
 import { motion, type Variants } from "framer-motion";
 import { PropsWithChildren } from "react";
+import { resolveImagePath } from "@/lib/resolveImagePath";
 import {
     Calculator,
     ChevronRight,
@@ -27,7 +28,6 @@ import {
     TrendingUp,
     LockKeyhole,
 } from "lucide-react";
-
 
 type FeaturedProject = {
     id: number;
@@ -355,7 +355,9 @@ export default function Index({
                                     >
                                         {bp.logo_path ? (
                                             <img
-                                                src={imageUrl(bp.logo_path)}
+                                                src={resolveImagePath(
+                                                    bp.logo_path,
+                                                )}
                                                 alt={bp.name}
                                                 className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
                                             />

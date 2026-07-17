@@ -23,8 +23,7 @@ interface ServiceItem {
 
 interface Props {
     services: ServiceItem[];
-}
-
+} 
 const benefits = [
     'Transparent pricing',
     'Expert project supervision',

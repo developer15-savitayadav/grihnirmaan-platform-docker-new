@@ -3619,10 +3619,10 @@ html[lang="hi"] .hero-section h1 {
 
 /* iPhone SE: 375px */
 @media (max-width: 375px) {
-    .problem-section h3{
+    .problem-section h3 {
         font-size: 20px;
     }
-    .problem-section p{
+    .problem-section p {
         font-size: 14px;
     }
     .cost-arrow {
@@ -3652,7 +3652,12 @@ html[lang="hi"] .hero-section h1 {
         left: 14px !important;
         bottom: 0;
     }
-
+    .gn-auth-shell {
+        min-height: 70vh;
+    }
+    .gn-auth-right {
+        min-height: calc(70vh - 28px);
+    }
     .project-mask-card {
         padding: 16px 26px;
     }

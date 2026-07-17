@@ -10,7 +10,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { FormEvent, PropsWithChildren, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { resolveImagePath } from "@/lib/resolveImagePath";
 import {
     AlertTriangle,
     BadgeCheck,
@@ -363,7 +363,10 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 1.8, ease: "easeOut" as const }}
+                            transition={{
+                                duration: 1.8,
+                                ease: "easeOut" as const,
+                            }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 
@@ -527,11 +530,7 @@ export default function Home({
                                 className="flex  w-40 items-center justify-center"
                             >
                                 <img
-                                    src={
-                                        bp.logo_path?.startsWith("http")
-                                            ? bp.logo_path
-                                            : `/storage/${bp.logo_path}`
-                                    }
+                                    src={resolveImagePath(bp.logo_path)}
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
                                 />
@@ -706,7 +705,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section> 
+            </section>
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">

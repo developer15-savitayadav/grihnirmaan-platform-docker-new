@@ -658,17 +658,17 @@ export default function AppLayout({ children }: PropsWithChildren) {
                     <div className="footer-marquee">
                         <div className="footer-marquee-track">
                             <span>
-                                Building Trust, Creating Homes
+                                {t("footer_marquee_text")}
                                 <span className="footer-star">✦</span>
                             </span>
 
                             <span>
-                                Building Trust, Creating Homes
+                                {t("footer_marquee_text")}
                                 <span className="footer-star">✦</span>
                             </span>
 
                             <span>
-                                Building Trust, Creating Homes
+                                {t("footer_marquee_text")}
                                 <span className="footer-star">✦</span>
                             </span>
                         </div>

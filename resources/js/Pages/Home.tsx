@@ -451,7 +451,7 @@ export default function Home({
                                         </h4>
 
                                         <p className="mt-1 text-sm text-gray-500">
-                                            Happy customers
+                                            {t("happy_customers")}
                                         </p>
                                     </div>
                                 </div>
@@ -472,23 +472,20 @@ export default function Home({
                                     {
                                         value: 500,
                                         suffix: "+",
-                                        label: "Homes Built",
+                                        key: "stat_homes_built",
                                     },
                                     {
                                         value: 15,
                                         suffix: "+",
-                                        label: "Years Experience",
+                                        key: "stat_years_experience",
                                     },
                                     {
                                         value: 4.9,
                                         suffix: "★",
-                                        label: "Client Rating",
+                                        key: "stat_client_rating",
                                     },
                                 ].map((item) => (
-                                    <div
-                                        key={item.label}
-                                        className="text-center"
-                                    >
+                                    <div key={item.key} className="text-center">
                                         <h3 className="text-3xl font-bold text-brand-blue">
                                             <CountUp
                                                 end={item.value}
@@ -503,7 +500,7 @@ export default function Home({
                                         </h3>
 
                                         <p className="font-body font-semibold text-muted-gray sm:text-base">
-                                            {item.label}
+                                            {t(item.key)}
                                         </p>
                                     </div>
                                 ))}

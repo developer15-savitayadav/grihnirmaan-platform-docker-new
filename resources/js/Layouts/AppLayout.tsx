@@ -105,10 +105,7 @@ const SERVICE_MEGA_MENU = [
  * projects now comes from the database via Project::$translatable.
  */
 const PROJECT_MENU_FALLBACK = [
-    {
-        title: "Sharma Residence",
-        href: "/projects/sharma-residence-gomti-nagar",
-    },
+    { title: "Sharma Residence", href: "/projects/sharma-residence-gomti-nagar" },
     { title: "Verma Villa", href: "/projects/verma-villa-sushant-golf-city" },
     { title: "Singh Bungalow", href: "/projects/singh-bungalow-aliganj" },
 ];
@@ -139,10 +136,7 @@ const getFooterNav = (auth: any, t: (key: string) => string) => [
                 label: t("mega_architecture_design"),
                 href: "/services/architecture-design",
             },
-            {
-                label: t("mega_interior_design"),
-                href: "/services/interior-design",
-            },
+            { label: t("mega_interior_design"), href: "/services/interior-design" },
         ],
     },
     {
@@ -236,13 +230,15 @@ const SOCIAL: {
                     * ------------------------------------------------------------------------- */
 
 function BrandLogo({ className }: { className?: string }) {
+    const { t } = useTranslation();
+
     return (
         <Link href="/" className={cn("flex items-center gap-2", className)}>
             <span className="grid h-9 w-9 place-items-center rounded-md bg-[#2E75B6]  text-lg font-bold text-cream">
                 G
             </span>
             <span className=" text-xl font-semibold tracking-tight text-charcoal">
-                {BRAND.name}
+                {t("brand_name")}
             </span>
         </Link>
     );
@@ -689,7 +685,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         </div>
 
                                         <h3 className="text-3xl font-bold text-white">
-                                            {BRAND.name}
+                                            {t("brand_name")}
                                         </h3>
                                     </div>
                                     <div className="mt-6 flex items-center gap-3">
@@ -826,14 +822,12 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                 {/* Social + Copyright Inline */}
 
                                 <p className="text-xs text-white/70">
-                                    {String(
+                                    {
                                         t("footer_copyright", {
                                             year: new Date().getFullYear(),
-                                            brand: BRAND.name,
-                                            defaultValue:
-                                                "© {{year}} {{brand}}. All rights reserved.",
-                                        }),
-                                    )}
+                                            brand: t("brand_name"),
+                                        }) as string
+                                    }
                                 </p>
 
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">

@@ -2692,7 +2692,12 @@
 .locality-project-btn:hover {
     background: #1f4e79;
 }
-
+/* hindi version css start */
+html[lang="hi"] .hero-section h1 {
+    font-size: 34px;
+    line-height: 1.6;
+}
+/* hindi version css end */
 @media (max-width: 1024px) {
     .locality-project-card {
         grid-template-columns: 1fr;

@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/react";
 import { motion, type Variants } from "framer-motion";
 import { PropsWithChildren } from "react";
 import PageBanner from "@/Components/Breadcrumb";
+import { resolveImagePath } from "@/lib/resolveImagePath";
 
 import {
     BadgeCheck,
@@ -103,7 +104,9 @@ export default function Partners({ partners }: Props) {
                                     <div className="partner-logo-box">
                                         {partner.logo ? (
                                             <img
-                                                src={partner.logo}
+                                                src={resolveImagePath(
+                                                    partner.logo,
+                                                )}
                                                 alt={partner.name}
                                                 className="partner-logo"
                                             />

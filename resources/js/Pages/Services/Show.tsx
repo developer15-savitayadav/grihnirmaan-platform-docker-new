@@ -3,6 +3,8 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import PageBanner from "@/Components/Breadcrumb";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FormEvent, useRef, useState } from "react";
+import { resolveImagePath } from "@/lib/resolveImagePath";
+
 import {
     ArrowRight,
     CheckCircle,
@@ -83,15 +85,6 @@ function getText(item: any): string {
     );
 }
 
-function getLogoUrl(path: string | null) {
-    if (!path) return null;
-
-    if (path.startsWith("http")) return path;
-    if (path.startsWith("/")) return path;
-
-    return `/storage/${path}`;
-}
-
 export default function Show({
     service = {},
     relatedServices = [],
@@ -170,20 +163,14 @@ export default function Show({
     return (
         <AppLayout>
             <Head title={serviceName}>
-                <meta
-                    name="description"
-                    content={serviceDescription}
-                />
+                <meta name="description" content={serviceDescription} />
             </Head>
 
             <PageBanner
                 title={serviceName}
                 subtitle="Explore our comprehensive home construction services."
                 bannerImage="/uploads/images/bcrumb-banner.jpg"
-                items={[
-                    { label: "Services" },
-                    { label: serviceName },
-                ]}
+                items={[{ label: "Services" }, { label: serviceName }]}
             />
 
             <section className="relative overflow-hidden bg-gradient-to-br from-[#FDFAF5] via-[#D9E2F3]/40 to-white py-16 lg:py-24">
@@ -266,9 +253,7 @@ export default function Show({
 
                                     <div className="mt-4 grid grid-cols-2 gap-3">
                                         {brandPartners.map((partner) => {
-                                            const logoUrl = getLogoUrl(
-                                                partner.logo_path,
-                                            );
+                                          const logoUrl = resolveImagePath(partner.logo_path);
 
                                             return (
                                                 <a
@@ -431,7 +416,6 @@ export default function Show({
             <section className="bg-white py-16 lg:py-20 fq-page-section">
                 <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8 fq-page-wrapper">
                     <div className="fq-page-left">
-
                         <p className="font-semibold uppercase tracking-wider text-[#C4623A]">
                             Questions
                         </p>

@@ -66,16 +66,29 @@ class PageController extends Controller
             ->where('is_active', true)
             ->orderBy('name')
             ->get()
-            ->map(fn($partner) => [
-                'id' => $partner->id,
-                'slug' => $partner->slug,
-                'name' => $partner->name,
-                'logo' => $partner->logo_path
-                    ? asset('storage/' . ltrim($partner->logo_path, '/'))
-                    : null,
-                'website_url' => $partner->website_url,
-                'description' => $partner->description,
-            ]);
+            ->map(function ($partner) {
+                $path = $partner->logo_path;
+                $logo = null;
+
+                if ($path) {
+                    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+                        $logo = $path;
+                    } elseif (str_starts_with($path, 'uploads/') || str_starts_with($path, '/uploads/')) {
+                        $logo = asset(ltrim($path, '/'));
+                    } else {
+                        $logo = asset('storage/' . ltrim($path, '/'));
+                    }
+                }
+
+                return [
+                    'id' => $partner->id,
+                    'slug' => $partner->slug,
+                    'name' => $partner->name,
+                    'logo' => $logo,
+                    'website_url' => $partner->website_url,
+                    'description' => $partner->description,
+                ];
+            });
 
         return Inertia::render('About/Partners', [
             'partners' => $brandPartners,

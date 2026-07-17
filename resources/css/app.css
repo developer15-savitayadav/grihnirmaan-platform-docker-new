@@ -3619,6 +3619,12 @@ html[lang="hi"] .hero-section h1 {
 
 /* iPhone SE: 375px */
 @media (max-width: 375px) {
+    .problem-section h3{
+        font-size: 20px;
+    }
+    .problem-section p{
+        font-size: 14px;
+    }
     .cost-arrow {
         right: 40%;
         top: 52%;
@@ -3643,7 +3649,7 @@ html[lang="hi"] .hero-section h1 {
 
     .project-mask-wrapper {
         width: 300px !important;
-        left: 22px;
+        left: 14px !important;
         bottom: 0;
     }
 

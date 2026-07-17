@@ -3544,6 +3544,8 @@ html[lang="hi"] .hero-section h1 {
 
     .gn-auth-right {
         padding: 28px 16px;
+
+        align-items: start;
     }
 
     .gn-login-heading h2 {
@@ -3653,11 +3655,9 @@ html[lang="hi"] .hero-section h1 {
         bottom: 0;
     }
     .gn-auth-shell {
-        min-height: 70vh;
+        /* min-height: 70vh; */
     }
-    .gn-auth-right {
-        min-height: calc(70vh - 28px);
-    }
+
     .project-mask-card {
         padding: 16px 26px;
     }

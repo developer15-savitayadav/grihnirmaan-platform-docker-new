@@ -3578,6 +3578,7 @@ html[lang="hi"] .hero-section h1 {
     .gn-auth-right {
         padding: 28px 16px;
         align-items: stretch;
+        justify-content: space-evenly;
     }
 
     .gn-login-card {

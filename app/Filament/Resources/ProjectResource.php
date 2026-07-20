@@ -351,4 +351,4 @@ public static function getGlobalSearchResultUrl($record): string
 {
     return static::getUrl('edit', ['record' => $record]);
 }
-}
+} 

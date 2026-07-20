@@ -16,8 +16,13 @@ class Project extends Model implements HasMedia
 {
     use HasFactory, LogsActivity, InteractsWithMedia, HasTranslations;
 
-   
 
+    protected array $translatable = [
+        'title',
+        'locality',
+        'customer_quote',
+        'challenges_solved',
+    ];
     protected $fillable = [
         'slug',
         'title',

@@ -84,9 +84,9 @@ class CostCalculatorController extends Controller
     {
         $lead->refresh();
 
-        abort_if(!$lead->pdf_quote_path, 404, 'PDF not generated yet.');
+        abort_if(!$lead->pdf_quote_path, 404, 'PDF not generated yet, please wait a few seconds and retry.');
 
-        $disk = Storage::disk(config('filesystems.default'));
+        $disk = Storage::disk('local');
 
         abort_if(
             !$disk->exists($lead->pdf_quote_path),
@@ -104,8 +104,8 @@ class CostCalculatorController extends Controller
         try {
             $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
 
-            $message = $twilio->messages->create("whatsapp:".$request->to, [
-                'from' => "whatsapp:".env('twilio_whatsapp_number'),
+            $message = $twilio->messages->create("whatsapp:" . $request->to, [
+                'from' => "whatsapp:" . env('twilio_whatsapp_number'),
                 'body' => $request->message,
             ]);
 

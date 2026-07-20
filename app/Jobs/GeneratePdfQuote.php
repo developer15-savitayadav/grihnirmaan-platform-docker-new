@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GeneratePdfQuote implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
 
     public int $tries = 3;
     public int $timeout = 60;

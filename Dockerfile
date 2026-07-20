@@ -53,13 +53,15 @@ FROM php:8.3-fpm-alpine AS runtime
 # System dependencies + PHP extensions required by this app
 # (pdo_mysql/pdo_pgsql for DB, gd for media library/dompdf, zip for maatwebsite/excel,
 #  intl, bcmath, exif, pcntl for horizon, redis for cache/queue/broadcasting)
-RUN apk add --no-cache \
+ RUN apk add --no-cache \
         nginx \
         supervisor \
         bash \
         curl \
         git \
-        ca-certificates \
+        ca-certificates
+
+RUN apk add --no-cache \
         libpng \
         libjpeg-turbo \
         freetype \
@@ -69,8 +71,9 @@ RUN apk add --no-cache \
         libxml2 \
         icu-libs \
         oniguruma \
-        libpq \
-    && apk add --no-cache --virtual .build-deps \
+        libpq
+
+RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         linux-headers \
         libpng-dev \
@@ -82,13 +85,15 @@ RUN apk add --no-cache \
         libxml2-dev \
         icu-dev \
         oniguruma-dev \
-        postgresql-dev \
-    && docker-php-ext-configure gd \
+        postgresql-dev
+
+RUN docker-php-ext-configure gd \
         --with-freetype \
         --with-jpeg \
         --with-webp \
-        --with-avif \
-    && docker-php-ext-install -j$(nproc) \
+        --with-avif
+
+RUN docker-php-ext-install -j$(nproc) \
         pdo_mysql \
         pdo_pgsql \
         gd \
@@ -97,12 +102,15 @@ RUN apk add --no-cache \
         bcmath \
         exif \
         pcntl \
-        opcache \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
-    && php -r "if (!function_exists('imagecreatefromavif')) { fwrite(STDERR, 'AVIF support is missing from PHP GD'.PHP_EOL); exit(1); }" \
-    && apk del .build-deps
+        opcache
+
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
+RUN php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
+    && php -r "if (!function_exists('imagecreatefromavif')) { fwrite(STDERR, 'AVIF support is missing from PHP GD'.PHP_EOL); exit(1); }"
+
+RUN apk del .build-deps
 
 WORKDIR /var/www/html
 

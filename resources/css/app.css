@@ -2943,14 +2943,16 @@ html[lang="hi"] .hero-section h1 {
 
 /* =================Auth pages css start=================*/
 .gn-auth-page {
-    min-height: 100vh;
-    background: #fdfaf5;
+    min-height: 100dvh;
+    display: flex;
+    align-items: stretch;
+    background: #fdfaf5 !important;
     padding: 14px;
     font-family: "DM Sans", sans-serif;
 }
 
 .gn-auth-shell {
-    min-height: calc(100vh - 28px);
+    flex: 1;
     max-width: 1280px;
     margin: 0 auto;
     display: grid;
@@ -2958,10 +2960,13 @@ html[lang="hi"] .hero-section h1 {
     overflow: hidden;
     border-radius: 28px;
     border: 1px solid rgba(31, 78, 121, 0.12);
-    background: #ffffff;
+    background: #ffffff !important;
     box-shadow: 0 24px 80px rgba(31, 78, 121, 0.12);
 }
-
+.gn-auth-mobile-brand {
+    display: none;
+}
+ 
 .gn-auth-left {
     position: relative;
     overflow: hidden;
@@ -3149,9 +3154,11 @@ html[lang="hi"] .hero-section h1 {
 
 .gn-auth-right {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: #ffffff !important;
+    width: 100%;
 }
 
 .gn-login-card {
@@ -3382,15 +3389,36 @@ html[lang="hi"] .hero-section h1 {
 
     .gn-auth-shell {
         grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
 
     .gn-auth-left {
         display: none;
     }
 
+    .gn-auth-mobile-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 22px 18px;
+        background: linear-gradient(135deg, #1f4e79 0%, #2e75b6 100%);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 900;
+    }
+
+    .gn-auth-mobile-brand span:first-child {
+        font-size: 22px;
+    }
+
     .gn-auth-right {
-        min-height: calc(100vh - 28px);
+        flex: 1;
+        min-height: 0;
         padding: 32px 18px;
+        justify-content: flex-start;
+        padding-top: 40px;
     }
 
     .project-page-arrow-btn {
@@ -3532,20 +3560,28 @@ html[lang="hi"] .hero-section h1 {
 }
 
 /* large mobile */
-@media (max-width: 520px) {
+ @media (max-width: 520px) {
     .gn-auth-page {
         padding: 0;
+        min-height: 100dvh;
     }
 
     .gn-auth-shell {
-        min-height: 100vh;
+        min-height: 100dvh;
         border-radius: 0;
+    }
+
+    .gn-auth-mobile-brand {
+        padding: 18px;
     }
 
     .gn-auth-right {
         padding: 28px 16px;
+        align-items: stretch;
+    }
 
-        align-items: start;
+    .gn-login-card {
+        max-width: 100%;
     }
 
     .gn-login-heading h2 {
@@ -3556,7 +3592,6 @@ html[lang="hi"] .hero-section h1 {
         grid-template-columns: 1fr;
     }
 }
-
 @media (max-width: 480px) {
     .nri-counter-wrapper {
         grid-template-columns: 1fr;

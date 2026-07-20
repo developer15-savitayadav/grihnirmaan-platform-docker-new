@@ -29,6 +29,10 @@ export default function Register() {
 
             <section className="gn-auth-page">
                 <div className="gn-auth-shell">
+                     <div className="gn-auth-mobile-brand">
+                        <span>🏠</span>
+                        <span>GrihNirmaan</span>
+                    </div>
                     {/* LEFT SIDE */}
                     <div className="gn-auth-left">
                         <div className="gn-auth-brand">

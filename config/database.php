@@ -13,7 +13,7 @@ return [
     | to use as your default connection for database operations. This is
     | the connection which will be utilized unless another connection
     | is explicitly specified when you execute a query / statement.
-    |
+    | 
     */
 
     'default' => env('DB_CONNECTION', 'sqlite'),
@@ -149,6 +149,7 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
+            'scheme' => env('REDIS_SCHEME', 'tcp'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),
@@ -158,6 +159,7 @@ return [
 
         'cache' => [
             'url' => env('REDIS_URL'),
+            'scheme' => env('REDIS_SCHEME', 'tcp'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),

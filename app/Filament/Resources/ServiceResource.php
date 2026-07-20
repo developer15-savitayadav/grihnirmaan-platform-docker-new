@@ -27,69 +27,14 @@ class ServiceResource extends Resource
             Forms\Components\Section::make('Service Details')
                 ->schema([
 
-                    Forms\Components\Tabs::make('Translations')
-                        ->tabs([
-                            Forms\Components\Tabs\Tab::make('English')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name_en')
-                                        ->label('Name (English)')
-                                        ->required()
-                                        ->maxLength(150)
-                                        ->live(onBlur: true)
-                                        ->afterStateHydrated(function (Forms\Components\TextInput $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('name', 'en') ?? '');
-                                        })
-                                        ->afterStateUpdated(
-                                            fn($state, callable $set) =>
-                                            $set('slug', \Str::slug($state))
-                                        ),
-
-                                    Forms\Components\Textarea::make('short_description_en')
-                                        ->label('Short Description (English)')
-                                        ->rows(3)
-                                        ->maxLength(255)
-                                        ->columnSpanFull()
-                                        ->afterStateHydrated(function (Forms\Components\Textarea $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('short_description', 'en') ?? '');
-                                        }),
-
-                                    Forms\Components\RichEditor::make('long_description_en')
-                                        ->label('Long Description (English)')
-                                        ->columnSpanFull()
-                                        ->afterStateHydrated(function (Forms\Components\RichEditor $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('long_description', 'en') ?? '');
-                                        }),
-                                ])
-                                ->columns(2),
-
-                            Forms\Components\Tabs\Tab::make('हिन्दी')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name_hi')
-                                        ->label('Name (Hindi)')
-                                        ->maxLength(150)
-                                        ->afterStateHydrated(function (Forms\Components\TextInput $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('name', 'hi') ?? '');
-                                        }),
-
-                                    Forms\Components\Textarea::make('short_description_hi')
-                                        ->label('Short Description (Hindi)')
-                                        ->rows(3)
-                                        ->maxLength(255)
-                                        ->columnSpanFull()
-                                        ->afterStateHydrated(function (Forms\Components\Textarea $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('short_description', 'hi') ?? '');
-                                        }),
-
-                                    Forms\Components\RichEditor::make('long_description_hi')
-                                        ->label('Long Description (Hindi)')
-                                        ->columnSpanFull()
-                                        ->afterStateHydrated(function (Forms\Components\RichEditor $component, ?Service $record) {
-                                            $component->state($record?->getTranslation('long_description', 'hi') ?? '');
-                                        }),
-                                ])
-                                ->columns(2),
-                        ])
-                        ->columnSpanFull(),
+                    Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->maxLength(150)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(
+                            fn ($state, callable $set) =>
+                            $set('slug', \Str::slug($state))
+                        ),
 
                     Forms\Components\TextInput::make('slug')
                         ->required()
@@ -99,6 +44,14 @@ class ServiceResource extends Resource
                     Forms\Components\TextInput::make('icon_name')
                         ->label('Icon Name')
                         ->maxLength(50),
+
+                    Forms\Components\Textarea::make('short_description')
+                        ->rows(3)
+                        ->maxLength(255)
+                        ->columnSpanFull(),
+
+                    Forms\Components\RichEditor::make('long_description')
+                        ->columnSpanFull(),
 
                     Forms\Components\Toggle::make('is_active')
                         ->default(true),
@@ -256,6 +209,7 @@ class ServiceResource extends Resource
             'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }
+
     public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()?->can('manage services') ?? false;
@@ -265,29 +219,30 @@ class ServiceResource extends Resource
     {
         return auth()->user()?->can('manage services') ?? false;
     }
+
     public static function getGloballySearchableAttributes(): array
-{
-    return [
-        'name',
-        'slug',
-        'short_description',
-    ];
-}
+    {
+        return [
+            'name',
+            'slug',
+            'short_description',
+        ];
+    }
 
-public static function getGlobalSearchResultTitle($record): string
-{
-    return $record->name;
-}
+    public static function getGlobalSearchResultTitle($record): string
+    {
+        return $record->name;
+    }
 
-public static function getGlobalSearchResultDetails($record): array
-{
-    return [
-        'Slug' => $record->slug,
-    ];
-}
+    public static function getGlobalSearchResultDetails($record): array
+    {
+        return [
+            'Slug' => $record->slug,
+        ];
+    }
 
-public static function getGlobalSearchResultUrl($record): string
-{
-    return static::getUrl('edit', ['record' => $record]);
-}
+    public static function getGlobalSearchResultUrl($record): string
+    {
+        return static::getUrl('edit', ['record' => $record]);
+    }
 }

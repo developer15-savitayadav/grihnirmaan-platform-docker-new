@@ -104,8 +104,17 @@ RUN docker-php-ext-install -j$(nproc) \
         pcntl \
         opcache
 
-RUN pecl install redis \
-    && docker-php-ext-enable redis
+ RUN curl -fsSL https://github.com/phpredis/phpredis/archive/refs/tags/6.1.0.tar.gz -o /tmp/redis.tar.gz \
+    && mkdir -p /tmp/redis \
+    && tar -xzf /tmp/redis.tar.gz -C /tmp/redis --strip-components=1 \
+    && cd /tmp/redis \
+    && phpize \
+    && ./configure \
+    && make -j$(nproc) \
+    && make install \
+    && docker-php-ext-enable redis \
+    && cd / \
+    && rm -rf /tmp/redis /tmp/redis.tar.gz
 
 RUN php -r "if (!function_exists('imagewebp')) { fwrite(STDERR, 'WebP support is missing from PHP GD'.PHP_EOL); exit(1); }" \
     && php -r "if (!function_exists('imagecreatefromavif')) { fwrite(STDERR, 'AVIF support is missing from PHP GD'.PHP_EOL); exit(1); }"

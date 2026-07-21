@@ -41,12 +41,12 @@ class SendWhatsAppMessage implements ShouldQueue
         $message = $this->customMessage ?: $this->buildEstimateMessage($calculation);
         try {
             $twilio = new Client(
-                env('TWILIO_ACCOUNT_SID'),
-                env('TWILIO_AUTH_TOKEN')
+                config('services.twilio.sid'),
+                config('services.twilio.token')
             );
 
             $response = $twilio->messages->create("whatsapp:$to", [
-                'from' => 'whatsapp:' . env('TWILIO_WHATSAPP_NUMBER'),
+                'from' => 'whatsapp:' . config('services.twilio.whatsapp_from'),
                 'body' => $message,
             ]);
 

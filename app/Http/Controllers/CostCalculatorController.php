@@ -72,6 +72,7 @@ class CostCalculatorController extends Controller
         GeneratePdfQuote::dispatch($lead);
         PushLeadToCrm::dispatch($lead);
         SendWhatsAppMessage::dispatch($lead);
+
         return response()->json([
             'success' => true,
             'message' => 'Cost calculated successfully.',
@@ -99,19 +100,29 @@ class CostCalculatorController extends Controller
             'Construction-Estimate-' . $lead->id . '.pdf'
         );
     }
+
     public function send(Request $request)
     {
         try {
-            $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+            $twilio = new Client(
+                config('services.twilio.sid'),
+                config('services.twilio.token')
+            );
 
             $message = $twilio->messages->create("whatsapp:" . $request->to, [
-                'from' => "whatsapp:" . env('twilio_whatsapp_number'),
+                'from' => "whatsapp:" . config('services.twilio.whatsapp_from'),
                 'body' => $request->message,
             ]);
 
-            dd($message);
+            return response()->json([
+                'success' => true,
+                'sid' => $message->sid,
+            ]);
         } catch (\Exception $e) {
-            dd($e);
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 }

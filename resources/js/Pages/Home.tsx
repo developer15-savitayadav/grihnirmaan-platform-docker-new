@@ -9,6 +9,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { FormEvent, PropsWithChildren, useMemo, useState } from "react";
+import { resolveImagePath } from "@/lib/resolveImagePath";
 
 import {
     AlertTriangle,
@@ -538,11 +539,7 @@ export default function Home({
                                 className="flex  w-40 items-center justify-center"
                             >
                                 <img
-                                    src={
-                                        bp.logo_path?.startsWith("http")
-                                            ? bp.logo_path
-                                            : `/storage/${bp.logo_path}`
-                                    }
+                                    src={resolveImagePath(bp.logo_path)}
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
                                 />

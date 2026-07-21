@@ -1032,8 +1032,198 @@
         0 20px 40px rgba(0, 0, 0, 0.12),
         0 6px 18px rgba(196, 98, 58, 0.18);
 }
+/* =========================================================
+   GOOGLE TRANSLATE CUSTOM DROPDOWN
+========================================================= */
+/* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
 
-/* Remove grayscale on hover */
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+/* Hide Google translate notification bar */
+.VIpgJd-ZVi9od-ORHb {
+    display: none !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+    display: none !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe {
+    display: none !important;
+}
+
+/* Hide Google translate iframe */
+iframe[src*="translate"] {
+    display: none !important;
+}
+/* Hide Google top banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Hide Google Translate Widget */
+ #google_translate_element {
+    position: fixed !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+/* Hide Google Translate iframe */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+/* Hide Google tooltip */
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+body {
+    position: static !important;
+}
+
+/* Hide Google logo */
+.goog-logo-link,
+.goog-te-gadget span,
+.goog-te-gadget-icon,
+.goog-te-menu-value,
+.goog-te-menu-value img {
+    display: none !important;
+}
+
+/* =========================================================
+   CUSTOM TRANSLATE BUTTON
+========================================================= */
+
+.translate-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.translate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    height: 42px;
+    padding: 0 16px;
+
+    background: #fff;
+    border: 1px solid #d6d9de;
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    color: #1f2937;
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: all .25s ease;
+}
+
+.translate-btn:hover {
+    background: #f8fafc;
+    border-color: #bfc5ce;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+.translate-btn:focus {
+    outline: none;
+}
+
+.translate-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.translate-btn span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.translate-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 180px;
+
+    background: #fff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.08),
+        0 4px 10px rgba(0,0,0,.05);
+
+    z-index: 999999;
+
+    animation: dropdownFade .18s ease;
+}
+
+.translate-dropdown button {
+    width: 100%;
+
+    border: none;
+    background: transparent;
+
+    padding: 12px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #374151;
+
+    transition: .2s;
+}
+
+.translate-dropdown button:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.translate-dropdown button:not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+}
+ 
+ 
 
 .brand-logos > a:first-child:hover img,
 .brand-logos > a:last-child:hover img {
@@ -2966,7 +3156,7 @@ html[lang="hi"] .hero-section h1 {
 .gn-auth-mobile-brand {
     display: none;
 }
- 
+
 .gn-auth-left {
     position: relative;
     overflow: hidden;
@@ -3560,7 +3750,7 @@ html[lang="hi"] .hero-section h1 {
 }
 
 /* large mobile */
- @media (max-width: 520px) {
+@media (max-width: 520px) {
     .gn-auth-page {
         padding: 0;
         min-height: 100dvh;

@@ -1,7 +1,6 @@
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { PropsWithChildren, useState } from "react";
-import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "@/Components/LanguageSwitcher";
+import GoogleTranslate from "@/Components/GoogleTranslate";
 
 import {
     Menu,
@@ -31,135 +30,127 @@ const BRAND = {
 };
 
 const PRIMARY_NAV = [
-    { label: "Home", key: "home", href: "/" },
-    { label: "Services", key: "services", href: "/services" },
-    { label: "How It Works", key: "nav_how_it_works", href: "/how-it-works" },
-    { label: "Projects", key: "nav_projects", href: "/projects" },
-    { label: "About", key: "about", href: "/about" },
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Projects", href: "/projects" },
+    { label: "About", href: "/about" },
 ];
+
 const SERVICE_MEGA_MENU = [
     {
         label: "Government Approvals",
-        key: "mega_government_approvals",
         href: "/services/government-approvals",
     },
     {
         label: "Civil Construction",
-        key: "mega_civil_construction",
         href: "/services/civil-construction",
     },
     {
         label: "Architecture & Design",
-        key: "mega_architecture_design",
         href: "/services/architecture-design",
     },
     {
         label: "Interior Design",
-        key: "mega_interior_design",
         href: "/services/interior-design",
     },
     {
         label: "Electrical Works (Havells)",
-        key: "mega_electrical_havells",
         href: "/services/electrical-havells",
     },
     {
         label: "Bath Fittings & Plumbing",
-        key: "mega_bath_fittings",
         href: "/services/bath-fittings",
     },
     {
         label: "Glass & Glazing",
-        key: "mega_glass_glazing",
         href: "/services/glass-glazing",
     },
     {
         label: "Painting & Finishing",
-        key: "mega_painting",
         href: "/services/painting",
     },
     {
         label: "Bhumi Poojan",
-        key: "mega_bhumi_poojan",
         href: "/services/bhumi-poojan",
     },
     {
         label: "Grih Pravesh",
-        key: "mega_grih_pravesh",
         href: "/services/grih-pravesh",
     },
     {
         label: "Home Loan Facilitation",
-        key: "mega_home_loans",
         href: "/services/home-loans",
     },
     {
         label: "Vastu Consultation",
-        key: "mega_vastu_consultation",
         href: "/services/vastu-consultation",
     },
 ];
+
 /**
  * Fallback only used if the `navProjects` Inertia prop (shared from
- * HandleInertiaRequests) hasn't loaded yet. The real, translated list of
- * projects now comes from the database via Project::$translatable.
+ * HandleInertiaRequests) hasn't loaded yet.
  */
 const PROJECT_MENU_FALLBACK = [
-    { title: "Sharma Residence", href: "/projects/sharma-residence-gomti-nagar" },
+    {
+        title: "Sharma Residence",
+        href: "/projects/sharma-residence-gomti-nagar",
+    },
     { title: "Verma Villa", href: "/projects/verma-villa-sushant-golf-city" },
     { title: "Singh Bungalow", href: "/projects/singh-bungalow-aliganj" },
 ];
 
-const getFooterNav = (auth: any, t: (key: string) => string) => [
+const getFooterNav = (auth: any) => [
     {
-        heading: t("footer_heading_company"),
+        heading: "Company",
         links: [
-            { label: t("footer_about_us"), href: "/about" },
-            { label: t("footer_our_team"), href: "/about/team" },
-            { label: t("footer_our_partners"), href: "/about/partners" },
-            { label: t("footer_contact_us"), href: "/contact" },
-            { label: t("footer_locations"), href: "/lucknow" },
+            { label: "About Us", href: "/about" },
+            { label: "Our Team", href: "/about/team" },
+            { label: "Our Partners", href: "/about/partners" },
+            { label: "Contact Us", href: "/contact" },
+            { label: "Locations", href: "/lucknow" },
         ],
     },
     {
-        heading: t("footer_heading_services"),
+        heading: "Services",
         links: [
             {
-                label: t("mega_government_approvals"),
+                label: "Government Approvals",
                 href: "/services/government-approvals",
             },
             {
-                label: t("mega_civil_construction"),
+                label: "Civil Construction",
                 href: "/services/civil-construction",
             },
             {
-                label: t("mega_architecture_design"),
+                label: "Architecture & Design",
                 href: "/services/architecture-design",
             },
-            { label: t("mega_interior_design"), href: "/services/interior-design" },
+            { label: "Interior Design", href: "/services/interior-design" },
         ],
     },
     {
-        heading: t("footer_heading_resources"),
+        heading: "Resources",
         links: [
-            { label: t("nav_cost_calculator"), href: "/cost-calculator" },
-            { label: t("nav_how_it_works"), href: "/how-it-works" },
-            { label: t("nav_projects"), href: "/projects" },
-            { label: t("footer_blog"), href: "/blog" },
+            { label: "Cost Calculator", href: "/cost-calculator" },
+            { label: "How It Works", href: "/how-it-works" },
+            { label: "Projects", href: "/projects" },
+            { label: "Blog", href: "/blog" },
         ],
     },
     {
-        heading: t("footer_heading_customer_portal"),
+        heading: "Customer Portal",
         links: auth?.user
             ? [
-                  { label: t("footer_dashboard"), href: "/portal/dashboard" },
-                  { label: t("footer_nri_services"), href: "/nri" },
-                  { label: t("cta_get_quote"), href: "/quote" },
+                  { label: "Dashboard", href: "/portal/dashboard" },
+                  { label: "NRI Services", href: "/nri" },
+                  { label: "Get Free Quote", href: "/quote" },
               ]
             : [
-                  { label: t("footer_customer_login"), href: "/portal/login" },
-                  { label: t("footer_nri_services"), href: "/nri" },
-                  { label: t("cta_get_quote"), href: "/quote" },
+                  { label: "Customer Login", href: "/portal/login" },
+                  { label: "NRI Services", href: "/nri" },
+                  { label: "Get Free Quote", href: "/quote" },
               ],
     },
 ];
@@ -230,15 +221,13 @@ const SOCIAL: {
                     * ------------------------------------------------------------------------- */
 
 function BrandLogo({ className }: { className?: string }) {
-    const { t } = useTranslation();
-
     return (
         <Link href="/" className={cn("flex items-center gap-2", className)}>
             <span className="grid h-9 w-9 place-items-center rounded-md bg-[#2E75B6]  text-lg font-bold text-cream">
                 G
             </span>
             <span className=" text-xl font-semibold tracking-tight text-charcoal">
-                {t("brand_name")}
+                {BRAND.name}
             </span>
         </Link>
     );
@@ -287,11 +276,10 @@ export default function AppLayout({ children }: PropsWithChildren) {
             onSuccess: () => resetNewsletter("email"),
         });
     };
-    const { t } = useTranslation();
     const [mobileOpen, setMobileOpen] = useState(false);
     const { url } = usePage();
     const { auth, flash, navProjects } = usePage().props as any;
-    const FOOTER_NAV = getFooterNav(auth, t);
+    const FOOTER_NAV = getFooterNav(auth);
     const projectMenuItems: { title: string; href: string }[] =
         Array.isArray(navProjects) && navProjects.length > 0
             ? navProjects.map((project: { title: string; slug: string }) => ({
@@ -325,7 +313,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            {t("home")}
+                            Home
                         </Link>
 
                         {/* Services Mega Menu */}
@@ -344,7 +332,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         : "text-charcoal/80 hover:text-[#c4623a]",
                                 )}
                             >
-                                {t("services")}
+                                Services
                                 <ChevronDown
                                     className={cn(
                                         "h-4 w-4 transition-transform group-hover:rotate-180",
@@ -386,7 +374,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                                             : "text-charcoal/80 hover:text-brand-blue",
                                                     )}
                                                 >
-                                                    {t(service.key)}
+                                                    {service.label}
                                                 </p>
                                             </Link>
                                         );
@@ -409,7 +397,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            {t("nav_how_it_works")}
+                            How It Works
                         </Link>
 
                         {/* Projects Submenu */}
@@ -428,7 +416,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         : "text-charcoal/80 hover:text-[#c4623a]",
                                 )}
                             >
-                                {t("nav_projects")}
+                                Projects
                                 <ChevronDown
                                     className={cn(
                                         "h-4 w-4 transition-transform group-hover:rotate-180",
@@ -443,7 +431,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                 <div className="grid grid-cols-1">
                                     {[
                                         {
-                                            title: t("mega_all_projects"),
+                                            title: "All Projects",
                                             href: "/projects",
                                         },
                                         ...projectMenuItems,
@@ -501,7 +489,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     : "text-charcoal/80 hover:text-brand-blue",
                             )}
                         >
-                            {t("about")}
+                            About
                         </Link>
                     </nav>
 
@@ -514,8 +502,9 @@ export default function AppLayout({ children }: PropsWithChildren) {
                             <Phone className="h-4 w-4 text-brand-blue" />
                             <span>{BRAND.phone}</span>
                         </a>
-
-                        <LanguageSwitcher />
+                        <div className="flex items-center gap-4">
+                            <GoogleTranslate />
+                        </div>
 
                         <Link
                             href="/cost-calculator"
@@ -532,7 +521,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                             )}
                         >
                             <Calculator className="h-4 w-4" />
-                            {t("nav_cost_calculator")}
+                            Cost Calculator
                         </Link>
                     </div>
 
@@ -569,10 +558,6 @@ export default function AppLayout({ children }: PropsWithChildren) {
                         className="border-t border-brand-blue/10 bg-cream lg:hidden"
                     >
                         <ul className="mx-auto flex max-w-7xl flex-col px-4 py-3 sm:px-6">
-                            <li className="mb-2 flex justify-end">
-                                <LanguageSwitcher />
-                            </li>
-
                             {PRIMARY_NAV.map((item) => {
                                 const active =
                                     item.href === "/"
@@ -594,7 +579,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                                     : "text-charcoal hover:bg-brand-blue-light hover:text-brand-blue",
                                             )}
                                         >
-                                            {t(item.key)}
+                                            {item.label}
                                         </Link>
                                     </li>
                                 );
@@ -617,7 +602,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                     )}
                                 >
                                     <Calculator className="h-5 w-5" />
-                                    {t("nav_cost_calculator")}
+                                    Cost Calculator
                                 </Link>
                             </li>
                         </ul>
@@ -658,17 +643,17 @@ export default function AppLayout({ children }: PropsWithChildren) {
                     <div className="footer-marquee">
                         <div className="footer-marquee-track">
                             <span>
-                                {t("footer_marquee_text")}
+                                Building Trust, Creating Homes
                                 <span className="footer-star">✦</span>
                             </span>
 
                             <span>
-                                {t("footer_marquee_text")}
+                                Building Trust, Creating Homes
                                 <span className="footer-star">✦</span>
                             </span>
 
                             <span>
-                                {t("footer_marquee_text")}
+                                Building Trust, Creating Homes
                                 <span className="footer-star">✦</span>
                             </span>
                         </div>
@@ -685,7 +670,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         </div>
 
                                         <h3 className="text-3xl font-bold text-white">
-                                            {t("brand_name")}
+                                            {BRAND.name}
                                         </h3>
                                     </div>
                                     <div className="mt-6 flex items-center gap-3">
@@ -703,7 +688,10 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                         ))}
                                     </div>
                                     <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-                                        {t("footer_tagline")}
+                                        Home Construction, Done Right. Trusted
+                                        construction partner delivering quality,
+                                        transparency and timely execution across
+                                        India.
                                     </p>
 
                                     <div className="mt-6 space-y-3 text-sm text-white/70">
@@ -749,9 +737,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                                         )
                                                     }
                                                     required
-                                                    placeholder={t(
-                                                        "footer_newsletter_placeholder",
-                                                    )}
+                                                    placeholder="Enter your email..."
                                                     className="min-w-0 flex-1 border-0 bg-transparent px-5 py-2 text-sm text-gray-700 outline-none ring-0 placeholder:text-gray-400 focus:border-0 focus:outline-none focus:ring-0"
                                                 />
 
@@ -763,12 +749,8 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                                     className="shrink-0 rounded-full bg-[#1f1f1f] px-7 py-2.5 text-sm font-semibold text-white transition hover:bg-[#c4623a] disabled:opacity-60"
                                                 >
                                                     {newsletterProcessing
-                                                        ? t(
-                                                              "footer_newsletter_subscribing",
-                                                          )
-                                                        : t(
-                                                              "footer_newsletter_subscribe",
-                                                          )}
+                                                        ? "Subscribing..."
+                                                        : "Subscribe"}
                                                 </button>
                                             </form>
                                         </div>
@@ -822,12 +804,8 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                 {/* Social + Copyright Inline */}
 
                                 <p className="text-xs text-white/70">
-                                    {
-                                        t("footer_copyright", {
-                                            year: new Date().getFullYear(),
-                                            brand: t("brand_name"),
-                                        }) as string
-                                    }
+                                    © {new Date().getFullYear()} {BRAND.name}.
+                                    All rights reserved.
                                 </p>
 
                                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
@@ -836,7 +814,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                             href="/privacy"
                                             className="transition hover:text-[#c4623a] text-white/70"
                                         >
-                                            {t("footer_privacy_policy")}
+                                            Privacy Policy
                                         </Link>
 
                                         <span className="text-brand-blue/20">
@@ -847,7 +825,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
                                             href="/terms"
                                             className="transition hover:text-[#c4623a] text-white/70"
                                         >
-                                            {t("footer_terms_of_service")}
+                                            Terms of Service
                                         </Link>
                                     </div>
                                 </div>

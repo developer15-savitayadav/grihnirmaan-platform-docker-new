@@ -9,8 +9,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { FormEvent, PropsWithChildren, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { resolveImagePath } from "@/lib/resolveImagePath";
+
 import {
     AlertTriangle,
     BadgeCheck,
@@ -190,25 +189,77 @@ function ServiceIcon({ name }: { name: string | null }) {
  * ──────────────────────────────────────────────────────────────────────*/
 
 const PROBLEMS = [
-    { Icon: AlertTriangle, key: "fraud" },
-    { Icon: Scale, key: "pricing" },
-    { Icon: ClipboardCheck, key: "approval" },
-    { Icon: SquaresUnite, key: "vendor" },
-    { Icon: ShieldCheck, key: "warranty" },
+    {
+        Icon: AlertTriangle,
+        title: "Contractor Fraud",
+        text: "Disappearing builders, half-done sites, lost deposits. Sound familiar?",
+    },
+    {
+        Icon: Scale,
+        title: "Opaque Pricing",
+        text: "Hidden costs, mid-project surprises, no itemised breakdown.",
+    },
+    {
+        Icon: ClipboardCheck,
+        title: "Approval Maze",
+        text: "LDA, RERA, Nagar Nigam — endless paperwork & runaround.",
+    },
+    {
+        Icon: SquaresUnite,
+        title: "Vendor Chaos",
+        text: "Coordinating 12 different agencies — you become the project manager.",
+    },
+    {
+        Icon: ShieldCheck,
+        title: "Zero Warranty",
+        text: "Cracks, leaks, faulty wiring — and nobody to call once payment is done.",
+    },
 ];
 
 const STEPS = [
-    { Icon: Phone, key: "vision" },
-    { Icon: DraftingCompass, key: "design" },
-    { Icon: HardHat, key: "construction" },
-    { Icon: KeySquare, key: "movein" },
+    {
+        Icon: Phone,
+        title: "Tell Us Your Vision",
+        text: "Share your plot details, budget, and dream home brief.",
+    },
+    {
+        Icon: DraftingCompass,
+        title: "Design & Approvals",
+        text: "IIA architects design your home; we handle all approvals.",
+    },
+    {
+        Icon: HardHat,
+        title: "Construction",
+        text: "Vetted crews build with weekly progress photos.",
+    },
+    {
+        Icon: KeySquare,
+        title: "Move In",
+        text: "Grih Pravesh, handover, and 10-year structural warranty.",
+    },
 ];
 
 const DIFFERENTIATORS = [
-    { Icon: Landmark, key: "govt" },
-    { Icon: Lock, key: "escrow" },
-    { Icon: Handshake, key: "brands" },
-    { Icon: MapPin, key: "local" },
+    {
+        Icon: Landmark,
+        title: "Govt-Approval Experts",
+        text: "In-house liaison team with 200+ LDA & Nagar Nigam approvals processed.",
+    },
+    {
+        Icon: Lock,
+        title: "Escrow Payment Security",
+        text: "Your money is released milestone-by-milestone, not upfront.",
+    },
+    {
+        Icon: Handshake,
+        title: "Tier-1 Brand Partners",
+        text: "Direct tie-ups with Havells, Jaquar, UltraTech, Asian Paints & more.",
+    },
+    {
+        Icon: MapPin,
+        title: "Lucknow Local Depth",
+        text: "15+ years in Lucknow, 500+ homes, 18 localities mapped.",
+    },
 ];
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -222,7 +273,6 @@ export default function Home({
     brandPartners,
     localities,
 }: HomeProps) {
-    const { t } = useTranslation();
     const { scrollY } = useScroll();
 
     const heroY = useTransform(scrollY, [0, 600], [0, 120]);
@@ -311,10 +361,7 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{
-                                duration: 1.8,
-                                ease: "easeOut" as const,
-                            }}
+                            transition={{ duration: 1.8, ease: "easeOut" as const }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 
@@ -332,21 +379,24 @@ export default function Home({
                                 variants={fadeUp}
                                 className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur"
                             >
-                                {t("hero_badge")}
+                                🏠 Home Construction · Lucknow
                             </motion.div>
 
                             <motion.h1
                                 variants={fadeUp}
                                 className=" font-bold leading-[1.1] tracking-tight text-white"
                             >
-                                {t("hero_title")}
+                                From Bhumi Poojan to Grih Pravesh, your dream
+                                home built right.
                             </motion.h1>
 
                             <motion.p
                                 variants={fadeUp}
                                 className="mt-6 max-w-lg font-body text-base text-white/85 "
                             >
-                                {t("hero_subtitle")}
+                                End-to-end home construction with transparent
+                                pricing, expert supervision, quality materials,
+                                on-time delivery, and a 10-year warranty.
                             </motion.p>
 
                             <motion.div
@@ -358,7 +408,7 @@ export default function Home({
                                     className="inline-flex items-center gap-2 rounded-xl bg-white hero-btn font-body text-sm font-semibold hover:text-brand-blue shadow-lg transition hover:-translate-y-0.5 hover:bg-white text-charcoal sm:text-base"
                                 >
                                     <Phone className="h-5 w-5" />
-                                    {t("cta_get_quote")}
+                                    Get Free Quote
                                 </Link>
 
                                 <Link
@@ -366,7 +416,7 @@ export default function Home({
                                     className="inline-flex items-center gap-2 rounded-xl border border-white/35 bg-white/10  hero-btn font-body text-sm font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:text-brand-blue sm:text-base"
                                 >
                                     <Calculator className="h-5 w-5" />
-                                    {t("cta_calculate_cost")}
+                                    Calculate Cost
                                 </Link>
                             </motion.div>
                         </motion.div>
@@ -378,19 +428,29 @@ export default function Home({
                                     <div className="flex -space-x-3">
                                         {testimonials
                                             .slice(0, 3)
-                                            .map((testimonial) => (
-                                                <img
-                                                    key={testimonial.id}
-                                                    src={
-                                                        testimonial.customer_photo ??
-                                                        undefined
-                                                    }
-                                                    alt={
-                                                        testimonial.customer_name
-                                                    }
-                                                    className="h-12 w-12 rounded-full border-2 border-white object-cover"
-                                                />
-                                            ))}
+                                            .map((testimonial) =>
+                                                testimonial.customer_photo ? (
+                                                    <img
+                                                        key={testimonial.id}
+                                                        src={
+                                                            testimonial.customer_photo
+                                                        }
+                                                        alt={
+                                                            testimonial.customer_name
+                                                        }
+                                                        className="h-12 w-12 rounded-full border-2 border-white object-cover"
+                                                    />
+                                                ) : (
+                                                    <div
+                                                        key={testimonial.id}
+                                                        className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white bg-brand-blue text-sm font-bold text-white"
+                                                    >
+                                                        {testimonial.customer_name.charAt(
+                                                            0,
+                                                        )}
+                                                    </div>
+                                                ),
+                                            )}
                                     </div>
 
                                     <div>
@@ -399,7 +459,7 @@ export default function Home({
                                         </h4>
 
                                         <p className="mt-1 text-sm text-gray-500">
-                                            {t("happy_customers")}
+                                            Happy customers
                                         </p>
                                     </div>
                                 </div>
@@ -420,20 +480,23 @@ export default function Home({
                                     {
                                         value: 500,
                                         suffix: "+",
-                                        key: "stat_homes_built",
+                                        label: "Homes Built",
                                     },
                                     {
                                         value: 15,
                                         suffix: "+",
-                                        key: "stat_years_experience",
+                                        label: "Years Experience",
                                     },
                                     {
                                         value: 4.9,
                                         suffix: "★",
-                                        key: "stat_client_rating",
+                                        label: "Client Rating",
                                     },
                                 ].map((item) => (
-                                    <div key={item.key} className="text-center">
+                                    <div
+                                        key={item.label}
+                                        className="text-center"
+                                    >
                                         <h3 className="text-3xl font-bold text-brand-blue">
                                             <CountUp
                                                 end={item.value}
@@ -448,7 +511,7 @@ export default function Home({
                                         </h3>
 
                                         <p className="font-body font-semibold text-muted-gray sm:text-base">
-                                            {t(item.key)}
+                                            {item.label}
                                         </p>
                                     </div>
                                 ))}
@@ -461,6 +524,10 @@ export default function Home({
             {/* ─── 2. TRUST STRIP ──────────────────────────────────── */}
             <section className="brand-partner-section  bg-white">
                 <div className="mx-auto max-w-7xl px-4 pt-0 sm:px-6 lg:px-8">
+                    {/* <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta text-center">
+                        Trusted brand partners
+                    </p> */}
+
                     <div className="mt-0 flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap brand-logos">
                         {brandPartners.slice(0, 6).map((bp) => (
                             <a
@@ -471,7 +538,11 @@ export default function Home({
                                 className="flex  w-40 items-center justify-center"
                             >
                                 <img
-                                    src={resolveImagePath(bp.logo_path)}
+                                    src={
+                                        bp.logo_path?.startsWith("http")
+                                            ? bp.logo_path
+                                            : `/storage/${bp.logo_path}`
+                                    }
                                     alt={bp.name}
                                     className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
                                 />
@@ -487,17 +558,20 @@ export default function Home({
                     {/* Top Heading */}
                     <Reveal className="mx-auto max-w-3xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("problems_eyebrow")}
+                            The truth about home construction
                         </p>
 
                         <h2 className="mt-3 font-display text-3xl font-bold text-dark sm:text-4xl lg:text-5xl">
-                            {t("problems_title")}
+                            5 problems we solve.
                         </h2>
 
                         <p className="mt-5 font-body text-base leading-7 text-muted-gray">
-                            {t("problems_subtitle")}
+                            We built GrihNirmaan after seeing too many families
+                            burnt by these exact issues. Here's how we fixed
+                            each one.
                         </p>
                     </Reveal>
+
                     {/* Image + Content */}
                     <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
                         {/* Left Sticky Image */}
@@ -513,8 +587,8 @@ export default function Home({
 
                         {/* Right Cards */}
                         <div className="space-y-6">
-                            {PROBLEMS.map(({ Icon, key }, i) => (
-                                <Reveal key={key}>
+                            {PROBLEMS.map(({ Icon, title, text }, i) => (
+                                <Reveal key={title}>
                                     <Link
                                         href={`/how-it-works#problem-${i + 1}`}
                                         className="group flex gap-5 rounded-3xl bg-white p-7   transition-all duration-300 hover:-translate-y-2    problem-card"
@@ -526,7 +600,7 @@ export default function Home({
                                         <div className="flex-1">
                                             <div className="flex items-start justify-between">
                                                 <h3 className=" text-xl font-bold text-brand-blue">
-                                                    {t(`problem_${key}_title`)}
+                                                    {title}
                                                 </h3>
 
                                                 <span className="text-4xl font-bold text-brand-blue/10 outline-number">
@@ -535,11 +609,11 @@ export default function Home({
                                             </div>
 
                                             <p className=" font-body text-[15px]  text-muted-gray">
-                                                {t(`problem_${key}_text`)}
+                                                {text}
                                             </p>
 
                                             <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-terracotta">
-                                                {t("learn_more")}
+                                                Learn More
                                                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                             </div>
                                         </div>
@@ -556,15 +630,16 @@ export default function Home({
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <Reveal className="mx-auto max-w-2xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("services_eyebrow")}
+                            Everything under one roof
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">
-                            {t("services_title")}
+                            Our services.
                         </h2>
 
                         <p className="mt-4 font-body text-base text-white/70">
-                            {t("services_subtitle")}
+                            12 specialised teams, one accountable partner — from
+                            soil testing to housewarming.
                         </p>
                     </Reveal>
                     <div className="relative mt-12">
@@ -632,7 +707,7 @@ export default function Home({
                                             </p>
 
                                             <div className="mt-8 inline-flex items-center gap-2 font-body text-sm font-semibold text-terracotta">
-                                                {t("explore_service")}
+                                                Explore service
                                                 <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                             </div>
                                         </div>
@@ -642,7 +717,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section>
+            </section> 
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -654,25 +729,27 @@ export default function Home({
                 <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <Reveal className="mx-auto max-w-2xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("how_it_works_eyebrow")}
+                            Simple, transparent journey
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                            {t("how_it_works_title")}
+                            How It Works
                         </h2>
 
                         <p className="mt-4 font-body text-base text-muted-gray">
-                            {t("how_it_works_subtitle")}
+                            From Bhumi Poojan to Grih Pravesh, our 12-step
+                            home-building journey is simplified into 4 clear
+                            milestones.
                         </p>
                     </Reveal>
 
                     <div className="mt-16 grid grid-cols-1 items-stretch gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                        {STEPS.map(({ Icon, key }, i) => (
-                            <Reveal key={key} className="h-full">
+                        {STEPS.map(({ title, text }, i) => (
+                            <Reveal key={title} className="h-full">
                                 <div className="step-card group">
                                     <div className="step-badge-wrap">
                                         <span className="step-badge">
-                                            {t("step_label")}{" "}
+                                            Step{" "}
                                             {String(i + 1).padStart(2, "0")}
                                         </span>
 
@@ -689,18 +766,14 @@ export default function Home({
                                                     "/uploads/images/why-choose-home.jpg",
                                                 ][i]
                                             }
-                                            alt={t(`step_${key}_title`)}
+                                            alt={title}
                                         />
                                     </div>
 
                                     <div className="mt-8 flex flex-1 flex-col">
-                                        <h3 className="step-title">
-                                            {t(`step_${key}_title`)}
-                                        </h3>
+                                        <h3 className="step-title">{title}</h3>
 
-                                        <p className="step-text">
-                                            {t(`step_${key}_text`)}
-                                        </p>
+                                        <p className="step-text">{text}</p>
                                     </div>
                                 </div>
                             </Reveal>
@@ -712,7 +785,7 @@ export default function Home({
                             href="/how-it-works"
                             className="inline-flex items-center gap-2 rounded-md border-2 black-btn px-6 py-3 font-body text-sm font-semibold text-cream transition-colors "
                         >
-                            {t("view_full_journey")}
+                            See the full 12-step journey
                             <ChevronRight className="h-4 w-4" />
                         </Link>
                     </Reveal>
@@ -724,26 +797,28 @@ export default function Home({
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <Reveal className="mx-auto max-w-2xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("featured_projects_eyebrow")}
+                            Recent builds
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                            {t("featured_projects_title")}
+                            Featured projects.
                         </h2>
 
                         <p className="mt-4 font-body text-base text-muted-gray">
-                            {t("featured_projects_subtitle")}
+                            Explore some of our recent residential construction
+                            projects in Lucknow.
                         </p>
                     </Reveal>
 
                     {featuredProjects.length === 0 ? (
                         <div className="mt-12 rounded-3xl border border-brand-blue/10 bg-cream p-12 text-center">
                             <h3 className="text-2xl font-bold text-charcoal">
-                                {t("no_results_title")}
+                                No featured projects found
                             </h3>
 
                             <p className="mt-3 text-muted-gray">
-                                {t("no_results_text")}
+                                Please mark projects as featured from admin
+                                panel.
                             </p>
                         </div>
                     ) : (
@@ -770,7 +845,7 @@ export default function Home({
                                                     />
 
                                                     <span className="absolute left-5 top-5 rounded-full bg-black/70 px-4 py-2 font-body text-xs font-semibold uppercase tracking-widest text-white">
-                                                        {t("label_before")}
+                                                        Before
                                                     </span>
                                                 </div>
 
@@ -785,7 +860,7 @@ export default function Home({
                                                     />
 
                                                     <span className="absolute right-5 top-5 rounded-full bg-terracotta px-4 py-2 font-body text-xs font-semibold uppercase tracking-widest text-white">
-                                                        {t("label_after")}
+                                                        After
                                                     </span>
                                                 </div>
                                             </div>
@@ -811,67 +886,53 @@ export default function Home({
 
                                                     <p className="mt-3 font-body text-sm text-muted-gray">
                                                         {project.location ??
-                                                            t(
-                                                                "default_locality",
-                                                            )}
+                                                            "Lucknow"}
                                                     </p>
                                                 </div>
 
                                                 <div className="mt-6 space-y-3">
                                                     <div className="flex items-center justify-between border-b border-gray-200 pb-2">
                                                         <span className="text-xs font-semibold uppercase tracking-wider text-muted-gray">
-                                                            {t(
-                                                                "label_locality",
-                                                            )}
+                                                            Locality
                                                         </span>
 
                                                         <span className="font-body text-sm font-medium text-charcoal">
                                                             {project.location ??
-                                                                t(
-                                                                    "default_locality",
-                                                                )}
+                                                                "Lucknow"}
                                                         </span>
                                                     </div>
 
                                                     <div className="flex items-center justify-between border-b border-gray-200 pb-2">
                                                         <span className="text-xs font-semibold uppercase tracking-wider text-muted-gray">
-                                                            {t("label_bhk")}
+                                                            BHK
                                                         </span>
 
                                                         <span className="font-body text-sm font-medium text-charcoal">
                                                             {project.bhk ??
-                                                                t(
-                                                                    "default_bhk",
-                                                                )}
+                                                                "3 BHK"}
                                                         </span>
                                                     </div>
 
                                                     <div className="flex items-center justify-between border-b border-gray-200 pb-2">
                                                         <span className="text-xs font-semibold uppercase tracking-wider text-muted-gray">
-                                                            {t("label_budget")}
+                                                            Budget
                                                         </span>
 
                                                         <span className="font-body text-sm font-medium text-charcoal">
                                                             {project.budget_range ??
-                                                                t(
-                                                                    "default_budget",
-                                                                )}
+                                                                "₹45L - ₹60L"}
                                                         </span>
                                                     </div>
 
                                                     <div className="flex items-center justify-between">
                                                         <span className="text-xs font-semibold uppercase tracking-wider text-muted-gray">
-                                                            {t(
-                                                                "label_duration",
-                                                            )}
+                                                            Duration
                                                         </span>
 
                                                         <span className="font-body text-sm font-medium text-charcoal">
                                                             {project.duration_months
                                                                 ? `${project.duration_months} Months`
-                                                                : t(
-                                                                      "default_duration",
-                                                                  )}
+                                                                : "12 Months"}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -896,7 +957,7 @@ export default function Home({
                             href="/projects"
                             className="inline-flex items-center gap-2 rounded-md border-2 black-btn px-6 py-3 font-body text-sm font-semibold text-cream transition-colors "
                         >
-                            {t("view_all_projects")}
+                            View All Projects
                             <ChevronRight className="h-4 w-4" />
                         </Link>
                     </Reveal>
@@ -910,11 +971,11 @@ export default function Home({
                             {/* Left Content */}
                             <div className="rounded-[10px] bg-white py-[25px] px-[20px] ">
                                 <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                                    {t("calc_eyebrow")}
+                                    Quick calculator
                                 </p>
 
                                 <h3 className="mt-2 font-display text-3xl font-bold text-charcoal">
-                                    {t("calc_enter_details")}
+                                    Enter project details
                                 </h3>
 
                                 <div className="mt-10 grid gap-8">
@@ -922,7 +983,7 @@ export default function Home({
                                         {/* Plot Area */}
                                         <div>
                                             <label className="mb-2 block font-body text-sm font-medium text-charcoal">
-                                                {t("calc_plot_area")}
+                                                Plot Area *
                                             </label>
 
                                             <div className="flex overflow-hidden rounded-md border border-gray-200 bg-white plot-area-field">
@@ -937,9 +998,7 @@ export default function Home({
                                                                 e.target.value,
                                                         })
                                                     }
-                                                    placeholder={t(
-                                                        "calc_placeholder_area",
-                                                    )}
+                                                    placeholder="Enter area"
                                                     className="h-10 w-full px-4 font-body text-sm outline-none   border-none"
                                                 />
 
@@ -955,10 +1014,10 @@ export default function Home({
                                                     className="border-none  focus:border-transparent  px-3 text-sm outline-none"
                                                 >
                                                     <option value="sqft">
-                                                        {t("calc_sqft")}
+                                                        Sq ft
                                                     </option>
                                                     <option value="sqyard">
-                                                        {t("calc_sqyard")}
+                                                        Sq yard
                                                     </option>
                                                 </select>
                                             </div>
@@ -967,7 +1026,7 @@ export default function Home({
                                         {/* Locality */}
                                         <div>
                                             <label className="mb-2  block font-body text-sm font-medium text-charcoal">
-                                                {t("calc_locality")}
+                                                Locality *
                                             </label>
 
                                             <select
@@ -982,7 +1041,7 @@ export default function Home({
                                                 className="h-10 w-full border border-gray-200 bg-white px-4 font-body text-sm outline-none transition focus:border-[#1f4e79] focus:outline-none focus:ring-0"
                                             >
                                                 <option value="">
-                                                    {t("calc_select_locality")}
+                                                    Select Locality
                                                 </option>
 
                                                 {localities.map((locality) => (
@@ -1000,7 +1059,7 @@ export default function Home({
                                     {/* Floors Tabs */}
                                     <div>
                                         <label className="mb-3 block font-body text-sm font-medium text-charcoal">
-                                            {t("calc_floors")}
+                                            Floors *
                                         </label>
 
                                         <div className="grid grid-cols-4 gap-3">
@@ -1030,38 +1089,33 @@ export default function Home({
                                         </div>
 
                                         <p className="mt-2 text-xs text-muted-gray">
-                                            {t("calc_floors_hint")}
+                                            Choose how many floors you want to
+                                            build.
                                         </p>
                                     </div>
 
                                     {/* Finish Level */}
                                     <div>
                                         <label className="mb-3 block font-body text-sm font-medium text-charcoal">
-                                            {t("calc_finish_level")}
+                                            Finish Level *
                                         </label>
 
                                         <div className="grid gap-3 sm:grid-cols-3">
                                             {[
                                                 {
                                                     value: "budget",
-                                                    labelKey:
-                                                        "finish_budget_label",
-                                                    descKey:
-                                                        "finish_budget_desc",
+                                                    label: "Budget",
+                                                    desc: "Basic finish",
                                                 },
                                                 {
                                                     value: "standard",
-                                                    labelKey:
-                                                        "finish_standard_label",
-                                                    descKey:
-                                                        "finish_standard_desc",
+                                                    label: "Standard",
+                                                    desc: "Recommended",
                                                 },
                                                 {
                                                     value: "premium",
-                                                    labelKey:
-                                                        "finish_premium_label",
-                                                    descKey:
-                                                        "finish_premium_desc",
+                                                    label: "Premium",
+                                                    desc: "Luxury finish",
                                                 },
                                             ].map((item) => (
                                                 <button
@@ -1083,10 +1137,10 @@ export default function Home({
                                                     ].join(" ")}
                                                 >
                                                     <span className="block font-body text-sm font-bold text-charcoal">
-                                                        {t(item.labelKey)}
+                                                        {item.label}
                                                     </span>
                                                     <span className="mt-1 block text-xs text-muted-gray">
-                                                        {t(item.descKey)}
+                                                        {item.desc}
                                                     </span>
                                                 </button>
                                             ))}
@@ -1099,7 +1153,7 @@ export default function Home({
                                         onClick={() => setAppliedCalc(miniCalc)}
                                         className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue px-5 py-4 font-body text-sm font-bold text-white transition-all"
                                     >
-                                        {t("calc_calculate_estimate")}
+                                        Calculate Estimate
                                         <ChevronRight className="h-4 w-4" />
                                     </button>
                                 </div>
@@ -1109,20 +1163,21 @@ export default function Home({
                             {/* Right Form */}
                             <div className="">
                                 <p className="font-body text-sm font-semibold uppercase tracking-widest text-brand-blue">
-                                    {t("calc_free_badge")}
+                                    ✦ Free · 2 minutes
                                 </p>
 
                                 <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                                    {t("calc_heading")}
+                                    How much will your home cost?
                                 </h2>
 
                                 <p className="mt-5 max-w-xl font-body text-base leading-8 text-muted-gray">
-                                    {t("calc_subtitle")}
+                                    Plug in plot size, floors, finish level and
+                                    locality. Get an instant estimate.
                                 </p>
 
                                 <div className="cost-estimate-card mt-8 rounded-[14px] p-8">
                                     <span className="font-body mini-cost-instant font-semibold uppercase tracking-widest text-white/80">
-                                        {t("calc_instant_estimate")}
+                                        Instant Estimate
                                     </span>
 
                                     <p className="mt-3  text-3xl font-bold leading-tight text-white">
@@ -1140,11 +1195,11 @@ export default function Home({
 
                                             <div>
                                                 <p className="font-body text-xs text-white/70">
-                                                    {t("calc_per")}{" "}
+                                                    Per{" "}
                                                     {appliedCalc.areaUnit ===
                                                     "sqyard"
-                                                        ? t("calc_sqyard_short")
-                                                        : t("calc_sqft_short")}
+                                                        ? "sq yard"
+                                                        : "sq ft"}
                                                 </p>
 
                                                 <p className=" text-xl font-bold text-white">
@@ -1165,7 +1220,7 @@ export default function Home({
                                             </div>
                                             <div>
                                                 <p className="font-body text-xs text-white/70">
-                                                    {t("calc_timeline_label")}
+                                                    Timeline
                                                 </p>
 
                                                 <p className=" text-xl font-bold text-white">
@@ -1179,7 +1234,7 @@ export default function Home({
                                         href={`/cost-calculator?plot_area=${appliedCalc.plotArea}&area_unit=${appliedCalc.areaUnit}&floors=${appliedCalc.floors}&finish_level=${appliedCalc.finishLevel}&locality=${appliedCalc.locality}`}
                                         className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl hover:bg-white bg-[#c4623a] px-5 py-4 font-body text-sm font-bold hover:text-black text-white transition-all hover:-translate-y-0.5"
                                     >
-                                        {t("calc_get_full_estimate")}
+                                        Get full estimate
                                         <ChevronRight className="h-4 w-4" />
                                     </Link>
                                 </div>
@@ -1198,11 +1253,11 @@ export default function Home({
                 <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <Reveal className="mx-auto max-w-2xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("testimonials_eyebrow")}
+                            What homeowners say
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                            {t("testimonials_title")}
+                            Real stories. Real homes.
                         </h2>
                     </Reveal>
 
@@ -1228,30 +1283,39 @@ export default function Home({
                             }}
                             className="testimonial-swiper mt-14 !pb-20"
                         >
-                            {testimonials.map((t) => (
-                                <SwiperSlide key={t.id} className="!h-auto">
+                            {testimonials.map((testimonial) => (
+                                <SwiperSlide key={testimonial.id} className="!h-auto">
                                     <Link
-                                        href={t.project?.url || "#"}
+                                        href={testimonial.project?.url || "#"}
                                         className="block h-full"
                                     >
                                         <article className="testimonial-card relative h-full cursor-pointer p-8 ">
                                             <div className="relative z-10 grid gap-8 sm:grid-cols-[180px_1fr] sm:items-center">
                                                 {/* Image */}
                                                 <div className="relative">
-                                                    <img
-                                                        src={
-                                                            t.customer_photo ??
-                                                            undefined
-                                                        }
-                                                        alt={t.customer_name}
-                                                        className="h-[210px] w-[150px] rounded-[28px] object-cover"
-                                                    />
+                                                    {testimonial.customer_photo ? (
+                                                        <img
+                                                            src={
+                                                                testimonial.customer_photo
+                                                            }
+                                                            alt={
+                                                                testimonial.customer_name
+                                                            }
+                                                            className="h-[210px] w-[150px] rounded-[28px] object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="flex h-[210px] w-[150px] items-center justify-center rounded-[28px] bg-brand-blue text-5xl font-bold text-white">
+                                                            {testimonial.customer_name.charAt(
+                                                                0,
+                                                            )}
+                                                        </div>
+                                                    )}
 
                                                     <div className="absolute tesi-star flex -translate-x-1/2 gap-1 text-yellow-400">
                                                         {Array.from({
                                                             length:
                                                                 Number(
-                                                                    t.rating,
+                                                                    testimonial.rating,
                                                                 ) || 5,
                                                         }).map((_, i) => (
                                                             <Star
@@ -1265,13 +1329,13 @@ export default function Home({
                                                 {/* Content */}
                                                 <div>
                                                     <blockquote className="font-body text-sm leading-7 text-slate-700 lg:text-base">
-                                                        “{t.content}”
+                                                        “{testimonial.content}”
                                                     </blockquote>
 
                                                     <div className="my-8 h-px bg-black/10 testi-line" />
 
                                                     <h3 className=" text-3xl font-bold text-charcoal">
-                                                        {t.customer_name}
+                                                        {testimonial.customer_name}
                                                     </h3>
                                                 </div>
                                             </div>
@@ -1293,7 +1357,7 @@ export default function Home({
                         </Swiper>
                     ) : (
                         <p className="mt-12 text-center font-body text-muted-gray">
-                            {t("testimonials_empty")}
+                            Testimonials coming soon.
                         </p>
                     )}
                 </div>
@@ -1304,11 +1368,11 @@ export default function Home({
                 <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <Reveal className="mx-auto max-w-2xl text-center">
                         <p className="font-body text-sm font-semibold uppercase tracking-widest text-terracotta">
-                            {t("why_choose_eyebrow")}
+                            Our edge
                         </p>
 
                         <h2 className="mt-2 font-display text-3xl font-bold text-dark sm:text-4xl">
-                            {t("why_choose_title")}
+                            Why choose GrihNirmaan.
                         </h2>
                     </Reveal>
 
@@ -1326,8 +1390,8 @@ export default function Home({
 
                         {/* Right Content */}
                         <div className="divide-y divide-brand-blue/15">
-                            {DIFFERENTIATORS.map(({ Icon, key }) => (
-                                <Reveal key={key}>
+                            {DIFFERENTIATORS.map(({ Icon, title, text }) => (
+                                <Reveal key={title}>
                                     <div className="group grid gap-5 py-8 sm:items-center service-content-wrap">
                                         <div className="service-icon-wrap">
                                             <div className="service-icon">
@@ -1339,11 +1403,11 @@ export default function Home({
                                         </div>
 
                                         <h3 className="font-body text-base font-semibold text-charcoal">
-                                            {t(`diff_${key}_title`)}
+                                            {title}
                                         </h3>
 
                                         <p className="font-body text-sm leading-6 text-muted-gray">
-                                            {t(`diff_${key}_text`)}
+                                            {text}
                                         </p>
                                     </div>
                                 </Reveal>
@@ -1405,20 +1469,22 @@ export default function Home({
                                 <div className="max-w-xl text-white">
                                     <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase  backdrop-blur">
                                         <span className="h-2 w-2 rounded-full bg-white" />
-                                        {t("final_cta_badge")}
+                                        Let's build, together
                                     </p>
 
                                     <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">
-                                        {t("final_cta_title")}
+                                        Ready to start your dream home?
                                     </h2>
 
                                     <p className="mt-5 max-w-lg font-body text-base leading-8 text-white/80 sm:text-lg">
-                                        {t("final_cta_subtitle")}
+                                        Drop your number — we will call you
+                                        within 30 minutes with a no-obligation
+                                        cost estimate.
                                     </p>
 
                                     <div className="mt-8">
                                         <h3 className=" text-2xl font-bold text-white">
-                                            {t("contact_label")}
+                                            Contact
                                         </h3>
 
                                         <a
@@ -1433,11 +1499,13 @@ export default function Home({
                                                 href="/book-consultation"
                                                 className="inline-flex items-center rounded-2xl bg-[#C4623A] px-6 py-3 font-bold text-white hover:bg-[#b75531]"
                                             >
-                                                 {t("book_free_consultation")}
+                                                Book Free Consultation
                                             </Link>
 
                                             <p className="mt-3 text-sm text-white/70">
-                                                {t("consultation_hint")}
+                                                Schedule a free 30-minute
+                                                consultation with our
+                                                construction experts.
                                             </p>
                                         </div>
                                     </div>
@@ -1450,11 +1518,11 @@ export default function Home({
                                     className="contact-form-card rounded-[34px] bg-white p-6 shadow-2xl sm:p-10 lg:min-w-[560px]"
                                 >
                                     <h3 className="font-display text-3xl font-bold text-charcoal sm:text-4xl">
-                                        {t("contact_form_title")}
+                                        Get In Touch With Us Today!
                                     </h3>
 
                                     <p className="mt-3 font-body text-base text-muted-gray">
-                                       {t("contact_form_subtitle")}
+                                        We are excited to connect with you.
                                     </p>
 
                                     <div className="mt-8 space-y-5">
@@ -1466,7 +1534,7 @@ export default function Home({
                                                 setData("name", e.target.value)
                                             }
                                             required
-                                          placeholder={t("placeholder_your_name")}
+                                            placeholder="Your name"
                                             className="h-16 w-full rounded-2xl border-0 bg-[#eeeeee] px-6 font-body text-sm text-charcoal placeholder:text-muted-gray focus:outline-none focus:ring-2 focus:ring-brand-blue"
                                         />
 
@@ -1484,7 +1552,7 @@ export default function Home({
                                                 setData("phone", e.target.value)
                                             }
                                             required
-                                           placeholder={t("placeholder_phone_number")}
+                                            placeholder="Phone number"
                                             className="h-16 w-full rounded-2xl border-0 bg-[#eeeeee] px-6 font-body text-sm text-charcoal placeholder:text-muted-gray focus:outline-none focus:ring-2 focus:ring-brand-blue"
                                         />
 
@@ -1500,14 +1568,15 @@ export default function Home({
                                             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-black px-6 py-4 font-body text-sm font-bold text-white transition hover:bg-terracotta disabled:opacity-60"
                                         >
                                             {processing
-                                                ? t("sending")
-                                                : t("cta_talk_advisor")}
+                                                ? "Sending…"
+                                                : "Talk to a Home Advisor"}
                                             <ChevronRight className="h-4 w-4" />
                                         </button>
 
                                         {recentlySuccessful && (
                                             <p className="text-center font-body text-sm text-brand-blue">
-                                                {t("lead_form_success")}
+                                                ✓ Thanks! We will call you
+                                                shortly.
                                             </p>
                                         )}
                                     </div>

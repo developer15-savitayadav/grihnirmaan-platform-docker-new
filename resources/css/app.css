@@ -1076,7 +1076,7 @@ body {
 }
 
 /* Hide Google Translate Widget */
- #google_translate_element {
+#google_translate_element {
     position: fixed !important;
     left: -9999px !important;
     top: -9999px !important;
@@ -1140,13 +1140,13 @@ body {
     font-size: 15px;
     font-weight: 500;
 
-    transition: all .25s ease;
+    transition: all 0.25s ease;
 }
 
 .translate-btn:hover {
     background: #f8fafc;
     border-color: #bfc5ce;
-    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .translate-btn:focus {
@@ -1184,12 +1184,12 @@ body {
     overflow: hidden;
 
     box-shadow:
-        0 10px 25px rgba(0,0,0,.08),
-        0 4px 10px rgba(0,0,0,.05);
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05);
 
     z-index: 999999;
 
-    animation: dropdownFade .18s ease;
+    animation: dropdownFade 0.18s ease;
 }
 
 .translate-dropdown button {
@@ -1211,7 +1211,7 @@ body {
 
     color: #374151;
 
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .translate-dropdown button:hover {
@@ -1222,8 +1222,6 @@ body {
 .translate-dropdown button:not(:last-child) {
     border-bottom: 1px solid #f1f5f9;
 }
- 
- 
 
 .brand-logos > a:first-child:hover img,
 .brand-logos > a:last-child:hover img {
@@ -3841,8 +3839,18 @@ html[lang="hi"] .hero-section h1 {
         line-height: 1.4rem;
     }
     .hero-section-content {
-        left: 36px;
+        left: 0px;
+        padding: 0 20px;
     }
+    .hero-image-wrap .absolute.bottom-8.right-8 {
+        left: 0px;
+        right: 0px;
+        bottom: 130px;
+        padding: 0 16px;
+    }
+     .hero-budget>div{
+        min-width:280px;
+     }
 }
 
 /* iPhone SE: 375px */

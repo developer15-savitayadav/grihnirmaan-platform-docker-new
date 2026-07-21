@@ -529,23 +529,23 @@ export default function Home({
                         Trusted brand partners
                     </p> */}
 
-                    <div className="mt-0 flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap brand-logos">
-                        {brandPartners.slice(0, 6).map((bp) => (
-                            <a
-                                key={bp.id}
-                                href={bp.website_url || "#"}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex  w-40 items-center justify-center"
-                            >
-                                <img
-                                    src={resolveImagePath(bp.logo_path)}
-                                    alt={bp.name}
-                                    className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
-                                />
-                            </a>
-                        ))}
-                    </div>
+                   <div className="mt-0 grid grid-cols-2 gap-6 min-[480px]:grid-cols-3 lg:flex lg:flex-nowrap lg:items-center lg:justify-center lg:gap-8 brand-logos">
+    {brandPartners.slice(0, 6).map((bp) => (
+        <a
+            key={bp.id}
+            href={bp.website_url || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+        >
+            <img
+                src={resolveImagePath(bp.logo_path)}
+                alt={bp.name}
+                className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
+            />
+        </a>
+    ))}
+</div>
                 </div>
             </section>
 

@@ -3803,7 +3803,8 @@ html[lang="hi"] .hero-section h1 {
     }
 
     .newsletter-wrap > div {
-        width: 330px;
+        max-width: 300px;
+        width: 100%;
     }
 
     .hero-counter-cutout h3 {
@@ -3926,7 +3927,8 @@ html[lang="hi"] .hero-section h1 {
     }
 
     .newsletter-wrap > div {
-        width: 270px;
+       max-width: 270px;
+       width:100%;
     }
 
     .newsletter-wrap > div button {

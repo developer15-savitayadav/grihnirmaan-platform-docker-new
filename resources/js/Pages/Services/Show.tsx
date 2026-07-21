@@ -198,10 +198,10 @@ export default function Show({
                             </p>
                         )}
 
-                        <div className="mt-8 flex flex-wrap gap-4">
+                        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                             <a
                                 href="#enquiry"
-                                className="inline-flex items-center gap-2 rounded-xl bg-[#1F4E79] px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#173b5c]"
+                                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1F4E79] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#163a5b]"
                             >
                                 Enquire Now
                                 <ArrowRight className="h-5 w-5" />
@@ -209,7 +209,7 @@ export default function Show({
 
                             <a
                                 href="tel:+919876543210"
-                                className="inline-flex items-center gap-2 rounded-xl border border-[#1F4E79] bg-white px-7 py-4 font-semibold text-[#1F4E79] transition hover:bg-[#c4623a] hover:text-white hover:border-[#c4623a]"
+                                className="inline-flex items-center justify-center gap-2 rounded-md border border-[#1F4E79] bg-white px-7 py-3 text-sm font-semibold text-[#1F4E79] transition hover:bg-[#D9E2F3]"
                             >
                                 <Phone className="h-5 w-5" />
                                 Call Expert
@@ -359,7 +359,7 @@ export default function Show({
 
                             <Link
                                 href="/cost-calculator"
-                                className="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#1F4E79] px-6 py-4 font-semibold text-white transition hover:bg-[#173b5c]"
+                                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1F4E79] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#163a5b]"
                             >
                                 Calculate Exact Cost
                                 <ArrowRight className="h-4 w-4" />
@@ -582,7 +582,7 @@ export default function Show({
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#C4623A] px-6 py-4 font-semibold text-white transition hover:bg-[#a94f2f] disabled:opacity-60"
+                                    className="flex w-full items-center justify-center gap-2 rounded-md bg-[#C4623A] px-6 py-4 font-semibold text-white transition hover:bg-[#a94f2f] disabled:opacity-60"
                                 >
                                     <MessageCircle className="h-5 w-5" />
                                     {processing

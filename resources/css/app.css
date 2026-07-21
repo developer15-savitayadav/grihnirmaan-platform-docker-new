@@ -3852,7 +3852,8 @@ html[lang="hi"] .hero-section h1 {
         min-width: 280px;
     }
     .brand-partner-section a {
-        width: 184px;
+       max-width: 184px;
+        width: 100%;
     }
 }
 

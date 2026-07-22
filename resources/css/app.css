@@ -2216,7 +2216,9 @@ body {
     right: 0;
     bottom: 5%;
 }
-
+.howpage-right-image-wrapper{
+    min-height:280px;
+}
 /* inner pages css end */
 .fq-page-item {
     border: 1px solid #d7dfe7;

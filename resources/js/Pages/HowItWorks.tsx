@@ -330,7 +330,7 @@ function StepContent({ service }: { service: Service }) {
                         {service.name}
                     </h3>
 
-                    <p className="mt-5 font-body text-base leading-8 text-muted-gray">
+                    <p className="mt-0 font-body text-base leading-6 text-muted-gray">
                         {service.short_description}
                     </p>
 
@@ -365,7 +365,7 @@ function StepContent({ service }: { service: Service }) {
                                                 {step.title}
                                             </h4>
 
-                                            <p className="mt-2 font-body text-sm leading-7 text-muted-gray">
+                                            <p className="mt-2 font-body text-sm leading-6 text-muted-gray">
                                                 {step.description}
                                             </p>
 
@@ -387,7 +387,7 @@ function StepContent({ service }: { service: Service }) {
                     </div>
                 </div>
 
-                <div className="relative min-h-[360px] bg-brand-blue">
+                <div className="relative min-h-[360px] bg-brand-blue  howpage-right-image-wrapper">
                     {activePhoto ? (
                         <img
                             key={activePhoto}

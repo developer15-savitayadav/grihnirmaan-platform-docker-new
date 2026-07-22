@@ -11,12 +11,24 @@ import {
     IndianRupee,
     MapPin,
 } from "lucide-react";
+interface NearbyLocality {
+    id: number;
+    slug: string;
+    name: string;
+    city?: string;
+    base_price_multiplier?: number | string;
+}
 
+interface ShowProps {
+    locality: any;
+    projects: any[];
+    nearbyLocalities: NearbyLocality[];
+}
 export default function Show({
     locality,
     projects = [],
     nearbyLocalities = [],
-}: any) {
+}: ShowProps) {
     return (
         <AppLayout>
             <Head>
@@ -342,75 +354,78 @@ export default function Show({
 
                         {/* Cards */}
                         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            {nearbyLocalities.map((item, index) => {
-                                const regNo = `NB-${String(index + 1).padStart(2, "0")}`;
+                            {nearbyLocalities.map(
+                                (item: any, index: number) => {
+                                    const regNo = `NB-${String(index + 1).padStart(2, "0")}`;
 
-                                return (
-                                    <Link
-                                        key={item.id}
-                                        href={`/lucknow/${item.slug}`}
-                                        className="group relative block"
-                                    >
-                                        <div className="relative overflow-hidden rounded-[4px] bg-white shadow-[0_1px_2px_rgba(28,28,28,0.06)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(31,78,121,0.14)]">
-                                            {/* Corner Badge */}
-                                            <div className="absolute -right-8 -top-8 flex h-20 w-20 rotate-45 items-end justify-center bg-[#1F4E79] pb-2.5 transition-transform duration-300 group-hover:-rotate-[35deg]">
-                                                <span className="rotate-[-45deg] font-serif text-sm font-bold text-white group-hover:rotate-[35deg]">
-                                                    {item.name.charAt(0)}
-                                                </span>
-                                            </div>
+                                    return (
+                                        <Link
+                                            key={item.id}
+                                            href={`/lucknow/${item.slug}`}
+                                            className="group relative block"
+                                        >
+                                            <div className="relative overflow-hidden rounded-[4px] bg-white shadow-[0_1px_2px_rgba(28,28,28,0.06)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(31,78,121,0.14)]">
+                                                {/* Corner Badge */}
+                                                <div className="absolute -right-8 -top-8 flex h-20 w-20 rotate-45 items-end justify-center bg-[#1F4E79] pb-2.5 transition-transform duration-300 group-hover:-rotate-[35deg]">
+                                                    <span className="rotate-[-45deg] font-serif text-sm font-bold text-white group-hover:rotate-[35deg]">
+                                                        {item.name.charAt(0)}
+                                                    </span>
+                                                </div>
 
-                                            {/* Top */}
-                                            <div className="px-7 pb-6 pt-8">
-                                                <p className="font-mono text-[11px] font-semibold tracking-wider text-[#6B6560]">
-                                                    AREA ID. {regNo}
-                                                </p>
-
-                                                <h3 className="mt-3 pr-6 font-serif text-2xl font-bold leading-tight text-[#1C1C1C] transition-colors group-hover:text-[#1F4E79]">
-                                                    {item.name}
-                                                </h3>
-
-                                                <p className="mt-2 text-sm leading-6 text-[#6B6560]">
-                                                    {item.city
-                                                        ? `${item.city}, Lucknow`
-                                                        : "Lucknow"}{" "}
-                                                    service coverage available.
-                                                </p>
-                                            </div>
-
-                                            {/* Divider */}
-                                            <div className="relative">
-                                                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-[#1C1C1C]/12" />
-                                                <div className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
-                                                <div className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
-                                            </div>
-
-                                            {/* Bottom */}
-                                            <div className="flex items-center justify-between px-7 py-5">
-                                                <div>
-                                                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B6560]">
-                                                        Status
+                                                {/* Top */}
+                                                <div className="px-7 pb-6 pt-8">
+                                                    <p className="font-mono text-[11px] font-semibold tracking-wider text-[#6B6560]">
+                                                        AREA ID. {regNo}
                                                     </p>
 
-                                                    <p className="mt-0.5 font-mono text-lg font-bold text-[#1C1C1C]">
-                                                        Active
+                                                    <h3 className="mt-3 pr-6 font-serif text-2xl font-bold leading-tight text-[#1C1C1C] transition-colors group-hover:text-[#1F4E79]">
+                                                        {item.name}
+                                                    </h3>
+
+                                                    <p className="mt-2 text-sm leading-6 text-[#6B6560]">
+                                                        {item.city
+                                                            ? `${item.city}, Lucknow`
+                                                            : "Lucknow"}{" "}
+                                                        service coverage
+                                                        available.
                                                     </p>
                                                 </div>
 
-                                                <span className="flex items-center gap-2 text-sm font-semibold text-[#C4623A]">
-                                                    View Area
-                                                    <ArrowRight
-                                                        size={16}
-                                                        className="transition-transform group-hover:translate-x-1"
-                                                    />
-                                                </span>
-                                            </div>
-                                        </div>
+                                                {/* Divider */}
+                                                <div className="relative">
+                                                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-[#1C1C1C]/12" />
+                                                    <div className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
+                                                    <div className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
+                                                </div>
 
-                                        {/* Shadow */}
-                                        <div className="absolute inset-x-3 -bottom-2 -z-10 h-full rounded-[4px] bg-[#1F4E79]/[0.06] transition-transform duration-300 group-hover:translate-y-1" />
-                                    </Link>
-                                );
-                            })}
+                                                {/* Bottom */}
+                                                <div className="flex items-center justify-between px-7 py-5">
+                                                    <div>
+                                                        <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B6560]">
+                                                            Status
+                                                        </p>
+
+                                                        <p className="mt-0.5 font-mono text-lg font-bold text-[#1C1C1C]">
+                                                            Active
+                                                        </p>
+                                                    </div>
+
+                                                    <span className="flex items-center gap-2 text-sm font-semibold text-[#C4623A]">
+                                                        View Area
+                                                        <ArrowRight
+                                                            size={16}
+                                                            className="transition-transform group-hover:translate-x-1"
+                                                        />
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            {/* Shadow */}
+                                            <div className="absolute inset-x-3 -bottom-2 -z-10 h-full rounded-[4px] bg-[#1F4E79]/[0.06] transition-transform duration-300 group-hover:translate-y-1" />
+                                        </Link>
+                                    );
+                                },
+                            )}
                         </div>
 
                         {nearbyLocalities.length === 0 && (

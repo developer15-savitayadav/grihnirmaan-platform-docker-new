@@ -48,7 +48,7 @@ class ServiceResource extends Resource
                     Forms\Components\Textarea::make('short_description')
                         ->rows(3)
                         ->maxLength(255)
-                        ->columnSpanFull(),
+                        ->columnSpanFull(), 
 
                     Forms\Components\RichEditor::make('long_description')
                         ->columnSpanFull(),

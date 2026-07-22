@@ -193,9 +193,12 @@ export default function Show({
                         </p>
 
                         {service.long_description && (
-                            <p className="mt-4 max-w-2xl font-body text-base leading-7 text-[#6B6560]">
-                                {service.long_description}
-                            </p>
+                            <div
+                                className="mt-4 max-w-2xl font-body text-base leading-7 text-[#6B6560]"
+                                dangerouslySetInnerHTML={{
+                                    __html: service.long_description,
+                                }}
+                            />
                         )}
 
                         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -253,7 +256,9 @@ export default function Show({
 
                                     <div className="mt-4 grid grid-cols-2 gap-3">
                                         {brandPartners.map((partner) => {
-                                          const logoUrl = resolveImagePath(partner.logo_path);
+                                            const logoUrl = resolveImagePath(
+                                                partner.logo_path,
+                                            );
 
                                             return (
                                                 <a

@@ -214,7 +214,7 @@ export default function HowItWorks({ services }: Props) {
                                     className="relative pl-8 mobile-timeline-item"
                                 >
                                     {index !== services.length - 1 && (
-                                        <div className="absolute bottom-0 left-5 top-14 w-px bg-brand-blue/20 mobile-timeline-line" />
+                                        <div className="absolute -bottom-5 left-5 top-0 w-px bg-brand-blue/20 mobile-timeline-line" />
                                     )}
 
                                     <button
@@ -306,11 +306,17 @@ export default function HowItWorks({ services }: Props) {
 }
 
 function StepContent({ service }: { service: Service }) {
-    const firstMediaStep = service.process_steps.find(
+    const firstMediaIndex = service.process_steps.findIndex(
         (step) => (step.photos && step.photos.length > 0) || step.video_url,
     );
 
-    const firstPhoto = firstMediaStep?.photos?.[0];
+    const [activeStepIndex, setActiveStepIndex] = useState<number>(
+        firstMediaIndex !== -1 ? firstMediaIndex : 0,
+    );
+
+    const activeStep = service.process_steps[activeStepIndex];
+    const activePhoto = activeStep?.photos?.[0];
+    const activeVideo = activeStep?.video_url;
 
     return (
         <div className="overflow-hidden rounded-[2rem] bg-cream shadow-xl ring-1 ring-brand-blue/10">
@@ -331,12 +337,26 @@ function StepContent({ service }: { service: Service }) {
                     <div className="mt-8 space-y-4">
                         {service.process_steps.length > 0 ? (
                             service.process_steps.map((step, index) => (
-                                <div
+                                <button
                                     key={index}
-                                    className="group rounded-2xl border border-brand-blue/10 bg-white/70 p-5 transition-all hover:-translate-y-0.5 hover:border-terracotta/30 hover:shadow-md"
+                                    type="button"
+                                    onClick={() => setActiveStepIndex(index)}
+                                    className={[
+                                        "group w-full text-left rounded-2xl border p-5 transition-all hover:-translate-y-0.5 hover:shadow-md",
+                                        activeStepIndex === index
+                                            ? "border-terracotta/50 bg-white shadow-md"
+                                            : "border-brand-blue/10 bg-white/70 hover:border-terracotta/30",
+                                    ].join(" ")}
                                 >
                                     <div className="flex gap-4">
-                                        <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-black text-sm font-bold text-cream">
+                                        <div
+                                            className={[
+                                                "grid h-9 w-9 shrink-0 place-items-center rounded-full text-sm font-bold transition-colors",
+                                                activeStepIndex === index
+                                                    ? "bg-terracotta text-cream"
+                                                    : "bg-black text-cream",
+                                            ].join(" ")}
+                                        >
                                             {index + 1}
                                         </div>
 
@@ -350,19 +370,14 @@ function StepContent({ service }: { service: Service }) {
                                             </p>
 
                                             {step.video_url && (
-                                                <a
-                                                    href={step.video_url}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:text-terracotta"
-                                                >
+                                                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue">
                                                     <PlayCircle className="h-4 w-4" />
-                                                    Watch Video
-                                                </a>
+                                                    Has video
+                                                </span>
                                             )}
                                         </div>
                                     </div>
-                                </div>
+                                </button>
                             ))
                         ) : (
                             <p className="font-body text-sm text-muted-gray">
@@ -373,16 +388,18 @@ function StepContent({ service }: { service: Service }) {
                 </div>
 
                 <div className="relative min-h-[360px] bg-brand-blue">
-                    {firstPhoto ? (
+                    {activePhoto ? (
                         <img
-                            src={firstPhoto}
-                            alt={service.name}
+                            key={activePhoto}
+                            src={activePhoto}
+                            alt={activeStep?.title ?? service.name}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
-                    ) : firstMediaStep?.video_url ? (
+                    ) : activeVideo ? (
                         <iframe
-                            src={getYoutubeEmbedUrl(firstMediaStep.video_url)}
-                            title={service.name}
+                            key={activeVideo}
+                            src={getYoutubeEmbedUrl(activeVideo)}
+                            title={activeStep?.title ?? service.name}
                             className="absolute inset-0 h-full w-full"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -400,7 +417,8 @@ function StepContent({ service }: { service: Service }) {
                             Visual Progress
                         </p>
                         <p className="mt-1  text-xl font-semibold text-brand-blue right-image-content">
-                            Photos & videos for this stage
+                            {activeStep?.title ??
+                                "Photos & videos for this stage"}
                         </p>
                     </div>
                 </div>

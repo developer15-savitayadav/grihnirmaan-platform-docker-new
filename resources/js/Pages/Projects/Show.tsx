@@ -149,7 +149,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="block h-[480px] w-full object-cover"
+                                    className="block h-[480px] w-full object-cover project-detail-image  "
                                 />
                             </div>
 
@@ -239,7 +239,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                                     <img
                                         src={project.before_image}
                                         alt={`${project.title} before construction`}
-                                        className="h-[420px] w-full object-cover"
+                                        className="h-[420px] w-full object-cover  compaire-image"
                                     />
 
                                     <span className="absolute left-4 top-4 rounded-full bg-black/70 px-4 py-2 text-sm font-semibold text-white">
@@ -259,7 +259,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                                     <img
                                         src={project.image}
                                         alt={`${project.title} after completion`}
-                                        className="h-[420px] w-full object-cover"
+                                        className="h-[420px] w-full object-cover compaire-image"
                                     />
 
                                     <span className="absolute left-4 top-4 rounded-full bg-terracotta px-4 py-2 text-sm font-semibold text-white">

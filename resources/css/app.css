@@ -2216,9 +2216,7 @@ body {
     right: 0;
     bottom: 5%;
 }
-.howpage-right-image-wrapper{
-    min-height:280px;
-}
+
 /* inner pages css end */
 .fq-page-item {
     border: 1px solid #d7dfe7;
@@ -3784,6 +3782,15 @@ html[lang="hi"] .hero-section h1 {
     }
 }
 @media (max-width: 480px) {
+    .howpage-right-image-wrapper {
+        min-height: 280px;
+    }
+    .project-detail-image {
+        min-height: 380px;
+    }
+    .compaire-image {
+        min-height: 250px;
+    }
     .nri-counter-wrapper {
         grid-template-columns: 1fr;
     }

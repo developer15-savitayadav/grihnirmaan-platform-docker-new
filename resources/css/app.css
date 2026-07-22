@@ -3806,7 +3806,9 @@ html[lang="hi"] .hero-section h1 {
         max-width: 300px;
         width: 100%;
     }
-
+    .construction-wrapper h3 {
+        font-size: 16px;
+    }
     .hero-counter-cutout h3 {
         font-size: 22px;
     }
@@ -3853,7 +3855,7 @@ html[lang="hi"] .hero-section h1 {
         min-width: 280px;
     }
     .brand-partner-section a {
-       max-width: 184px;
+        max-width: 184px;
         width: 100%;
     }
 }
@@ -3927,8 +3929,8 @@ html[lang="hi"] .hero-section h1 {
     }
 
     .newsletter-wrap > div {
-       max-width: 270px;
-       width:100%;
+        max-width: 270px;
+        width: 100%;
     }
 
     .newsletter-wrap > div button {

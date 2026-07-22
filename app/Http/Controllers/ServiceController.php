@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BrandPartner;
 use App\Models\Service;
-use Inertia\Inertia;
+use Inertia\Inertia; 
 use Inertia\Response;
 
 class ServiceController extends Controller

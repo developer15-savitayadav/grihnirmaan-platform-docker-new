@@ -167,6 +167,7 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # since Render assigns the listen port dynamically via the PORT env var.
 COPY docker/nginx.conf /etc/nginx/templates/default.conf.template
 COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+COPY docker/php-uploads.ini /usr/local/etc/php/conf.d/zz-uploads.ini
 COPY docker/supervisord.conf /etc/supervisord.conf
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

@@ -149,7 +149,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="block h-[480px] w-full object-cover project-detail-image  "
+                                    className="block   w-full object-cover project-detail-image  "
                                 />
                             </div>
 
@@ -239,7 +239,7 @@ export default function ProjectShow({ project }: { project: Project }) {
                                     <img
                                         src={project.before_image}
                                         alt={`${project.title} before construction`}
-                                        className="h-[420px] w-full object-cover  compaire-image"
+                                        className=" w-full object-cover  compaire-image"
                                     />
 
                                     <span className="absolute left-4 top-4 rounded-full bg-black/70 px-4 py-2 text-sm font-semibold text-white">
@@ -501,14 +501,14 @@ export default function ProjectShow({ project }: { project: Project }) {
                     <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                         <Link
                             href="/quote"
-                            className="rounded-xl bg-terracotta px-7 py-4 font-semibold text-white shadow-lg transition hover:bg-terracotta/90"
+                            className="rounded-md bg-terracotta px-7 py-4 font-semibold text-white shadow-lg transition hover:bg-terracotta/90"
                         >
                             Get Free Quote
                         </Link>
 
                         <Link
                             href="/cost-calculator"
-                            className="rounded-xl border border-white/30 px-7 py-4 font-semibold text-white transition hover:bg-white/10"
+                            className="rounded-md border border-white/30 px-7 py-4 font-semibold text-white transition hover:bg-white/10"
                         >
                             Calculate Cost
                         </Link>

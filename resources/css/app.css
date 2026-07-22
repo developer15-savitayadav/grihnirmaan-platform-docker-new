@@ -2216,7 +2216,12 @@ body {
     right: 0;
     bottom: 5%;
 }
-
+.project-detail-image {
+    height: 480px;
+}
+.compaire-image {
+    height: 420px;
+}
 /* inner pages css end */
 .fq-page-item {
     border: 1px solid #d7dfe7;
@@ -3786,10 +3791,10 @@ html[lang="hi"] .hero-section h1 {
         min-height: 280px;
     }
     .project-detail-image {
-        min-height: 380px;
+        height: 380px;
     }
     .compaire-image {
-        min-height: 250px;
+        height: 250px;
     }
     .nri-counter-wrapper {
         grid-template-columns: 1fr;

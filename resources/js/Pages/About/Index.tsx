@@ -174,7 +174,7 @@ export default function AboutIndex({ brandPartners }: Props) {
                 <div className="founder-blur founder-blur-right absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#C4623A]/10 blur-3xl" />
 
                 <div className="founder-container relative mx-auto max-w-7xl ">
-                    <div className="founder-grid grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
+                    <div className="founder-grid grid items-center  ">
                         <Reveal className="founder-image-wrap relative">
                             <div className="founder-shape founder-shape-square absolute -left-6 -top-6 h-40 w-40 rounded-[2rem] bg-[#D4A853]/25" />
                             <div className="founder-shape founder-shape-circle absolute -bottom-6 -right-6 h-40 w-40 rounded-full bg-[#1F4E79]/15" />
@@ -183,12 +183,12 @@ export default function AboutIndex({ brandPartners }: Props) {
                                 <img
                                     src="/uploads/images/founder.jpg"
                                     alt="Founder of GrihNirmaan"
-                                    className="founder-photo h-[560px] w-full rounded-[2rem] object-cover"
+                                    className="founder-photo w-full rounded-[2rem] object-cover"
                                 />
 
                                 <div className="founder-photo-overlay absolute inset-3 rounded-[2rem] bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-                                <div className="founder-info-card absolute bottom-8 left-8 right-8 rounded-3xl border border-white/20 bg-white/15 p-6 text-white backdrop-blur-md">
+                                <div className="founder-info-card absolute bottom-8 left-8 right-8 rounded-3xl border border-white/20 bg-white/15  text-white backdrop-blur-md">
                                     <p className="founder-label text-sm font-semibold uppercase tracking-[0.25em] text-[#D4A853]">
                                         Founder
                                     </p>
@@ -283,7 +283,7 @@ export default function AboutIndex({ brandPartners }: Props) {
                                 ))}
                             </div>
 
-                            <div className="founder-actions mt-4 flex flex-wrap gap-4">
+                            <div className="founder-actions mt-8 flex flex-col gap-4 sm:flex-row">
                                 <Link
                                     href="/projects"
                                     className="founder-primary-btn inline-flex items-center justify-center gap-2 rounded-md bg-[#1F4E79]   font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#163a5b]"
@@ -363,7 +363,7 @@ export default function AboutIndex({ brandPartners }: Props) {
                                 <img
                                     src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200"
                                     alt="Modern home construction"
-                                    className="h-[480px] w-full rounded-[1.5rem] object-cover"
+                                    className=" w-full rounded-[1.5rem] object-cover about-sec2-image"
                                 />
 
                                 <div className="absolute inset-3 rounded-[1.5rem] bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
@@ -394,14 +394,14 @@ export default function AboutIndex({ brandPartners }: Props) {
 
             <section className="brand-partner-section  bg-white">
                 <div className="mx-auto max-w-7xl px-4 pt-0 sm:px-6 lg:px-8">
-                    <div className="mt-0 flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap brand-logos">
+                    <div className="mt-0 grid grid-cols-2 gap-6 min-[480px]:grid-cols-3 lg:flex lg:flex-nowrap lg:items-center lg:justify-center lg:gap-8 brand-logos">
                         {brandPartners.slice(0, 6).map((bp) => (
                             <a
                                 key={bp.id}
                                 href={bp.website_url || "#"}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex  w-40 items-center justify-center"
+                                className="flex items-center justify-center"
                             >
                                 <img
                                     src={resolveImagePath(bp.logo_path)}

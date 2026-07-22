@@ -303,7 +303,7 @@ export default function Index({
                                         src="/uploads/images/hero-img.jpg"
                                         alt="NRI home construction"
                                         loading="lazy"
-                                        className="h-[480px] w-full object-cover transition duration-700 hover:scale-105"
+                                        className="nri-img w-full object-cover transition duration-700 hover:scale-105"
                                     />
                                 </div>
 
@@ -336,7 +336,7 @@ export default function Index({
                 {brandPartners.length > 0 && (
                     <section className="brand-partner-section bg-white">
                         <div className="mx-auto max-w-7xl px-4 pt-0 sm:px-6 lg:px-8">
-                            <div className="brand-logos mt-0 flex flex-wrap items-center justify-center gap-8 lg:flex-nowrap">
+                            <div className="mt-0 grid grid-cols-2 gap-6 min-[480px]:grid-cols-3 lg:flex lg:flex-nowrap lg:items-center lg:justify-center lg:gap-8 brand-logos">
                                 {brandPartners.slice(0, 6).map((bp) => (
                                     <a
                                         key={bp.id}

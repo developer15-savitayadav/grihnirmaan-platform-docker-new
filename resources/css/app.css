@@ -278,7 +278,19 @@
     border: 1px solid #d7dfe7;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
+.founder-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 30px;
+}
+.founder-actions {
+    justify-content: left;
+}
+.founder-photo {
+    height: 560px;
+}
+.founder-info-card {
+    padding: 24px;
+}
 .founder-stat-card {
     border: 1px solid #d7dfe7;
     background: #f8fafc;
@@ -288,9 +300,17 @@
     margin: auto;
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     padding: 12px 15px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 10px;
+    max-width: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.founder-stat-label {
+    white-space: normal;
+    line-height: 1.25;
 }
 
 .how-it-works-image {
@@ -1606,12 +1626,15 @@ body {
 
 .founder-secondary-btn {
     padding: 8px 10px;
+    justify-content: center;
 }
 
 .founder-primary-btn {
     padding: 8px 10px;
 }
-
+.about-sec2-image {
+    height: 480px;
+}
 .about-page-counter {
     border: 1px solid #d7dfe7;
     border-radius: 20px;
@@ -2256,7 +2279,9 @@ body {
     overflow-x: hidden;
     font-family: Inter, Poppins, system-ui, sans-serif;
 }
-
+.nri-img{
+    height: 480px;
+}
 .nri-hero-title {
     font-family: "Playfair Display", serif;
     font-size: clamp(32px, 6vw, 60px);
@@ -2903,6 +2928,22 @@ html[lang="hi"] .hero-section h1 {
 }
 /* hindi version css end */
 @media (max-width: 1024px) {
+    .why-choose-person {
+    max-width: 340px;
+    width: 100%;
+}
+    .founder-grid {
+        grid-template-columns: 0.8fr 1.2fr;
+    }
+    .founder-stat-card {
+        border-radius: 50px;
+        max-width: 100%;
+        padding: 14px 12px;
+    }
+
+    .founder-stat-label {
+        font-size: 12px;
+    }
     .locality-project-card {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -2918,6 +2959,12 @@ html[lang="hi"] .hero-section h1 {
 }
 
 @media (max-width: 768px) {
+    .founder-grid {
+        grid-template-columns: 1fr;
+    }
+    .founder-stat-label {
+        font-size: 16px;
+    }
     .locality-project-card {
         padding: 18px;
         border-radius: 24px;
@@ -3750,6 +3797,9 @@ html[lang="hi"] .hero-section h1 {
         right: 20px;
         bottom: 130px;
     }
+    .founder-actions {
+        justify-content: center;
+    }
 }
 
 /* large mobile */
@@ -3787,6 +3837,18 @@ html[lang="hi"] .hero-section h1 {
     }
 }
 @media (max-width: 480px) {
+    .nri-img{
+    height: 400px;
+}
+    .about-sec2-image {
+        height: 400px;
+    }
+    .founder-info-card {
+        padding: 14px 20px;
+    }
+    .founder-photo {
+        height: 400px;
+    }
     .howpage-right-image-wrapper {
         min-height: 280px;
     }

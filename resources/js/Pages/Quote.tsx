@@ -344,7 +344,7 @@ export default function Quote() {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="group flex w-full items-center justify-center gap-3 rounded-2xl bg-[#C4623A] px-6 py-4 text-lg font-bold text-white shadow-xl transition hover:bg-[#a84f2f] disabled:opacity-60"
+                                    className="group flex w-full items-center justify-center gap-3 rounded-md bg-[#C4623A] px-6 py-4 text-lg font-bold text-white shadow-xl transition hover:bg-[#a84f2f] disabled:opacity-60"
                                 >
                                     {processing ? 'Submitting...' : 'Get Free Quote'}
                                     <Send className="h-5 w-5 transition group-hover:translate-x-1" />

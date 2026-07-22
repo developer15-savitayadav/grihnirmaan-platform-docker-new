@@ -362,7 +362,10 @@ export default function Home({
                             style={{ y: heroY, scale: heroScale }}
                             initial={{ scale: 1.15 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 1.8, ease: "easeOut" as const }}
+                            transition={{
+                                duration: 1.8,
+                                ease: "easeOut" as const,
+                            }}
                             className="absolute inset-0 h-full w-full object-cover"
                         />
 
@@ -529,23 +532,23 @@ export default function Home({
                         Trusted brand partners
                     </p> */}
 
-                   <div className="mt-0 grid grid-cols-2 gap-6 min-[480px]:grid-cols-3 lg:flex lg:flex-nowrap lg:items-center lg:justify-center lg:gap-8 brand-logos">
-    {brandPartners.slice(0, 6).map((bp) => (
-        <a
-            key={bp.id}
-            href={bp.website_url || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center"
-        >
-            <img
-                src={resolveImagePath(bp.logo_path)}
-                alt={bp.name}
-                className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
-            />
-        </a>
-    ))}
-</div>
+                    <div className="mt-0 grid grid-cols-2 gap-6 min-[480px]:grid-cols-3 lg:flex lg:flex-nowrap lg:items-center lg:justify-center lg:gap-8 brand-logos">
+                        {brandPartners.slice(0, 6).map((bp) => (
+                            <a
+                                key={bp.id}
+                                href={bp.website_url || "#"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center"
+                            >
+                                <img
+                                    src={resolveImagePath(bp.logo_path)}
+                                    alt={bp.name}
+                                    className="max-h-14 w-auto max-w-full object-contain opacity-70 transition duration-300 hover:opacity-100"
+                                />
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -714,7 +717,7 @@ export default function Home({
                         </Swiper>
                     </div>
                 </div>
-            </section> 
+            </section>
 
             {/* ─── 5. HOW IT WORKS PREVIEW ─────────────────────────── */}
             <section className="how-work-section relative overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -1281,7 +1284,10 @@ export default function Home({
                             className="testimonial-swiper mt-14 !pb-20"
                         >
                             {testimonials.map((testimonial) => (
-                                <SwiperSlide key={testimonial.id} className="!h-auto">
+                                <SwiperSlide
+                                    key={testimonial.id}
+                                    className="!h-auto"
+                                >
                                     <Link
                                         href={testimonial.project?.url || "#"}
                                         className="block h-full"
@@ -1332,7 +1338,9 @@ export default function Home({
                                                     <div className="my-8 h-px bg-black/10 testi-line" />
 
                                                     <h3 className=" text-3xl font-bold text-charcoal">
-                                                        {testimonial.customer_name}
+                                                        {
+                                                            testimonial.customer_name
+                                                        }
                                                     </h3>
                                                 </div>
                                             </div>

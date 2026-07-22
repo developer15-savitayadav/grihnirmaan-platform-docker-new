@@ -32,7 +32,7 @@ export default function Index({ localities }: Props) {
                         <span className="inline-flex rounded-full   px-5 py-2 text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
                             Lucknow Area Pages
                         </span>
-                        <h1 className="mt-6 text-4xl font-bold tracking-tight text-[#1C1C1C] md:text-6xl">
+                        <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
                             Home Construction Services Across Lucknow
                         </h1>
 
@@ -61,100 +61,147 @@ export default function Index({ localities }: Props) {
                 </div>
             </section>
 
-            <section className="bg-white py-16">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <section className="relative overflow-hidden bg-[#FDFAF5] py-20 lg:py-28">
+                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    {/* ─── Header ─────────────────────────────── */}
+                    <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                         <div>
-                            <span className="text-sm font-semibold uppercase tracking-wider text-[#C4623A]">
-                                Service Areas
+                            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.28em] text-[#C4623A]">
+                               
                             </span>
-
-                            <h2 className="mt-2 text-3xl font-bold text-[#1C1C1C]">
-                                Choose Your Locality
+                            <span className="inline-flex rounded-full   px-5 py-2 text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
+                                Lucknow Registered Service Areas
+                            </span>
+                            <h2 className=" mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
+                                Choose your locality.
                             </h2>
 
-                            <p className="mt-3 max-w-2xl text-[#6B6560]">
-                                Select an area to see construction services,
-                                estimated cost guidance and nearby completed
-                                projects.
+                            <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#6B6560]">
+                                Every card below is a live service licence —
+                                pricing, crews and approval contacts are already
+                                set up on that ground.
                             </p>
                         </div>
 
-                        <div className="rounded-2xl bg-[#FDFAF5] px-5 py-4 text-sm text-[#6B6560]">
-                            <strong className="text-[#1C1C1C]">
-                                {localities.length}
-                            </strong>{" "}
-                            active service areas
+                        <div className="flex items-baseline gap-3 self-start md:self-end">
+                            <span className="font-serif text-5xl font-bold leading-none text-[#1F4E79]">
+                                {String(localities.length).padStart(2, "0")}
+                            </span>
+                            <span className="max-w-[7rem] text-xs font-semibold uppercase leading-tight tracking-wider text-[#6B6560]">
+                                localities on record
+                            </span>
                         </div>
                     </div>
 
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {localities.map((locality) => (
-                            <Link
-                                key={locality.id}
-                                href={`/lucknow/${locality.slug}`}
-                                className="group rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#1F4E79] hover:shadow-xl"
-                            >
-                                <div className="flex items-start justify-between gap-4">
-                                    <div>
-                                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#D9E2F3] text-xl font-bold text-[#1F4E79] transition group-hover:bg-[#1F4E79] group-hover:text-white">
-                                            {locality.name.charAt(0)}
+                    {/* ─── Licence cards ─────────────────────────────── */}
+                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                        {localities.map((locality, index) => {
+                            const regNo = `LKO-${String(index + 1).padStart(2, "0")}`;
+
+                            return (
+                                <Link
+                                    key={locality.id}
+                                    href={`/lucknow/${locality.slug}`}
+                                    className="group relative block"
+                                >
+                                    {/* Card body */}
+                                    <div className="relative overflow-hidden rounded-[4px] bg-white shadow-[0_1px_2px_rgba(28,28,28,0.06)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(31,78,121,0.14)]">
+                                        {/* Corner seal */}
+                                        <div
+                                            className="absolute -right-8 -top-8 flex h-20 w-20 rotate-45 items-end justify-center bg-[#1F4E79] pb-2.5 transition-transform duration-300 group-hover:-rotate-[35deg]"
+                                            aria-hidden="true"
+                                        >
+                                            <span className="rotate-[-45deg] font-serif text-sm font-bold text-white group-hover:rotate-[35deg]">
+                                                {locality.name.charAt(0)}
+                                            </span>
                                         </div>
 
-                                        <h3 className="text-xl font-bold text-[#1C1C1C]">
-                                            {locality.name}
-                                        </h3>
+                                        {/* Top block */}
+                                        <div className="px-7 pb-6 pt-8">
+                                            <p className="font-mono text-[11px] font-semibold tracking-wider text-[#6B6560]">
+                                                REG. NO. {regNo}
+                                            </p>
 
-                                        <p className="mt-2 text-sm text-[#6B6560]">
-                                            Home construction services in{" "}
-                                            {locality.name}
-                                            {locality.city
-                                                ? `, ${locality.city}`
-                                                : ""}
-                                            .
-                                        </p>
+                                            <h3 className="mt-3 pr-6 font-serif text-2xl font-bold leading-tight text-[#1C1C1C] transition-colors group-hover:text-[#1F4E79]">
+                                                {locality.name}
+                                            </h3>
+
+                                            <p className="mt-2 text-sm leading-6 text-[#6B6560]">
+                                                Construction services active in{" "}
+                                                {locality.name}
+                                                {locality.city
+                                                    ? `, ${locality.city}`
+                                                    : ""}
+                                                .
+                                            </p>
+                                        </div>
+
+                                        {/* Perforated tear line */}
+                                        <div className="relative">
+                                            <div
+                                                className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-[#1C1C1C]/12"
+                                                aria-hidden="true"
+                                            />
+                                            <div
+                                                className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]"
+                                                aria-hidden="true"
+                                            />
+                                            <div
+                                                className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]"
+                                                aria-hidden="true"
+                                            />
+                                        </div>
+
+                                        {/* Bottom block — stats + CTA */}
+                                        <div className="flex items-center justify-between px-7 py-5">
+                                            <div>
+                                                <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B6560]">
+                                                    Cost factor
+                                                </p>
+                                                <p className="mt-0.5 font-mono text-lg font-bold text-[#1C1C1C]">
+                                                    {locality.base_price_multiplier
+                                                        ? `${locality.base_price_multiplier}×`
+                                                        : "—"}
+                                                </p>
+                                            </div>
+
+                                            <span className="flex items-center gap-1.5 text-sm font-semibold text-[#C4623A]">
+                                                View licence
+                                                <svg
+                                                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2.5"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M5 12h14m0 0l-6-6m6 6l-6 6"
+                                                    />
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
 
-                                    <span className="rounded-full bg-[#FDFAF5] px-3 py-1 text-xs font-semibold text-[#C4623A]">
-                                        Lucknow
-                                    </span>
-                                </div>
-
-                                <div className="mt-6 border-t border-gray-100 pt-5">
-                                    <div className="flex items-center justify-between text-sm">
-                                        <span className="text-[#6B6560]">
-                                            Cost factor
-                                        </span>
-
-                                        <span className="font-semibold text-[#1C1C1C]">
-                                            {locality.base_price_multiplier
-                                                ? `${locality.base_price_multiplier}x`
-                                                : "Area based"}
-                                        </span>
-                                    </div>
-
-                                    <div className="mt-4 flex items-center justify-between">
-                                        <span className="text-sm font-semibold text-[#1F4E79]">
-                                            View locality page
-                                        </span>
-
-                                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FDFAF5] text-[#1F4E79] transition group-hover:bg-[#1F4E79] group-hover:text-white">
-                                            →
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
+                                    {/* Ground shadow accent, offset card edge */}
+                                    <div
+                                        className="absolute inset-x-3 -bottom-2 -z-10 h-full rounded-[4px] bg-[#1F4E79]/[0.06] transition-transform duration-300 group-hover:translate-y-1"
+                                        aria-hidden="true"
+                                    />
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     {localities.length === 0 && (
-                        <div className="rounded-3xl border border-dashed border-gray-300 bg-[#FDFAF5] p-10 text-center">
-                            <h3 className="text-xl font-bold text-[#1C1C1C]">
-                                No localities found
+                        <div className="mt-4 rounded-2xl border border-dashed border-[#1C1C1C]/15 bg-white/60 p-12 text-center">
+                            <h3 className="font-serif text-xl font-bold text-[#1C1C1C]">
+                                No localities on record yet
                             </h3>
-                            <p className="mt-2 text-[#6B6560]">
-                                Please add active localities from the admin
-                                panel.
+                            <p className="mt-2 text-sm text-[#6B6560]">
+                                Add active localities from the admin panel to
+                                open this register.
                             </p>
                         </div>
                     )}

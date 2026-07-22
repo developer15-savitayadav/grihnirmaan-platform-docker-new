@@ -37,14 +37,14 @@ export default function Show({
             <section className="locality-hero">
                 <div className="locality-container locality-hero-grid">
                     <div>
-                        <span className="locality-badge">
+                        <span className=" flex rounded-full items-center gap-2   text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A] ">
                             <MapPin size={18} />
                             {locality.name}
                             {locality.city && `, ${locality.city}`}
                         </span>
 
                         {locality.title && (
-                            <h1 className="locality-hero-title">
+                            <h1 className="locality-hero-title mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
                                 {locality.title}
                             </h1>
                         )}
@@ -255,7 +255,9 @@ export default function Show({
                                             )}
                                         </div>
 
-                                        <h3>{project.title}</h3>
+                                        <h3 className="font-display text-2xl font-bold leading-tight text-[#1C1C1C]">
+                                            {project.title}
+                                        </h3>
 
                                         <p>
                                             Located in{" "}
@@ -304,36 +306,125 @@ export default function Show({
             )}
 
             {nearbyLocalities.length > 0 && (
-                <section className="locality-section">
-                    <div className="locality-container">
-                        <SectionHeading
-                            eyebrow="Explore More"
-                            title="Nearby Localities"
-                        />
+                <section className="relative overflow-hidden bg-[#FDFAF5] py-20 lg:py-28">
+                    <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        {/* Header */}
+                        <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                            <div>
+                                <span className="inline-flex rounded-full  text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
+                                    Explore More · Nearby Areas
+                                </span>
 
-                        <div className="locality-nearby-grid">
-                            {nearbyLocalities.map((item: any) => (
-                                <Link
-                                    key={item.id}
-                                    href={`/lucknow/${item.slug}`}
-                                    className="locality-nearby-card"
-                                >
-                                    <div className="locality-nearby-content">
-                                        <div className="locality-nearby-icon">
-                                            <MapPin />
-                                        </div>
-                                        <div className="locality-nearby-info">
-                                            <h3>{item.name}</h3>
-                                        </div>
-                                    </div>
+                                <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
+                                    Nearby Localities
+                                </h2>
 
-                                    {item.city && <p>{item.city}</p>}
-                                    <span>
-                                        View area <ArrowRight size={16} />
-                                    </span>
-                                </Link>
-                            ))}
+                                <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#6B6560]">
+                                    Explore nearby locations where our
+                                    construction and home building services are
+                                    available.
+                                </p>
+                            </div>
+
+                            <div className="flex items-baseline gap-3 self-start md:self-end">
+                                <span className="font-serif text-5xl font-bold leading-none text-[#1F4E79]">
+                                    {String(nearbyLocalities.length).padStart(
+                                        2,
+                                        "0",
+                                    )}
+                                </span>
+
+                                <span className="max-w-[7rem] text-xs font-semibold uppercase leading-tight tracking-wider text-[#6B6560]">
+                                    nearby locations
+                                </span>
+                            </div>
                         </div>
+
+                        {/* Cards */}
+                        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            {nearbyLocalities.map((item, index) => {
+                                const regNo = `NB-${String(index + 1).padStart(2, "0")}`;
+
+                                return (
+                                    <Link
+                                        key={item.id}
+                                        href={`/lucknow/${item.slug}`}
+                                        className="group relative block"
+                                    >
+                                        <div className="relative overflow-hidden rounded-[4px] bg-white shadow-[0_1px_2px_rgba(28,28,28,0.06)] transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_20px_40px_rgba(31,78,121,0.14)]">
+                                            {/* Corner Badge */}
+                                            <div className="absolute -right-8 -top-8 flex h-20 w-20 rotate-45 items-end justify-center bg-[#1F4E79] pb-2.5 transition-transform duration-300 group-hover:-rotate-[35deg]">
+                                                <span className="rotate-[-45deg] font-serif text-sm font-bold text-white group-hover:rotate-[35deg]">
+                                                    {item.name.charAt(0)}
+                                                </span>
+                                            </div>
+
+                                            {/* Top */}
+                                            <div className="px-7 pb-6 pt-8">
+                                                <p className="font-mono text-[11px] font-semibold tracking-wider text-[#6B6560]">
+                                                    AREA ID. {regNo}
+                                                </p>
+
+                                                <h3 className="mt-3 pr-6 font-serif text-2xl font-bold leading-tight text-[#1C1C1C] transition-colors group-hover:text-[#1F4E79]">
+                                                    {item.name}
+                                                </h3>
+
+                                                <p className="mt-2 text-sm leading-6 text-[#6B6560]">
+                                                    {item.city
+                                                        ? `${item.city}, Lucknow`
+                                                        : "Lucknow"}{" "}
+                                                    service coverage available.
+                                                </p>
+                                            </div>
+
+                                            {/* Divider */}
+                                            <div className="relative">
+                                                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 border-t-2 border-dashed border-[#1C1C1C]/12" />
+                                                <div className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
+                                                <div className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-[#FDFAF5]" />
+                                            </div>
+
+                                            {/* Bottom */}
+                                            <div className="flex items-center justify-between px-7 py-5">
+                                                <div>
+                                                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B6560]">
+                                                        Status
+                                                    </p>
+
+                                                    <p className="mt-0.5 font-mono text-lg font-bold text-[#1C1C1C]">
+                                                        Active
+                                                    </p>
+                                                </div>
+
+                                                <span className="flex items-center gap-2 text-sm font-semibold text-[#C4623A]">
+                                                    View Area
+                                                    <ArrowRight
+                                                        size={16}
+                                                        className="transition-transform group-hover:translate-x-1"
+                                                    />
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Shadow */}
+                                        <div className="absolute inset-x-3 -bottom-2 -z-10 h-full rounded-[4px] bg-[#1F4E79]/[0.06] transition-transform duration-300 group-hover:translate-y-1" />
+                                    </Link>
+                                );
+                            })}
+                        </div>
+
+                        {nearbyLocalities.length === 0 && (
+                            <div className="mt-8 rounded-2xl border border-dashed border-[#1C1C1C]/15 bg-white/60 p-12 text-center">
+                                <h3 className="font-serif text-xl font-bold text-[#1C1C1C]">
+                                    No Nearby Localities
+                                </h3>
+
+                                <p className="mt-2 text-sm text-[#6B6560]">
+                                    Nearby locations will appear here once they
+                                    are added.
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </section>
             )}
@@ -344,8 +435,12 @@ export default function Show({
 function SectionHeading({ eyebrow, title }: any) {
     return (
         <div className="locality-heading">
-            <p>{eyebrow}</p>
-            <h2>{title}</h2>
+            <p className="inline-flex rounded-full text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
+                {eyebrow}
+            </p>
+            <h2 className="mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
+                {title}
+            </h2>
         </div>
     );
 }

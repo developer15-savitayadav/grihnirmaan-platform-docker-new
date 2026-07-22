@@ -57,7 +57,7 @@ export default function Show({
                 items={[{ label: "Blog" }, { label: post.category }]}
             />
 
-            <section className="bg-white pt-20">
+            <section className="bg-white py-20">
                 <div className="mx-auto grid max-w-7xl items-start gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_340px] lg:px-8">
                     <main>
                         <Link

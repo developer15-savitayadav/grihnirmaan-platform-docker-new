@@ -36,7 +36,159 @@ body {
     background: transparent !important;
     box-shadow: none !important;
 }
+/* ============================================================
+   TOAST NOTIFICATIONS — GrihNirmaan custom design
+   ============================================================ */
 
+.fi-no-notifications {
+    gap: 14px !important;
+}
+
+.fi-no-notification {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px 18px 22px !important;
+    border-radius: 20px !important;
+    border: 1px solid #eee9dd !important;
+    background-color: #fdfaf5 !important;
+    background-image: radial-gradient(
+        circle,
+        rgba(31, 78, 121, 0.07) 1px,
+        transparent 1px
+    );
+    background-size: 12px 12px;
+    box-shadow:
+        0 1px 2px rgba(17, 24, 39, 0.04),
+        0 20px 45px -14px rgba(31, 78, 121, 0.28) !important;
+    overflow: hidden;
+}
+
+/* Left accent bar — color set per status below */
+.fi-no-notification::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--gn-toast-accent, #d4a853);
+}
+
+.fi-no-notification-icon-ctn {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px !important;
+    background: color-mix(
+        in srgb,
+        var(--gn-toast-accent, #d4a853) 14%,
+        #fff
+    ) !important;
+}
+
+.fi-no-notification-icon {
+    width: 20px !important;
+    height: 20px !important;
+    color: var(--gn-toast-accent, #d4a853) !important;
+}
+
+.fi-no-notification-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 1px;
+}
+
+.fi-no-notification-title {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.01em;
+    color: #1c1c1c !important;
+    line-height: 1.35;
+}
+
+.fi-no-notification-description {
+    margin-top: 4px !important;
+    font-size: 13px !important;
+    color: #6b6560 !important;
+    line-height: 1.5;
+}
+
+.fi-no-notification-close-btn {
+    border-radius: 8px !important;
+    color: #9a9488 !important;
+    transition: 0.2s;
+}
+
+.fi-no-notification-close-btn:hover {
+    background: #fdf6e6 !important;
+    color: #1f4e79 !important;
+}
+
+/* Status colors — reuses this file's existing --c-* token convention */
+.fi-no-notification.fi-color-success {
+    --gn-toast-accent: #2e7d32;
+}
+
+.fi-no-notification.fi-color-danger {
+    --gn-toast-accent: #dc2626;
+}
+
+.fi-no-notification.fi-color-warning {
+    --gn-toast-accent: #b4842e;
+}
+
+.fi-no-notification.fi-color-info {
+    --gn-toast-accent: #1f4e79;
+}
+
+/* Signature flourish: an "approval stamp" ring behind the success icon —
+   nods to Government Approvals being the flagship service. */
+.fi-no-notification.fi-color-success .fi-no-notification-icon-ctn::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 999px;
+    border: 1.5px dashed rgba(46, 125, 50, 0.35);
+    transform: rotate(-8deg);
+}
+
+/* Dark mode */
+.dark .fi-no-notification {
+    background-color: var(--gn-dark-surface) !important;
+    background-image: radial-gradient(
+        circle,
+        rgba(212, 168, 83, 0.08) 1px,
+        transparent 1px
+    );
+    border-color: var(--gn-dark-border) !important;
+}
+
+.dark .fi-no-notification-title {
+    color: var(--gn-dark-text) !important;
+}
+
+.dark .fi-no-notification-description {
+    color: var(--gn-dark-text-muted) !important;
+}
+
+.dark .fi-no-notification-icon-ctn {
+    background: color-mix(
+        in srgb,
+        var(--gn-toast-accent, #d4a853) 20%,
+        var(--gn-dark-surface-2)
+    ) !important;
+}
+
+.dark .fi-no-notification-close-btn:hover {
+    background: rgba(212, 168, 83, 0.14) !important;
+    color: #d4a853 !important;
+}
 .gn-login {
     width: 100%;
     max-height: 100vh;
@@ -350,7 +502,6 @@ body {
 /* ==============================
    RESPONSIVE FIX
 ============================== */
-
 
 /* =====================sidebar css start========================== */
 .fi-layout {
@@ -1086,7 +1237,6 @@ body {
     border-color: var(--gn-dark-border) !important;
 }
 
-
 /* Primary buttons */
 .fi-btn-color-primary {
     background-color: #1f4e79 !important;
@@ -1302,12 +1452,12 @@ textarea.fi-input {
 
 .dark .fi-section-header-heading,
 .dark .fi-fo-field-wrp-label span {
-    color: #f2f0ea ;
+    color: #f2f0ea;
 }
 
 .dark .fi-input-wrp {
-    background: #20242f ;
-    border-color: rgba(255, 255, 255, 0.08) ;
+    background: #20242f;
+    border-color: rgba(255, 255, 255, 0.08);
 }
 
 .dark .fi-input {
@@ -2074,7 +2224,7 @@ textarea.fi-input {
 
 /* Large laptop */
 @media (max-width: 1280px) {
-     .gn-graph-grid {
+    .gn-graph-grid {
         grid-template-columns: 1fr;
     }
     .gn-login {
@@ -2117,7 +2267,7 @@ textarea.fi-input {
 
 /* Tablet */
 @media (max-width: 1024px) {
-     .gn-card-grid {
+    .gn-card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     .gn-testimonial {
@@ -2130,7 +2280,7 @@ textarea.fi-input {
 
 /* Small tablet */
 @media (max-width: 768px) {
-      .gn-dashboard-header {
+    .gn-dashboard-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
@@ -2226,7 +2376,7 @@ textarea.fi-input {
     body {
         overflow-x: hidden;
     }
-.gn-card-grid {
+    .gn-card-grid {
         grid-template-columns: 1fr;
     }
     .gn-login {
@@ -2316,7 +2466,7 @@ textarea.fi-input {
 
 /* Extra small mobile */
 @media (max-width: 425px) {
-     .gn-welcome-card {
+    .gn-welcome-card {
         display: grid;
         margin-bottom: 20px;
     }
@@ -2347,6 +2497,5 @@ textarea.fi-input {
 }
 
 @media (max-width: 375px) {
-
 }
 /* ===========================media query css end================================= */

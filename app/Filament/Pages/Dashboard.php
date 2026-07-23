@@ -19,6 +19,10 @@ class Dashboard extends Page implements HasTable
     protected static ?string $title = 'Dashboard';
     protected static ?string $navigationLabel = 'Dashboard';
     protected static ?int $navigationSort = 1;
+
+    // Take over the panel's root URL (/admin) instead of the auto-generated
+    // /admin/dashboard slug, replacing Filament's default dashboard page.
+    protected static string $slug = '/';
     private function formatAmount($amount): string
     {
         if ($amount >= 10000000) { // 1 Crore

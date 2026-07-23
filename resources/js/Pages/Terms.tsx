@@ -37,11 +37,11 @@ return (
     <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-3xl">
-                <span className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C4623A]">
+                <span className="inline-flex rounded-full  text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
                     Legal Terms
                 </span>
 
-                <h1 className="mt-3 text-4xl font-bold text-[#1F4E79] sm:text-5xl">
+                <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
                     Terms for using GrihNirmaan services.
                 </h1>
 

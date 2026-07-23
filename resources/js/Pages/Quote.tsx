@@ -62,11 +62,11 @@ export default function Quote() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <span className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#1F4E79] shadow-sm">
+                            <span className="inline-flex rounded-full text-sm font-bold uppercase tracking-[0.25em] text-[#C4623A]">
                                 Free Home Construction Consultation
                             </span>
 
-                            <h1 className="mt-6 text-4xl font-bold leading-tight text-[#1C1C1C] md:text-6xl">
+                            <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-[#1C1C1C] md:text-5xll">
                                 Get Your Dream Home Quote in Lucknow
                             </h1>
 

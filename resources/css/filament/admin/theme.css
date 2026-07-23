@@ -36,20 +36,13 @@ body {
     background: transparent !important;
     box-shadow: none !important;
 }
-/* ============================================================
-   TOAST NOTIFICATIONS — GrihNirmaan custom design
-   ============================================================ */
-
+/* BAAD ME: */
 .fi-no-notifications {
     gap: 14px !important;
 }
 
 .fi-no-notification {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 18px 20px 18px 22px !important;
+    position: relative !important;
     border-radius: 20px !important;
     border: 1px solid #eee9dd !important;
     background-color: #fdfaf5 !important;
@@ -65,7 +58,7 @@ body {
     overflow: hidden;
 }
 
-/* Left accent bar — color set per status below */
+/* Left accent bar, colored per status */
 .fi-no-notification::before {
     content: "";
     position: absolute;
@@ -73,35 +66,20 @@ body {
     top: 0;
     bottom: 0;
     width: 5px;
-    background: var(--gn-toast-accent, #d4a853);
+    background: #d4a853;
 }
 
-.fi-no-notification-icon-ctn {
-    position: relative;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 999px !important;
-    background: color-mix(
-        in srgb,
-        var(--gn-toast-accent, #d4a853) 14%,
-        #fff
-    ) !important;
+.fi-no-notification.fi-status-success::before {
+    background: #2e7d32;
 }
-
-.fi-no-notification-icon {
-    width: 20px !important;
-    height: 20px !important;
-    color: var(--gn-toast-accent, #d4a853) !important;
+.fi-no-notification.fi-status-danger::before {
+    background: #dc2626;
 }
-
-.fi-no-notification-content {
-    flex: 1;
-    min-width: 0;
-    padding-top: 1px;
+.fi-no-notification.fi-status-warning::before {
+    background: #b4842e;
+}
+.fi-no-notification.fi-status-info::before {
+    background: #1f4e79;
 }
 
 .fi-no-notification-title {
@@ -109,7 +87,6 @@ body {
     font-weight: 800 !important;
     letter-spacing: -0.01em;
     color: #1c1c1c !important;
-    line-height: 1.35;
 }
 
 .fi-no-notification-description {
@@ -121,7 +98,6 @@ body {
 
 .fi-no-notification-close-btn {
     border-radius: 8px !important;
-    color: #9a9488 !important;
     transition: 0.2s;
 }
 
@@ -130,32 +106,34 @@ body {
     color: #1f4e79 !important;
 }
 
-/* Status colors — reuses this file's existing --c-* token convention */
-.fi-no-notification.fi-color-success {
-    --gn-toast-accent: #2e7d32;
+/* Icon: give it breathing room + a soft circular backdrop.
+   Styling the <svg> box directly — no wrapper div exists in Filament's markup. */
+.fi-no-notification-icon {
+    border-radius: 999px !important;
+    padding: 7px !important;
+    box-sizing: content-box !important;
+    background: rgba(212, 168, 83, 0.14) !important;
 }
 
-.fi-no-notification.fi-color-danger {
-    --gn-toast-accent: #dc2626;
+.fi-no-notification-icon.fi-color-success {
+    background: rgba(46, 125, 50, 0.12) !important;
+}
+.fi-no-notification-icon.fi-color-danger {
+    background: rgba(220, 38, 38, 0.12) !important;
+}
+.fi-no-notification-icon.fi-color-warning {
+    background: rgba(180, 132, 46, 0.12) !important;
+}
+.fi-no-notification-icon.fi-color-info {
+    background: rgba(31, 78, 121, 0.12) !important;
 }
 
-.fi-no-notification.fi-color-warning {
-    --gn-toast-accent: #b4842e;
-}
-
-.fi-no-notification.fi-color-info {
-    --gn-toast-accent: #1f4e79;
-}
-
-/* Signature flourish: an "approval stamp" ring behind the success icon —
-   nods to Government Approvals being the flagship service. */
-.fi-no-notification.fi-color-success .fi-no-notification-icon-ctn::after {
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 999px;
-    border: 1.5px dashed rgba(46, 125, 50, 0.35);
-    transform: rotate(-8deg);
+/* Signature flourish: an "approval stamp" ring — nods to Government
+   Approvals being the flagship service. Uses outline (not a pseudo-element)
+   since it targets the <svg> directly and outline doesn't affect layout. */
+.fi-no-notification.fi-status-success .fi-no-notification-icon {
+    outline: 1.5px dashed rgba(46, 125, 50, 0.4);
+    outline-offset: 3px;
 }
 
 /* Dark mode */
@@ -175,14 +153,6 @@ body {
 
 .dark .fi-no-notification-description {
     color: var(--gn-dark-text-muted) !important;
-}
-
-.dark .fi-no-notification-icon-ctn {
-    background: color-mix(
-        in srgb,
-        var(--gn-toast-accent, #d4a853) 20%,
-        var(--gn-dark-surface-2)
-    ) !important;
 }
 
 .dark .fi-no-notification-close-btn:hover {

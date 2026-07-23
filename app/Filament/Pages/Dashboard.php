@@ -22,7 +22,7 @@ class Dashboard extends Page implements HasTable
 
     // Take over the panel's root URL (/admin) instead of the auto-generated
     // /admin/dashboard slug, replacing Filament's default dashboard page.
-    protected static string $slug = '/';
+    protected static ?string $slug = '/';
     private function formatAmount($amount): string
     {
         if ($amount >= 10000000) { // 1 Crore
@@ -51,9 +51,9 @@ class Dashboard extends Page implements HasTable
             ? round(($convertedLeads / $totalLeads) * 100, 2)
             : 0;
 
-       $pipelineValue = $this->formatAmount(
-    Lead::sum('estimated_budget')
-);
+        $pipelineValue = $this->formatAmount(
+            Lead::sum('estimated_budget')
+        );
 
         $monthlyLeadsRaw = Lead::select(
             DB::raw('MONTH(created_at) as month'),

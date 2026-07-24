@@ -208,13 +208,13 @@ export default function Index({ localities }: Props) {
                 </div>
             </section>
 
-            <section className="bg-[#1F4E79] py-16 text-white">
+            <section className="bg-[#1f4e791c] py-16 text-black">
                 <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold md:text-4xl">
+                    <h2 className="text-3xl font-bold md:text-4xl font-display">
                         Not sure which locality cost applies to your plot?
                     </h2>
 
-                    <p className="mx-auto mt-4 max-w-2xl text-blue-100">
+                    <p className="mx-auto mt-4 max-w-2xl text-black">
                         Share your plot location and our home advisor will help
                         you understand construction cost, approval process and
                         timeline.
@@ -223,14 +223,14 @@ export default function Index({ localities }: Props) {
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link
                             href="/quote"
-                            className="rounded-md bg-[#D4A853] px-7 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black"
+                            className="inline-flex items-center justify-center gap-2 rounded-md bg-terracotta px-6 py-3 font-semibold border border-terracotta text-white hover:border-black hover:bg-white hover:text-black"
                         >
                             Talk to Home Advisor
                         </Link>
 
                         <Link
                             href="/contact"
-                            className="rounded-md border border-white/50 px-7 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black"
+                            className="inline-flex items-center justify-center gap-2 rounded-md border border-black px-6 py-3 font-semibold text-black transition-all duration-300 hover:border-[#C4623A] hover:bg-[#C4623A] hover:text-white"
                         >
                             Contact Us
                         </Link>

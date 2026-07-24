@@ -223,14 +223,14 @@ export default function Index({ localities }: Props) {
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link
                             href="/quote"
-                            className="rounded-full bg-[#D4A853] px-7 py-3 text-sm font-bold text-[#1C1C1C] transition hover:bg-white"
+                            className="rounded-md bg-[#D4A853] px-7 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black"
                         >
                             Talk to Home Advisor
                         </Link>
 
                         <Link
                             href="/contact"
-                            className="rounded-full border border-white/50 px-7 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-[#1F4E79]"
+                            className="rounded-md border border-white/50 px-7 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-black"
                         >
                             Contact Us
                         </Link>

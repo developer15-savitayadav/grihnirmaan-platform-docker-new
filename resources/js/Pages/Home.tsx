@@ -578,7 +578,7 @@ export default function Home({
                         <div className="relative">
                             <div className="overflow-hidden rounded-[32px] shadow-2xl lg:sticky lg:top-24">
                                 <img
-                                    src="/uploads/images/why-choose-home.jpg"
+                                    src="/uploads/images/problem-solve.png"
                                     alt="GrihNirmaan"
                                     className="h-[350px] w-full object-cover lg:h-[500px]"
                                 />
@@ -760,10 +760,10 @@ export default function Home({
                                         <img
                                             src={
                                                 [
-                                                    "/uploads/images/why-choose-home.jpg",
-                                                    "/uploads/images/why-choose-home.jpg",
-                                                    "/uploads/images/why-choose-home.jpg",
-                                                    "/uploads/images/why-choose-home.jpg",
+                                                    "/uploads/images/how-it-work-1.png",
+                                                    "/uploads/images/how-it-work-2.png",
+                                                    "/uploads/images/how-it-work-3.png",
+                                                    "/uploads/images/how-it-work-4.png",
                                                 ][i]
                                             }
                                             alt={title}
@@ -1386,7 +1386,7 @@ export default function Home({
                         <Reveal>
                             <div className="overflow-hidden rounded-[18px]">
                                 <img
-                                    src=" uploads/images/why-choose-home.jpg"
+                                    src=" uploads/images/banner1-1.jpg"
                                     alt="Modern luxury home"
                                     className="h-[430px] w-full object-cover"
                                 />
